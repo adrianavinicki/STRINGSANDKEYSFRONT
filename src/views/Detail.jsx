@@ -23,10 +23,22 @@ import {
     PopoverBody,
     Input,
   } from "@chakra-ui/react";
+  import { useParams } from "react-router-dom";
+  import { useDispatch, useSelector } from "react-redux";
+  import { useEffect } from "react";
+  import { getDetailProduct } from "../redux/actions";
 
 const Detail = () => {
 
-    const fakeDetail = {
+  const {id} = useParams();
+  const dispatch = useDispatch();
+
+  let detailProduct = useSelector((state) => state.details);
+  useEffect(()=> {
+    dispatch(getDetailProduct(id))
+  }, [dispatch, id]);
+
+    /* const fakeDetail = {
       id: 1001,
       name: "Afinador Digital Cromático Pinza Korg Griptune",
       brand: "Korg",
@@ -38,7 +50,7 @@ const Detail = () => {
       product_status: true,
       quantity: 2000,
       price: 11.159,
-    };
+    }; */
 
     return (
       <Box
@@ -60,7 +72,7 @@ const Detail = () => {
               <Image
                 rounded={"md"}
                 alt={"product image"}
-                src={fakeDetail.image}
+                src={detailProduct?.image}
                 align={"center"}
                 maxH={"350px"}
               />
@@ -73,14 +85,14 @@ const Detail = () => {
                   fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
                   color={"black"}
                 >
-                  {fakeDetail.name}
+                  {detailProduct?.name}
                 </Heading>
                 <Text
                   color={useColorModeValue("black", "gray.400")}
                   fontWeight={"bold"}
                   fontSize={"2xl"}
                 >
-                  ${fakeDetail.price}
+                  ${detailProduct?.price}
                 </Text>
               </Box>
               {/* <Flex justifyContent="space-between" alignContent="center">
@@ -102,7 +114,7 @@ const Detail = () => {
               >
                 <VStack spacing={{ base: 4, sm: 6 }}>
                   <Text fontWeight={"bold"} fontSize={"lg"} color={"black"}>
-                    {fakeDetail.description}
+                    {detailProduct?.description}
                   </Text>
                 </VStack>
                 <Box>
@@ -146,7 +158,7 @@ const Detail = () => {
                             as={"span"}
                             fontWeight={"500"}
                           >
-                            Marca: {fakeDetail.brand}
+                            Marca: {detailProduct?.brand}
                           </Text>{" "}
                         </ListItem>
                         <ListItem>
@@ -156,7 +168,7 @@ const Detail = () => {
                             as={"span"}
                             fontWeight={"500"}
                           >
-                            Categoria: {fakeDetail.category}
+                            Categoria: {detailProduct?.category}
                           </Text>{" "}
                         </ListItem>
                       </List>
