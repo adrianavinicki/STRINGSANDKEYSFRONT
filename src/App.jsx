@@ -5,6 +5,7 @@ import CreateProduct from "./views/CreateProductoFolder/CreateProduct";
 import Products from "./views/Products";
 import EditProduct from "./views/EditProducts";
 import Cart from "./views/Cart/Cart"
+import Perfil from "./views/Perfil"
 
 
 
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
     path:"/cart",
     element: <Cart />,
   },
+  {
+    path:"/profile",
+    element: <Perfil />,
+  },
+  
 ])
 
 
