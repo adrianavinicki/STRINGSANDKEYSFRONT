@@ -55,7 +55,7 @@ export default function CategoryCards() {
               Correas
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Correas"}
               value={"Correas"}
               onClick={(e) => {
@@ -76,7 +76,7 @@ export default function CategoryCards() {
               Fundas
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Fundas"}
               value={"Fundas"}
               onClick={(e) => {
@@ -97,7 +97,7 @@ export default function CategoryCards() {
               Púas
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Púas"}
               value={"Púas"}
               onClick={(e) => {
@@ -118,7 +118,7 @@ export default function CategoryCards() {
               Cables
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Cables"}
               value={"Cables"}
               onClick={(e) => {
@@ -139,7 +139,7 @@ export default function CategoryCards() {
               Teclados
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Teclados"}
               value={"Teclados"}
               onClick={(e) => {
@@ -160,7 +160,7 @@ export default function CategoryCards() {
               Instrumentos de Cuerda
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Instrumentos de Cuerda"}
               value={"Instrumentos de Cuerda"}
               onClick={(e) => {
@@ -183,7 +183,7 @@ export default function CategoryCards() {
               Instrumentos de Viento
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Instrumentos de Viento"}
               value={"Instrumentos de Viento"}
               onClick={(e) => {
@@ -206,7 +206,7 @@ export default function CategoryCards() {
               Amplificadores
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Amplificadores"}
               value={"Amplificadores"}
               onClick={(e) => {
@@ -227,7 +227,7 @@ export default function CategoryCards() {
               Baterías y Percusión
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Baterías y Percusión"}
               value={"Baterías y Percusión"}
               onClick={(e) => {
@@ -245,7 +245,7 @@ export default function CategoryCards() {
             <Box>
               <Flex direction={'column'} align={'center'} >
                 <Link
-                  href={"/products"}
+                  to={"/products"}
                   key={"todos"}
                   value={"todos"}
                   onClick={(e) => {
