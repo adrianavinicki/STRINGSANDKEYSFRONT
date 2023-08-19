@@ -59,6 +59,7 @@ import NavBar2 from "../../components/NavBar2"; */
         width="100vw"
         height="100vh"
         >
+        
             <Box
             margin={"70px"}
             padding={"30px"}
@@ -90,9 +91,9 @@ import NavBar2 from "../../components/NavBar2"; */
                     <Box>
                         <Flex justify={'space-between'}>
                             <Heading fontSize="2xl" fontWeight="extrabold">
-                            {totalCantidad} Toys
+                            {totalCantidad} Productos
                             </Heading>
-                            <Button _hover={'none'} bg={'gray.800'} color={'white'} onClick={handleEmptyCart}>Empty Cart</Button>
+                            <Button _hover={'none'} bg={'gray.800'} color={'white'} onClick={handleEmptyCart}>Vaciar Carrito</Button>
                         </Flex>
                     </Box>
 

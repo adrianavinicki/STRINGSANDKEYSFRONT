@@ -86,7 +86,7 @@ export const CartItem = (props) => {
           // }}
         /> */}
         <Box marginLeft={'100px'}>
-          <Text>Quantity: {quantity}</Text>
+          <Text>Cantidad: {quantity}</Text>
           <PriceTag price={price} currency={currency} />
           <Button variant="outline" colorScheme="red" size="sm" onClick={() => handleDecreaseQuantity(props.id)} mt={2}>
                           -
