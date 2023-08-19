@@ -24,6 +24,8 @@ import WithSubnavigation from "../components/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Perfil = () => {
+  const { user } = useAuth0();
+q
   const [form, setForm] = useState({
     name: "",
     last_name: "",
@@ -31,7 +33,6 @@ const Perfil = () => {
     phone: "",
     adress: "",
   });
-  
 
   const handleOnBlur = (e) => {
     handleChange(e);
@@ -39,15 +40,14 @@ const Perfil = () => {
   };
 
   const handleSubmit = () => {
-    console.log(form, "acaaa")
-  }
+    console.log(form, "acaaa");
+    console.log(user);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prevValue) => ({ ...prevValue, [name]: value }));
   };
-
-  const { user } = useAuth0();
 
   return (
     <Box>
