@@ -7,7 +7,7 @@ const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
 export default function EmailButton() {
   //const { user } = useAuth0()
-  const  user  = {userMail: 'martinfuks0398@gmail.com', name: "Martin Fuks"}
+  const  user  = {userMail: 'diaz.me1984@gmail.com', name: "Maty Diaz"}
   const toast = useToast();
 
 
