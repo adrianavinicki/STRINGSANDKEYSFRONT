@@ -1,6 +1,5 @@
 import {
   Box,
-  Link,
   SimpleGrid,
   Text,
   Image,
@@ -10,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { filterCategory } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 export default function CategoryCards() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function CategoryCards() {
               Afinadores
             </Text>
             <Link
-              href={"/products"}
+              to={"/products"}
               key={"Afinadores"}
               value={"Afinadores"}
               onClick={(e) => {
