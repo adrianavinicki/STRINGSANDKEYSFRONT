@@ -6,7 +6,7 @@ import {
   IconButton,
   Button,
   Stack,
-  Link,
+  //Link,
   Collapse,
   Icon,
   Image,
@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/icons";
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import { Profile } from "./Profile";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -77,7 +78,7 @@ export default function WithSubnavigation() {
           spacing={10}
           mr={"2%"}
         >
-          <Link href="/cart">
+          <Link to="/cart">
             <FaShoppingCart size={"5vh"} color="#ffa200" />
           </Link>
           {isAuthenticated ? (
