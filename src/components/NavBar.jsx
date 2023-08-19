@@ -131,6 +131,7 @@ const DesktopNav = () => {
 
             {navItem.children && (
               <PopoverContent
+                
                 border={0}
                 boxShadow={"xl"}
                 bg={popoverContentBgColor}
@@ -155,6 +156,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
     <Box
+      to={href}
       as="a"
       href={href}
       role={"group"}
