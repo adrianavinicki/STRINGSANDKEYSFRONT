@@ -9,7 +9,6 @@ import {
   Text,
   Heading,
   FormLabel,
-  Link,
   Input,
   Button,
 } from "@chakra-ui/react";
@@ -26,6 +25,7 @@ import { useState, useEffect } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyStates } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 
 
@@ -233,7 +233,7 @@ const FilterAndOrder = () => {
                 resetInput();
               }}
               
-            ><Link href="/products" >Limpiar Filtros</Link>
+            ><Link to="/products" >Limpiar Filtros</Link>
             </Button>
           </Flex>
         </Box>

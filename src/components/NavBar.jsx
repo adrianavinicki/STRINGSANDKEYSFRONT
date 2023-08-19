@@ -6,7 +6,6 @@ import {
   IconButton,
   Button,
   Stack,
-  Link,
   Collapse,
   Icon,
   Image,
@@ -24,6 +23,7 @@ import {
 } from "@chakra-ui/icons";
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function WithSubnavigation() {
 
@@ -50,7 +50,7 @@ export default function WithSubnavigation() {
           ml={10}
         >
           <Box boxSize={"70px"} mb={"1%"}>
-            <Link href={"/"}>
+            <Link to={"/"}>
               <Image src="/Logo White.png"></Image>
             </Link>
           </Box>
