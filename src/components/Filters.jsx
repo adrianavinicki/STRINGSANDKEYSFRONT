@@ -115,7 +115,7 @@ const FilterAndOrder = () => {
   );
 
   return (
-    <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"}>
+    <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"} p={"5%"}>
       <Flex direction={"column"}>
         {filteredProducts.length === 0? <Text>No se encontraron productos.</Text> :
         <Text fontSize={"2vh"}>

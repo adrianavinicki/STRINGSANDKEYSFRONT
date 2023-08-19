@@ -69,7 +69,7 @@ export default function WithSubnavigation() {
           spacing={10}
           mr={"2%"}
         >
-          <Link>
+          <Link href="/cart">
             <FaShoppingCart size={'5vh'} color="#ffa200" />
           </Link>
           <Button
