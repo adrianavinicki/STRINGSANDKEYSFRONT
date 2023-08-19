@@ -85,6 +85,7 @@ const CardsContainer = () => {
                       name={product.name}
                       brand={product.brand}
                       price={product.price}
+                      productoInfo={product}
                     />
                     </Link>
                   );

@@ -9,9 +9,13 @@ export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
 export const EMPTY_STATES = "EMPTY_STATES";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const POST_PRODUCT = "POST_PRODUCT";
-export const FILTER_PRICE_NAME = "FILTER_PRICE_NAME"
-export const SET_PAGE = "SET_PAGE"
-
+export const FILTER_PRICE_NAME = "FILTER_PRICE_NAME";
+export const SET_PAGE = "SET_PAGE";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_PRODUCT_FROM_CART = "REMOVE_PRODUCT_FROM_CART";
+export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
+export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
+export const EMPTY_CART = "EMPTY_CART";
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -112,3 +116,37 @@ export const PostProduct = (product) => {
         return response;
       };
 }
+
+export const addProductToCart = (cart) => {
+    return {
+      type: ADD_TO_CART,
+      payload: cart,
+    };
+  };
+
+export const removeProductFromCart = (productID) => {
+    return {
+      type: REMOVE_PRODUCT_FROM_CART,
+      payload: productID,
+    };
+  };
+
+export const decreaseProductQuantity = (productID) => {
+    return {
+      type: DECREASE_PRODUCT_QUANTITY,
+      payload: productID,
+    };
+  };
+  
+export const increaseProductQuantity = (productID) => {
+    return {
+      type: INCREASE_PRODUCT_QUANTITY,
+      payload: productID,
+    };
+  };
+
+export const emptyCart = () => {
+  return {
+    type: EMPTY_CART,
+  };
+};

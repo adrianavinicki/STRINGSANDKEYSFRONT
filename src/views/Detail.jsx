@@ -23,11 +23,12 @@ import {
   PopoverHeader,
   PopoverBody,
   Input,
+  useToast
 } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetailProduct } from "../redux/actions";
+import { addProductToCart, getDetailProduct } from "../redux/actions";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { FaShoppingCart } from "react-icons/fa";
@@ -36,11 +37,23 @@ import { FaShoppingCart } from "react-icons/fa";
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const toast = useToast();
 
   let detailProduct = useSelector((state) => state.details);
   useEffect(() => {
     dispatch(getDetailProduct(id));
   }, [dispatch, id]);
+
+  const getCarrito = (product) => {
+    dispatch(addProductToCart(product));
+    toast({
+      title: "producto añadido al carrito",
+      description: "El producto ha sido agregado exitosamente a tu carrito.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
 
   return (
     <Box>
@@ -169,7 +182,7 @@ const Detail = () => {
                       </Button>
                     </Link>
                     <Button
-                      //   onClick={() => addProductCarrito(productDetail)}
+                         onClick={() => getCarrito(detailProduct)}
                       rounded={"5px"}
                       bg={useColorModeValue("black", "black")}
                       color={useColorModeValue("#ffa200", "#ffa200")}

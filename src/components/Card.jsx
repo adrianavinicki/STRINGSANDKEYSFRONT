@@ -11,9 +11,18 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductToCart } from "../redux/actions";
 
 export default function ProductSimple(props) {
 
+  const dispatch = useDispatch();
+
+  //const agregarCarrito = (product) => {
+//
+  //  dispatch(addProductToCart(product));
+  //}
+  
   const truncatedName = props.name.length > 50 ? `${props.name.substring(0, 30)}...` : props.name;
 
   return (
