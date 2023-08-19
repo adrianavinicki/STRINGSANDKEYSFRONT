@@ -25,7 +25,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Perfil = () => {
   const { user } = useAuth0();
-q
+
   const [form, setForm] = useState({
     name: "",
     last_name: "",
