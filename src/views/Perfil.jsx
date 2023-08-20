@@ -32,6 +32,7 @@ const Perfil = () => {
     gender: "",
     phone: "",
     adress: "",
+    role_id:"",
   });
 
   const handleOnBlur = (e) => {
@@ -39,7 +40,7 @@ const Perfil = () => {
     //setErrors(validateForm(form, image));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     console.log(form, "acaaa");
     console.log(user);
   };
@@ -77,6 +78,7 @@ const Perfil = () => {
                 </Text>
               </Stack>
               <Box rounded={"lg"} bg={"black"} boxShadow={"lg"} p={8}>
+                <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>
                   <FormControl id="email">
                     <FormLabel>Mail: {user?.email}</FormLabel>
@@ -172,6 +174,7 @@ const Perfil = () => {
                     </Button>
                   </Stack>
                 </Stack>
+                </form>
               </Box>
             </Stack>
           </Flex>

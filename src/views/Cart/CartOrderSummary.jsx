@@ -161,7 +161,8 @@ import {
           <Button
             type="submit"
             onClick={handleSubmit}
-            colorScheme="blue"
+            color="#ffa200"
+            bg={'black'}
             size="lg"
             fontSize="md"
             rightIcon={<FaArrowRight />}

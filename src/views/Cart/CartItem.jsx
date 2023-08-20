@@ -88,15 +88,15 @@ export const CartItem = (props) => {
         <Box marginLeft={'100px'}>
           <Text>Cantidad: {quantity}</Text>
           <PriceTag price={price} currency={currency} />
-          <Button variant="outline" colorScheme="red" size="sm" onClick={() => handleDecreaseQuantity(props.id)} mt={2}>
+          <Button variant="outline" color="#ffa200" border={'1px solid #ffa200'} size="sm" onClick={() => handleDecreaseQuantity(props.id)} mt={2}>
                           -
           </Button>
 
-          <Button variant="outline" colorScheme="red" size="sm" onClick={() => handleIncreaseQuantity(props.id)} mt={2}>
+          <Button variant="outline" color="#ffa200" border={'1px solid #ffa200'} size="sm" onClick={() => handleIncreaseQuantity(props.id)} mt={2}>
           +
           </Button>
         </Box>
-        <Button variant="outline" colorScheme="red" size="sm" onClick={() => handleRemoveProduct(props.id)} mt={2}>
+        <Button variant="outline" color="#ffa200" border={'1px solid #ffa200'} size="sm" onClick={() => handleRemoveProduct(props.id)} mt={2}>
           Eliminar
         </Button>
         {/* <CloseButton aria-label={`Delete ${name} from cart`} onClick={handleRemoveProduct(productId)} /> */}
