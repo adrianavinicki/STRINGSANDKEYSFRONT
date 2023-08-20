@@ -17,14 +17,15 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect, useState } from "react";
 
 const Perfil = () => {
   const { user } = useAuth0();
+
 
   const [form, setForm] = useState({
     name: "",
@@ -32,7 +33,7 @@ const Perfil = () => {
     gender: "",
     phone: "",
     adress: "",
-    role_id:"",
+    role_id: "",
   });
 
   const handleOnBlur = (e) => {
@@ -79,101 +80,101 @@ const Perfil = () => {
               </Stack>
               <Box rounded={"lg"} bg={"black"} boxShadow={"lg"} p={8}>
                 <form onSubmit={handleSubmit}>
-                <Stack spacing={4}>
-                  <FormControl id="email">
-                    <FormLabel>Mail: {user?.email}</FormLabel>
-                  </FormControl>
-                  <HStack>
-                    <Box>
-                      <FormControl id="firstName" isRequired>
-                        <FormLabel>Nombre</FormLabel>
-                        <Input
-                          bg={"white"}
-                          color={"black"}
-                          type="text"
-                          onChange={handleChange}
-                          onBlur={handleOnBlur}
-                          name="name"
-                          value={form.name}
-                        />
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <FormControl id="lastName" isRequired>
-                        <FormLabel>Apellido</FormLabel>
-                        <Input
-                          bg={"white"}
-                          color={"black"}
-                          type="text"
-                          onChange={handleChange}
-                          onBlur={handleOnBlur}
-                          name="last_name"
-                          value={form.last_name}
-                        />
-                      </FormControl>
-                    </Box>
-                  </HStack>
-                  <HStack>
-                    <Box>
-                      <FormControl id="firstName" isRequired>
-                        <FormLabel>Genero</FormLabel>
-                        <Select
-                          _hover={"none"}
-                          bg={"white"}
-                          color={"black"}
-                          w={"200px"}
-                          onChange={handleChange}
-                          onBlur={handleOnBlur}
-                          name="gender"
-                          value={form.gender}
-                          placeholder="seleccione un genero"
-                        >
-                          <option value={"Masculino"}>Masculino</option>
-                          <option value={"Femenino"}>Femenino</option>
-                          <option value={"X"}>X</option>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <FormControl id="lastName" isRequired>
-                        <FormLabel>Celular</FormLabel>
-                        <Input
-                          bg={"white"}
-                          color={"black"}
-                          type="number"
-                          onChange={handleChange}
-                          onBlur={handleOnBlur}
-                          name="phone"
-                          value={form.phone}
-                        />
-                      </FormControl>
-                    </Box>
-                  </HStack>
-                  <FormControl id="email" isRequired>
-                    <FormLabel>Direccion</FormLabel>
-                    <Input
-                      bg={"white"}
-                      color={"black"}
-                      type="email"
-                      onChange={handleChange}
-                      onBlur={handleOnBlur}
-                      name="adress"
-                      value={form.adress}
-                    />
-                  </FormControl>
-                  <Stack spacing={10} pt={2}>
-                    <Button
-                      loadingText="Submitting"
-                      size="lg"
-                      bg={"#ffa200"}
-                      color={"black"}
-                      _hover={"none"}
-                      onClick={handleSubmit}
-                    >
-                      Guardar
-                    </Button>
+                  <Stack spacing={4}>
+                    <FormControl id="email">
+                      <FormLabel>Mail: {user?.email}</FormLabel>
+                    </FormControl>
+                    <HStack>
+                      <Box>
+                        <FormControl id="firstName" isRequired>
+                          <FormLabel>Nombre</FormLabel>
+                          <Input
+                            bg={"white"}
+                            color={"black"}
+                            type="text"
+                            onChange={handleChange}
+                            onBlur={handleOnBlur}
+                            name="name"
+                            value={form.name}
+                          />
+                        </FormControl>
+                      </Box>
+                      <Box>
+                        <FormControl id="lastName" isRequired>
+                          <FormLabel>Apellido</FormLabel>
+                          <Input
+                            bg={"white"}
+                            color={"black"}
+                            type="text"
+                            onChange={handleChange}
+                            onBlur={handleOnBlur}
+                            name="last_name"
+                            value={form.last_name}
+                          />
+                        </FormControl>
+                      </Box>
+                    </HStack>
+                    <HStack>
+                      <Box>
+                        <FormControl id="firstName" isRequired>
+                          <FormLabel>Genero</FormLabel>
+                          <Select
+                            _hover={"none"}
+                            bg={"white"}
+                            color={"black"}
+                            w={"200px"}
+                            onChange={handleChange}
+                            onBlur={handleOnBlur}
+                            name="gender"
+                            value={form.gender}
+                            placeholder="seleccione un genero"
+                          >
+                            <option value={"Masculino"}>Masculino</option>
+                            <option value={"Femenino"}>Femenino</option>
+                            <option value={"X"}>X</option>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                      <Box>
+                        <FormControl id="lastName" isRequired>
+                          <FormLabel>Celular</FormLabel>
+                          <Input
+                            bg={"white"}
+                            color={"black"}
+                            type="number"
+                            onChange={handleChange}
+                            onBlur={handleOnBlur}
+                            name="phone"
+                            value={form.phone}
+                          />
+                        </FormControl>
+                      </Box>
+                    </HStack>
+                    <FormControl id="email" isRequired>
+                      <FormLabel>Direccion</FormLabel>
+                      <Input
+                        bg={"white"}
+                        color={"black"}
+                        type="email"
+                        onChange={handleChange}
+                        onBlur={handleOnBlur}
+                        name="adress"
+                        value={form.adress}
+                      />
+                    </FormControl>
+                    <Stack spacing={10} pt={2}>
+                      <Button
+                        loadingText="Submitting"
+                        size="lg"
+                        bg={"#ffa200"}
+                        color={"black"}
+                        _hover={"none"}
+                        onClick={handleSubmit}
+                      >
+                        Guardar
+                      </Button>
+                    </Stack>
                   </Stack>
-                </Stack>
                 </form>
               </Box>
             </Stack>

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyStates, getProducts } from "../redux/actions";
 
+
 const Home = () => {
 
   const dispatch = useDispatch();

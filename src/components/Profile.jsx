@@ -35,6 +35,9 @@ export const Profile = () => {
           <MenuItem  >Mi Perfil</MenuItem>
           </Link>
           <MenuItem >Mis Compras</MenuItem>
+          <Link to={'/token'}>
+          <MenuItem  >MetaData</MenuItem>
+          </Link>
           <MenuItem
             onClick={() =>
               logout({ logoutParams: { returnTo: window.location.origin } })
