@@ -7,6 +7,7 @@ import EditProduct from "./views/EditProducts";
 import Perfil from "./views/Perfil";
 import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
+import Nosotros from "./views/Nosotros";
 
 
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/token",
     element: <Token/>,
+  },
+  {
+    path: "/us",
+    element: <Nosotros/>,
   }
   
 ])

@@ -200,7 +200,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Nosotros",
-    href: "#",
+    href: "/us",
   },
   {
     label: "Inicio",
