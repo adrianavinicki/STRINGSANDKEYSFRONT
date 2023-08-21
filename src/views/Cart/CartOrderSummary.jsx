@@ -16,8 +16,8 @@ import {
   import { useToast } from '@chakra-ui/react'
   import { useSelector, useDispatch } from "react-redux";
   import axios from "axios";
-  import { getOrdersIDArray, /*getIdEmailUser*/ } from "../../redux/actions";
- // import { useAuth0 } from "@auth0/auth0-react";
+  import { getOrdersIDArray } from "../../redux/actions";
+  import { useAuth0 } from "@auth0/auth0-react";
   import { useEffect, useState } from "react";
   
   const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
@@ -40,55 +40,16 @@ import {
     //const { isAuthenticated, user } = useAuth0();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
-    const idCliente = useSelector((state) => state.idUser);
+    const idCliente = useSelector((state) => state.actualUser);
     const toast = useToast();
+
+    const { user, isAuthenticated } = useAuth0()
   
-      //useEffect(() => {
-      //  const getUser = async() => {
-  //
-      //    try {
-      //      if(isAuthenticated && !idCliente){
-      //        const idClient = await axios.post(POST_USER_EMAIL, {email: user?.email});
-      //        dispatch(getIdEmailUser(idClient.data.idUser));
-      //        setUserData(idClient.data.user);
-      //      }; 
-  //
-      //      if(!userData && idCliente){
-      //        const dataUser = await axios.get(`${GET_USERS}/${idCliente}`);
-      //        setUserData(dataUser.data);
-      //      }
-      //    } catch (error) {
-      //      console.log(error);
-      //    };
-      //    
-      //    
-      //  };
-  //
-      //getUser();
- //   },// []);
-  //
     const productsToBuy = useSelector((state) => state.cartItems);
-  
-    //console.log(productsToBuy[0].quantity)
-  
-    /*const handleSubmit = async (quantity, productId, userId) => {
-        console.log(quantity, productId, userId)
-  
-        try {
-          const detailCreated = await axios.post("http://localhost:3010/detailorders/create",{quantity, productId, userId});
-  
-          console.log(detailCreated.data.id)
-          dispatch(getDetailOrdersIDArray(detailCreated.data.id));
-          navigate("/payment");
-        } catch (error) {
-          console.log(error);
-        }
-        
-      }*/
+
   
     const handleSubmit = async () => {
-      /*if (!isAuthenticated) {
+      if (!isAuthenticated) {
         toast({
           title: "No has iniciado sesión",
           description: "Por favor, inicia sesión para continuar",
@@ -98,19 +59,23 @@ import {
         });
         return;
       }
-      if (!idCliente) {
-        alert(
-          "please, complete the rest of your data in your profile to be able to send your toys"
-        );
+      if (idCliente.length === 0) {
+        toast({
+          title: "Completa Tus Datos",
+          description: "Por favor, completa los datos en tu perfil para continuar con la compra",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+        });
         return;
-      } */// aqui agregar un else if si el usuario esta registrado o no en la base de datos
+      } // aqui agregar un else if si el usuario esta registrado o no en la base de datos
       try {
         const orders = productsToBuy.map((item) => {
           return {
             quantity: item.quantity,
             productId: item.id,
-            //userId: userData.id,
-            userId: 1,
+            userId: idCliente.id,
+            //userId: 1,
           };
         });
         try {
@@ -139,25 +104,15 @@ import {
   
       return (
         <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
-          <Heading size="md">Suma de los productos</Heading>
+          <Heading color={'white'} size="md">Suma de los productos</Heading>
         
         <Stack spacing="6">
           <OrderSummaryItem label="Subtotal" value={formatPrice(totalPrice)} />
-          {/* <OrderSummaryItem label="Shipping + Tax">
-              <Link href="#" textDecor="underline">
-                Calculate shipping
-              </Link>
-            </OrderSummaryItem> */}
-          {/* <OrderSummaryItem label="Coupon Code">
-              <Link href="#" textDecor="underline">
-                Add coupon code
-              </Link>
-            </OrderSummaryItem> */}
           <Flex justify="space-between">
-            <Text fontSize="lg" fontWeight="semibold">
+            <Text color={'white'} fontSize="lg" fontWeight="semibold">
               Total
             </Text>
-            <Text fontSize="xl" fontWeight="extrabold">
+            <Text color={'white'} fontSize="xl" fontWeight="extrabold">
               {formatPrice(totalPrice)}
             </Text>
           </Flex>

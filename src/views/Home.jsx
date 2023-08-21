@@ -18,6 +18,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+
   useEffect (() => {
     dispatch(emptyStates());
     dispatch(emptyOrdersId());

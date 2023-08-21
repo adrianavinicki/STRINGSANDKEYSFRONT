@@ -66,9 +66,6 @@ export default function EditProduct() {
                 <Heading color={"black"} fontSize={"4vh"}>
                   Dashboard Admin
                 </Heading>
-                <Box bg={''} h={'5vh'}>
-                <EmailButton></EmailButton>
-                </Box>
                 <Text color={"black"} fontSize={"xl"}>
                   Panel para modificar o crear productos
                 </Text>
@@ -93,7 +90,7 @@ export default function EditProduct() {
                     w={"80%"}
                   ></Input>
                   <Link to={"/admin/crear-producto"}>
-                    <Button bg={"#ffa200"} color={"black"} _hover={"none"}>
+                    <Button bg={"#ffa200"} color={"black"} >
                       Crear Nuevo Producto
                     </Button>
                   </Link>

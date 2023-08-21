@@ -1,33 +1,11 @@
 "use client";
-import {
-  Box,
-  Flex,
-  Text,
-  IconButton,
-  Button,
-  Stack,
-  Collapse,
-  Icon,
-  Image,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useColorModeValue,
-  useDisclosure,
-} from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { Box, Flex, Stack, Image, useColorModeValue } from "@chakra-ui/react";
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import { Profile } from "./Profile";
 import { useAuth0 } from "@auth0/auth0-react";
-
 
 export default function WithSubnavigation() {
   const { isAuthenticated } = useAuth0();
@@ -62,7 +40,44 @@ export default function WithSubnavigation() {
           <Box ml={"3%"} bg={""} w={"90%"}>
             <Flex align={"center"} mt={"2%"}>
               <Box>
-                <DesktopNav />
+                <Stack direction={"row"} spacing={4}>
+                    <Box >
+                      <Link to={'/'}>
+                        <Box
+                          p={2}
+                          fontSize={"2vh"}
+                          fontWeight={500}
+                          color={"white"}
+                        >
+                          Inicio
+                        </Box>
+                      </Link>
+                    </Box>
+                    <Box >
+                      <Link to={'/us'}>
+                        <Box
+                          p={2}
+                          fontSize={"2vh"}
+                          fontWeight={500}
+                          color={"white"}
+                        >
+                          Nosotros
+                        </Box>
+                      </Link>
+                    </Box>
+                    <Box >
+                      <Link to={"/admin/edit"}>
+                        <Box
+                          p={2}
+                          fontSize={"2vh"}
+                          fontWeight={500}
+                          color={"white"}
+                        >
+                          Admin
+                        </Box>
+                      </Link>
+                    </Box>
+                </Stack>
               </Box>
               <Box ml={"5vh"}>
                 <SearchBar />
@@ -93,52 +108,3 @@ export default function WithSubnavigation() {
     </Box>
   );
 }
-
-const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.200", "gray.200");
-  const linkHoverColor = useColorModeValue("#ffa200", "#ffa200");
-  const popoverContentBgColor = useColorModeValue("black", "black");
-
-  return (
-    <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link to={navItem.to}>
-              <Box
-                as="a"
-                p={2}
-                fontSize={"2vh"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Box>
-              </Link>
-            </PopoverTrigger>
-          </Popover>
-        </Box>
-      ))}
-    </Stack>
-  );
-};
-
-const NAV_ITEMS = [
-  {
-    label: "Admin",
-    to: "/admin/edit",
-  },
-  {
-    label: "Nosotros",
-    to: "/us",
-  },
-  {
-    label: "Inicio",
-    to: "/",
-  },
-];

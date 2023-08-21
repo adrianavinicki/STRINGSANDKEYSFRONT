@@ -30,6 +30,8 @@ import {
   emptyOrdersId,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import {BuyButtonNotification} from "../../components/BuyButtonNotification"
 
 const apiUrl = import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY; //ya esta actualizada
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
@@ -45,12 +47,14 @@ export default function Payment(props) {
   const detailCarrito = useSelector((state) => state.cartItems);
   const users = useSelector((state) => state.users);
   const idUser = useSelector((state) => state.idUser);
+  const idCliente = useSelector((state) => state.actualUser);
+
+  const {user} = useAuth0();
 
   const totalPrice = detailCarrito.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
-  console.log(orderIdsArray);
 
   //sacar ordersIds y el userId
   //const [finalOrder, setFinalOrder] = useState(null);
@@ -60,30 +64,29 @@ export default function Payment(props) {
   // console.log(orderIdsArray[0].userId, "hola")
 
   const handleOrder = async () => {
+    
     //esto se podria hacer con un useEffect
     const purchaseArray = orderIdsArray[0];
     //const userId = idUser; // ojo recordar arreglar con lo de user de martin ver si no hay que hardcodear
-    const userId = 1;
+    const userId = idCliente.id;
     const purchaseID = await axios.post(`${VITE_LOCAL_HOST}/purchases/create`, {
       orderIds: purchaseArray,
       userId: userId,
     });
-    console.log(purchaseArray, "1");
 
     const finalPurchaseOrder = purchaseID.data.purchase;
     //setFinalOrder(purchaseID.data.purchase);
-
-    console.log(finalPurchaseOrder, "holaa");
-    console.log(purchaseID, "chauu");
 
     const response = await axios.post(`${VITE_LOCAL_HOST}/payments/generate`, {
       purchaseId: finalPurchaseOrder.id,
       cart: detailCarrito,
     });
 
+
     console.log(response.data.init_point, "2");
     setPreferenceId(response.data.init_point);
     window.location.href = response.data.init_point;
+    dispatch(BuyButtonNotification(user,detailCarrito))
     dispatch(emptyCart());
   };
 
@@ -186,6 +189,7 @@ export default function Payment(props) {
                         w={"120px"}
                         bg="#ffa200"
                         _hover={'none'}
+                        isDisabled={''}
                       >
                         Pago
                       </Button>
