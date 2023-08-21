@@ -8,7 +8,7 @@ import Perfil from "./views/Perfil";
 import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
 import Nosotros from "./views/Nosotros";
-
+import Payment from "./views/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -47,7 +47,11 @@ const router = createBrowserRouter([
   {
     path: "/us",
     element: <Nosotros/>,
-  }
+  },
+  {
+    path:"/payment",
+    element: <Payment />,
+  },
   
 ])
 
