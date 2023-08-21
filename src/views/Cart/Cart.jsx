@@ -84,7 +84,7 @@ export default function Cart() {
                 </Heading>
                 <Button
                   _hover={"none"}
-                  bg={"gray.800"}
+                  bg={"#1B1B1B"}
                   color={"white"}
                   onClick={handleEmptyCart}
                 >
@@ -95,7 +95,7 @@ export default function Cart() {
 
             <Box overflowY="auto" maxHeight="40vh">
               {productsToBuy.length === 0 ? (
-                <Text >el carrito esta vacio.</Text>
+                <Text color={'white'}>el carrito esta vacio.</Text>
               ) : (
                 <Stack spacing="4">
                   {productsToBuy.map(
@@ -113,8 +113,8 @@ export default function Cart() {
           <Flex direction="column" align="center" flex="1" marginTop={"30px"}>
             <CartOrderSummary />
             <HStack mt="6" fontWeight="semibold">
-              <p>ó</p>
-              <Link to="/" color={mode("blue.500", "blue.200")}>
+              <Text color={'white'}>ó</Text>
+              <Link to="/" color={'white'}>
                 seguir comprando
               </Link>
             </HStack>
