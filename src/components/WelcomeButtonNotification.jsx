@@ -1,8 +1,3 @@
-import React from "react";
-import { Box, Flex, Input, Button } from "@chakra-ui/react";
-import { useToast } from "@chakra-ui/react";
-import { useAuth0 } from "@auth0/auth0-react";
-//import { useState } from "react";
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -37,25 +32,4 @@ export const handleSendEmail = async (user) => {
   }
 };
 
-  // toast({
-  //   title: "Mail de Bienvenida Enviado",
-  //   description: "Se ha registrado con exito.",
-  //   status: "success",
-  //   duration: 5000,
-  //   isClosable: true,
-  // });
-
-  // return (
-  //   <Box>
-  //     <Flex>
-  //       <Button
-  //         onClick={handleMailNotificationSignIn}
-  //         border={"1px solid black"}
-  //         color={"black"}
-  //       >
-  //         Send Mail Bienvenida
-  //       </Button>
-  //     </Flex>
-  //   </Box>
-  // );
 

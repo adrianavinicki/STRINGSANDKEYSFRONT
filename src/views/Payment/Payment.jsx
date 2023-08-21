@@ -30,6 +30,8 @@ import {
   emptyOrdersId,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import {BuyButtonNotification} from "../../components/BuyButtonNotification"
 
 const apiUrl = import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY; //ya esta actualizada
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
@@ -46,6 +48,8 @@ export default function Payment(props) {
   const users = useSelector((state) => state.users);
   const idUser = useSelector((state) => state.idUser);
 
+  const {user} = useAuth0();
+
   const totalPrice = detailCarrito.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -60,6 +64,7 @@ export default function Payment(props) {
   // console.log(orderIdsArray[0].userId, "hola")
 
   const handleOrder = async () => {
+    
     //esto se podria hacer con un useEffect
     const purchaseArray = orderIdsArray[0];
     //const userId = idUser; // ojo recordar arreglar con lo de user de martin ver si no hay que hardcodear
@@ -81,9 +86,11 @@ export default function Payment(props) {
       cart: detailCarrito,
     });
 
+
     console.log(response.data.init_point, "2");
     setPreferenceId(response.data.init_point);
     window.location.href = response.data.init_point;
+    dispatch(BuyButtonNotification(user,detailCarrito))
     dispatch(emptyCart());
   };
 

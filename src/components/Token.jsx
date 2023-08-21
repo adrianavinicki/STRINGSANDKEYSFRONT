@@ -11,12 +11,14 @@ const Token = () => {
   useEffect(() => {
     const getUserMetadata = async () => {
       const domain = "stringsandkeys.us.auth0.com";
+      
+      console.log(user)
 
       try {
         const accessToken = await getAccessTokenSilently({
           authorizationParams: {
             audience: `https://${domain}/api/v2/`,
-            scope: "read:current_user",
+            scope: 'read:current_user',
           },
         });
 
@@ -29,7 +31,7 @@ const Token = () => {
           },
         });
 
-        const  user_metadata  = await metadataResponse.json();
+        const { user_metadata}  = await metadataResponse.json();
 
         setUserMetadata(user_metadata);
       } catch (e) {
@@ -39,6 +41,8 @@ const Token = () => {
 
     getUserMetadata();
   }, [getAccessTokenSilently, user?.sub]);
+
+  console.log(userMetadata)
 
   return (
     <div>
