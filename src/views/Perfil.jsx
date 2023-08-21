@@ -8,8 +8,10 @@ import {
   Input,
   InputGroup,
   HStack,
+  FormErrorMessage,
   InputRightElement,
   Stack,
+  Center,
   Button,
   Select,
   Heading,
@@ -17,6 +19,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useToast } from '@chakra-ui/react'
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -24,9 +27,11 @@ import React, { useEffect, useState } from "react";
 import { PostUser, getUser, emptyActualUser, setMail } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {handleSendEmail} from "../components/WelcomeButtonNotification"
 
 const Perfil = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const toast = useToast();
 
   const dispatch = useDispatch();
   const actualUser = useSelector((state) => state.actualUser);
@@ -40,6 +45,7 @@ const Perfil = () => {
   console.log(userMail, "1");
   console.log(actualUserMail, "2");
   console.log(actualUser, "3", actualUser);
+  console.log(user)
 
   const [form, setForm] = useState({
     first_name: "",
@@ -64,12 +70,30 @@ const Perfil = () => {
   const handleSubmit = (e) => {
     console.log(form, "acaaa");
     dispatch(PostUser(form));
+    dispatch(handleSendEmail(user))
+    toast({
+      title: "Mail de Bienvenida Enviado",
+      description: "Se ha registrado con exito.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prevValue) => ({ ...prevValue, [name]: value }));
   };
+
+
+  let isError = []
+  if(form.first_name === '') isError.first_name = "Nombre Requerido."
+  if(form.last_name === '') isError.last_name = "Apellido Requerido."
+  if(form.gender === '') isError.gender = "Genero Requerido."
+  if(form.mobile === '') isError.mobile = "Celular Requerido."
+  if(form.delivery_address === '') isError.delivery_address = "Direccion Requerida."
+
+
 
   return (
     <Box>
@@ -175,8 +199,11 @@ const Perfil = () => {
                         <FormLabel>Mail: {user?.email}</FormLabel>
                       </FormControl>
                       <HStack>
-                        <Box>
-                          <FormControl id="first_name" isRequired>
+                        <Box minH={'11vh'}>
+                          <FormControl
+                            id="first_name"
+                            isInvalid={isError.first_name}
+                          >
                             <FormLabel>Nombre</FormLabel>
                             <Input
                               bg={"white"}
@@ -187,10 +214,16 @@ const Perfil = () => {
                               name="first_name"
                               value={form.first_name}
                             />
+                            <FormErrorMessage color={"#ffa200"}>
+                              {isError.first_name ? "Nombre Requerido." : ""}
+                            </FormErrorMessage>
                           </FormControl>
                         </Box>
-                        <Box>
-                          <FormControl id="last_name" isRequired>
+                        <Box minH={'11vh'}>
+                          <FormControl
+                            id="last_name"
+                            isInvalid={isError.last_name}
+                          >
                             <FormLabel>Apellido</FormLabel>
                             <Input
                               bg={"white"}
@@ -201,12 +234,19 @@ const Perfil = () => {
                               name="last_name"
                               value={form.last_name}
                             />
+                            {isError.last_name ? (
+                              <FormErrorMessage color={"#ffa200"}>
+                                Apellido Requerido.
+                              </FormErrorMessage>
+                            ) : (
+                              ""
+                            )}
                           </FormControl>
                         </Box>
                       </HStack>
                       <HStack>
-                        <Box>
-                          <FormControl id="gender" isRequired>
+                        <Box minH={'11vh'}>
+                          <FormControl id="gender" isInvalid={isError.gender}>
                             <FormLabel>Genero</FormLabel>
                             <Select
                               _hover={"none"}
@@ -223,10 +263,17 @@ const Perfil = () => {
                               <option value={"F"}>Femenino</option>
                               <option value={"X"}>X</option>
                             </Select>
+                            {isError.gender ? (
+                              <FormErrorMessage color={"#ffa200"}>
+                                Genero Requerido.
+                              </FormErrorMessage>
+                            ) : (
+                              ""
+                            )}
                           </FormControl>
                         </Box>
-                        <Box>
-                          <FormControl id="mobile" isRequired>
+                        <Box minH={'11vh'}>
+                          <FormControl id="mobile" isInvalid={isError.mobile}>
                             <FormLabel>Celular</FormLabel>
                             <Input
                               bg={"white"}
@@ -237,10 +284,20 @@ const Perfil = () => {
                               name="mobile"
                               value={form.mobile}
                             />
+                            {isError.mobile ? (
+                              <FormErrorMessage color={"#ffa200"}>
+                                Celular Requerido.
+                              </FormErrorMessage>
+                            ) : (
+                              ""
+                            )}
                           </FormControl>
                         </Box>
                       </HStack>
-                      <FormControl id="delivery_address" isRequired>
+                      <FormControl minH={'11vh'}
+                        id="delivery_address"
+                        isInvalid={isError.delivery_address}
+                      >
                         <FormLabel>Direccion</FormLabel>
                         <Input
                           bg={"white"}
@@ -251,18 +308,28 @@ const Perfil = () => {
                           name="delivery_address"
                           value={form.delivery_address}
                         />
+                        {isError.delivery_address ? (
+                          <FormErrorMessage color={"#ffa200"}>
+                            Direccion Requerida.
+                          </FormErrorMessage>
+                        ) : (
+                          ""
+                        )}
                       </FormControl>
                       <Stack spacing={10} pt={2}>
                         <Link to={"/"}>
+                          <Center>
                           <Button
                             h={"5vh"}
                             bg={"#ffa200"}
                             color={"black"}
                             _hover={"none"}
                             onClick={handleSubmit}
+                            isDisabled={isError.delivery_address}
                           >
                             Guardar
                           </Button>
+                          </Center>
                         </Link>
                       </Stack>
                     </Stack>

@@ -3,7 +3,7 @@ import Home from "./views/Home";
 import Detail from './views/Detail';
 import CreateProduct from "./views/CreateProductoFolder/CreateProduct";
 import Products from "./views/Products";
-import EditProduct from "./views/EditProducts";
+import DashboardAdmin from "./views/DashboardAdmin";
 import Perfil from "./views/Perfil";
 import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/admin/edit",
-    element: <EditProduct/>,
+    element: <DashboardAdmin/>,
   },
   {
     path:"/products",

@@ -6,7 +6,6 @@ import {
   IconButton,
   Button,
   Stack,
-  //Link,
   Collapse,
   Icon,
   Image,
@@ -105,10 +104,10 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
+              <Link to={navItem.to}>
               <Box
                 as="a"
                 p={2}
-                href={navItem.href ?? "#"}
                 fontSize={"2vh"}
                 fontWeight={500}
                 color={linkColor}
@@ -119,24 +118,8 @@ const DesktopNav = () => {
               >
                 {navItem.label}
               </Box>
+              </Link>
             </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
           </Popover>
         </Box>
       ))}
@@ -144,55 +127,17 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
-  return (
-    <Box
-      as="a"
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("gray.900", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "#ffa200" }}
-            fontWeight={500}
-          >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"#ffa200"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Box>
-  );
-};
-
 const NAV_ITEMS = [
   {
     label: "Admin",
-    href: "/admin/edit",
+    to: "/admin/edit",
   },
   {
     label: "Nosotros",
-    href: "/us",
+    to: "/us",
   },
   {
     label: "Inicio",
-    href: "/",
+    to: "/",
   },
 ];
