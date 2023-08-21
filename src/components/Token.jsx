@@ -20,6 +20,7 @@ const Token = () => {
           },
         });
 
+
         const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
 
         const metadataResponse = await fetch(userDetailsByIdUrl, {
