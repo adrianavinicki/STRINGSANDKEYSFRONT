@@ -34,17 +34,6 @@ export default function Cart() {
     return acumulador + producto.quantity;
   }, 0);
 
-  const handleRemoveProduct = (productId) => {
-    dispatch(removeProductFromCart(productId));
-  };
-
-  const handleDecreaseQuantity = (productId) => {
-    dispatch(decreaseProductQuantity(productId));
-  };
-
-  const handleIncreaseQuantity = (productId) => {
-    dispatch(increaseProductQuantity(productId));
-  };
 
   const handleEmptyCart = (event) => {
     dispatch(emptyCart());
@@ -90,7 +79,7 @@ export default function Cart() {
           >
             <Box>
               <Flex justify={"space-between"}>
-                <Heading fontSize="2xl" fontWeight="extrabold">
+                <Heading color={'white'} fontSize="2xl" fontWeight="extrabold">
                   {totalCantidad} Productos
                 </Heading>
                 <Button
