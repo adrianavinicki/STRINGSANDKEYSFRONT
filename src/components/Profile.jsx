@@ -13,12 +13,14 @@ import {
   extendTheme 
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { emptyActualUser } from "../redux/actions"
 
 export const Profile = () => {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
-  if (isLoading) {
-  }
+  const dispatch = useDispatch()
+
 
 
   return (
