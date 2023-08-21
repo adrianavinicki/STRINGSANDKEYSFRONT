@@ -18,7 +18,6 @@ const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  console.log(user, "acaa")
 
   useEffect (() => {
     dispatch(emptyStates());

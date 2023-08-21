@@ -47,6 +47,7 @@ export default function Payment(props) {
   const detailCarrito = useSelector((state) => state.cartItems);
   const users = useSelector((state) => state.users);
   const idUser = useSelector((state) => state.idUser);
+  const idCliente = useSelector((state) => state.actualUser);
 
   const {user} = useAuth0();
 
@@ -54,7 +55,6 @@ export default function Payment(props) {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  console.log(orderIdsArray);
 
   //sacar ordersIds y el userId
   //const [finalOrder, setFinalOrder] = useState(null);
@@ -68,18 +68,14 @@ export default function Payment(props) {
     //esto se podria hacer con un useEffect
     const purchaseArray = orderIdsArray[0];
     //const userId = idUser; // ojo recordar arreglar con lo de user de martin ver si no hay que hardcodear
-    const userId = 1;
+    const userId = idCliente.id;
     const purchaseID = await axios.post(`${VITE_LOCAL_HOST}/purchases/create`, {
       orderIds: purchaseArray,
       userId: userId,
     });
-    console.log(purchaseArray, "1");
 
     const finalPurchaseOrder = purchaseID.data.purchase;
     //setFinalOrder(purchaseID.data.purchase);
-
-    console.log(finalPurchaseOrder, "holaa");
-    console.log(purchaseID, "chauu");
 
     const response = await axios.post(`${VITE_LOCAL_HOST}/payments/generate`, {
       purchaseId: finalPurchaseOrder.id,
@@ -193,6 +189,7 @@ export default function Payment(props) {
                         w={"120px"}
                         bg="#ffa200"
                         _hover={'none'}
+                        isDisabled={''}
                       >
                         Pago
                       </Button>
