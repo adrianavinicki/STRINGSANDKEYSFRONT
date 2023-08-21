@@ -24,8 +24,13 @@ import {
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import LoginButton from "./LoginButton";
+import { Profile } from "./Profile";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 export default function WithSubnavigation() {
+  const { isAuthenticated } = useAuth0();
 
   return (
     <Box>
@@ -54,10 +59,14 @@ export default function WithSubnavigation() {
               <Image src="/Logo White.png"></Image>
             </Link>
           </Box>
-          <Box ml={'3%'} bg={''} w={'90%'}>
-            <Flex align={'center'} mt={'2%'}>
-              <Box ><DesktopNav/></Box>
-              <Box ml={'5vh'}><SearchBar /></Box>
+          <Box ml={"3%"} bg={""} w={"90%"}>
+            <Flex align={"center"} mt={"2%"}>
+              <Box>
+                <DesktopNav />
+              </Box>
+              <Box ml={"5vh"}>
+                <SearchBar />
+              </Box>
             </Flex>
           </Box>
         </Flex>
@@ -69,35 +78,18 @@ export default function WithSubnavigation() {
           spacing={10}
           mr={"2%"}
         >
-          <Link>
-            <FaShoppingCart size={'5vh'} color="#ffa200" />
+          <Link to="/cart">
+            <FaShoppingCart size={"5vh"} color="#ffa200" />
           </Link>
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Registrarse
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"black"}
-            bg={"#ffa200"}
-            href={"#"}
-            _hover={{
-              bg: "",
-            }}
-          >
-            Iniciar Sesion
-          </Button>
+          {isAuthenticated ? (
+            <>
+              <Profile></Profile>
+            </>
+          ) : (
+            <LoginButton></LoginButton>
+          )}
         </Stack>
       </Flex>
-
     </Box>
   );
 }
@@ -192,7 +184,6 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
   );
 };
 
-
 const NAV_ITEMS = [
   {
     label: "Admin",
@@ -210,23 +201,8 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: "Perfil",
-    children: [
-      {
-        label: "Mis Datos",
-        subLabel: "Informacion del Usuario",
-        href: "#",
-      },
-      {
-        label: "Mis Favoritos",
-        subLabel: "Instrumentos Favoritos del Usuario",
-        href: "#",
-      },
-    ],
-  },
-  {
     label: "Nosotros",
-    href: "#",
+    href: "/us",
   },
   {
     label: "Inicio",

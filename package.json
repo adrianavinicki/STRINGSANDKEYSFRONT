@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.0",
     "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mercadopago/sdk-react": "^0.0.14",
     "axios": "^1.4.0",
     "framer-motion": "^10.15.0",
     "persist": "^0.2.7",
@@ -25,9 +27,10 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
-    "sequelize": "^6.32.1"
+    "serve": "^14.2.0"
   },
   "devDependencies": {
+    "@esbuild/darwin-arm64": "^0.19.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",

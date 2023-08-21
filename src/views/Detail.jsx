@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
@@ -8,39 +7,58 @@ import {
   Flex,
   VStack,
   Button,
-  HStack,
   Heading,
   SimpleGrid,
   StackDivider,
   useColorModeValue,
-  VisuallyHidden,
+  Tooltip,
+  Badge,
+  Collapse,
   List,
   ListItem,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  Input,
+  Icon,
+  useToast,
 } from "@chakra-ui/react";
 import { useParams } from "react-router";
+import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetailProduct } from "../redux/actions";
+import { addProductToCart, getDetailProduct } from "../redux/actions";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const toast = useToast();
+
+
+  const cartItems = useSelector((state) => state.cartItems);
+
+  const getProductQuantityInCart = () => {
+    const item = cartItems.find((item) => item.id === parseInt(id));
+    return item ? item.quantity : 0;
+  };
+
 
   let detailProduct = useSelector((state) => state.details);
   useEffect(() => {
     dispatch(getDetailProduct(id));
   }, [dispatch, id]);
+
+  const getCarrito = (product) => {
+    dispatch(addProductToCart(product));
+    toast({
+      title: "producto añadido al carrito",
+      description: "El producto ha sido agregado exitosamente a tu carrito.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  };
 
   return (
     <Box>
@@ -93,13 +111,6 @@ const Detail = () => {
                     ${detailProduct.price}
                   </Text>
                 </Box>
-                {/* <Flex justifyContent="space-between" alignContent="center">
-              <div>
-                {productDetail?.id && (
-                  <RatingDisplay productId={productDetail.id} />
-                )}
-              </div>
-            </Flex> */}
 
                 <Stack
                   spacing={{ base: 4, sm: 6 }}
@@ -169,7 +180,7 @@ const Detail = () => {
                       </Button>
                     </Link>
                     <Button
-                      //   onClick={() => addProductCarrito(productDetail)}
+                      onClick={() => getCarrito(detailProduct)}
                       rounded={"5px"}
                       bg={useColorModeValue("black", "black")}
                       color={useColorModeValue("#ffa200", "#ffa200")}
@@ -178,7 +189,24 @@ const Detail = () => {
                         boxShadow: "lg",
                       }}
                     >
-                      Agregar al Carrito <FaShoppingCart size={'3vh'} color="#ffa200" />
+                      Agregar al Carrito
+                      <Box>
+                        <Icon
+                          color={"white"}
+                          as={FaShoppingCart}
+                          h={8}
+                          w={7}
+                          mt={1}
+                          alignSelf="center"
+                        />
+                        <Badge
+                          colorScheme="black"
+                          position="absolute"
+                          borderRadius="full"
+                        >
+                          {getProductQuantityInCart()}
+                        </Badge>
+                      </Box>
                     </Button>
                   </Flex>
                 </Box>

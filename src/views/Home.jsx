@@ -4,14 +4,16 @@ import SmallWithLogoLeft from "../components/Footer"
 import CategoryCards from "../components/HomeCards"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyStates, getProducts } from "../redux/actions";
+import { emptyStates, getProducts, emptyOrdersId} from "../redux/actions";
+
 
 const Home = () => {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(emptyStates())
+    dispatch(emptyStates());
+    dispatch(emptyOrdersId())
   })
 
   useEffect(() => {
