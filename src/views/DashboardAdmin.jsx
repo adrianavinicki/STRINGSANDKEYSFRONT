@@ -23,7 +23,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProductName } from '../redux/actions';
-import EmailButton from "../components/EmailNotification"
+//import EmailButton from "../components/WelcomeButtonNotification"
 
 
 export default function EditProduct() {
@@ -64,7 +64,7 @@ export default function EditProduct() {
                 textAlign={"center"}
               >
                 <Heading color={"black"} fontSize={"4vh"}>
-                  Modificar Producto
+                  Dashboard Admin
                 </Heading>
                 <Box bg={''} h={'5vh'}>
                 <EmailButton></EmailButton>

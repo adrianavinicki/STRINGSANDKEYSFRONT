@@ -8,6 +8,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import store from "./redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+const VITE_DOMAIN_AUTH0 = import.meta.env.VITE_DOMAIN_AUTH0;
+const VITE_CLIENT_ID_AUTH0 = import.meta.env.VITE_CLIENT_ID_AUTH0;
+
+
 const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
