@@ -16,13 +16,12 @@ import {
   import { useToast } from '@chakra-ui/react'
   import { useSelector, useDispatch } from "react-redux";
   import axios from "axios";
-  //import { getDetailOrdersIDArray, getIdEmailUser } from "../../redux/actions";
+  import { getOrdersIDArray, /*getIdEmailUser*/ } from "../../redux/actions";
  // import { useAuth0 } from "@auth0/auth0-react";
   import { useEffect, useState } from "react";
   
-  const POST_NEW_DETAIL_ORDER = import.meta.env.VITE_POST_NEW_DETAIL_ORDER;
-  //const POST_USER_EMAIL = import.meta.env.VITE_POST_USER_EMAIL;
-  //const GET_USERS = import.meta.env.VITE_GET_USERS;
+  const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
+  
   
   const OrderSummaryItem = (props) => {
     const { label, value, children } = props;
@@ -71,7 +70,7 @@ import {
   //
     const productsToBuy = useSelector((state) => state.cartItems);
   
-    // console.log(productsToBuy[0].quantity)
+    //console.log(productsToBuy[0].quantity)
   
     /*const handleSubmit = async (quantity, productId, userId) => {
         console.log(quantity, productId, userId)
@@ -89,7 +88,7 @@ import {
       }*/
   
     const handleSubmit = async () => {
-      if (!isAuthenticated) {
+      /*if (!isAuthenticated) {
         toast({
           title: "No has iniciado sesión",
           description: "Por favor, inicia sesión para continuar",
@@ -104,22 +103,28 @@ import {
           "please, complete the rest of your data in your profile to be able to send your toys"
         );
         return;
-      } // aqui agregar un else if si el usuario esta registrado o no en la base de datos
+      } */// aqui agregar un else if si el usuario esta registrado o no en la base de datos
       try {
-        const detailOrders = productsToBuy.map((item) => {
+        const orders = productsToBuy.map((item) => {
           return {
             quantity: item.quantity,
             productId: item.id,
-            userId: userData.id,
+            //userId: userData.id,
+            userId: 1,
           };
         });
-        const detailCreated = await axios.post(
-          POST_NEW_DETAIL_ORDER,
-          detailOrders
+        try {
+        const orderCreated = await axios.post(
+         `${VITE_LOCAL_HOST}/orders/create`,
+          orders
         );
-        console.log(detailCreated.data.detailOrders);
-        dispatch(getDetailOrdersIDArray(detailCreated.data.detailOrders));
+        console.log(orderCreated);
+        console.log(orderCreated.data.Orders);
+        dispatch(getOrdersIDArray(orderCreated.data.Orders));
         navigate("/payment");
+        } catch (orderError){
+          console.log("Error al crear la orden:", orderError);
+        }
       } catch (error) {
         console.log(error);
       } 
