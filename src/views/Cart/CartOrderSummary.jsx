@@ -104,15 +104,15 @@ import {
   
       return (
         <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
-          <Heading size="md">Suma de los productos</Heading>
+          <Heading color={'white'} size="md">Suma de los productos</Heading>
         
         <Stack spacing="6">
           <OrderSummaryItem label="Subtotal" value={formatPrice(totalPrice)} />
           <Flex justify="space-between">
-            <Text fontSize="lg" fontWeight="semibold">
+            <Text color={'white'} fontSize="lg" fontWeight="semibold">
               Total
             </Text>
-            <Text fontSize="xl" fontWeight="extrabold">
+            <Text color={'white'} fontSize="xl" fontWeight="extrabold">
               {formatPrice(totalPrice)}
             </Text>
           </Flex>
