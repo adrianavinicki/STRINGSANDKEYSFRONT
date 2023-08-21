@@ -10,7 +10,6 @@ import {
   Heading,
   SimpleGrid,
   StackDivider,
-  Link,
   useColorModeValue,
   Tooltip,
   Badge,
@@ -28,6 +27,7 @@ import { addProductToCart, getDetailProduct } from "../redux/actions";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Detail = () => {
@@ -167,7 +167,7 @@ const Detail = () => {
                 </Stack>
                 <Box>
                   <Flex justify={"space-evenly"}>
-                    <Link to={"/products"} href={"/products"}>
+                    <Link to={"/products"}>
                       <Button
                         bg={"black"}
                         color={"#ffa200"}

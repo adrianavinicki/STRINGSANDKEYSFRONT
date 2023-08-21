@@ -28,6 +28,7 @@ import LoginButton from "./LoginButton";
 import { Profile } from "./Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 export default function WithSubnavigation() {
   const { isAuthenticated } = useAuth0();
 
@@ -54,7 +55,7 @@ export default function WithSubnavigation() {
           ml={10}
         >
           <Box boxSize={"70px"} mb={"1%"}>
-            <Link href={"/"}>
+            <Link to={"/"}>
               <Image src="/Logo White.png"></Image>
             </Link>
           </Box>
