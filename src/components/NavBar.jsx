@@ -185,18 +185,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 const NAV_ITEMS = [
   {
     label: "Admin",
-    children: [
-      {
-        label: "Modificar o Crear Producto",
-        subLabel: "Editar, Eliminar o Crear Producto",
-        href: "/admin/edit",
-      },
-      {
-        label: "Estadisticas",
-        subLabel: "Ventas, Usarios y Estadisticas",
-        href: "#",
-      },
-    ],
+    href: "/admin/edit",
   },
   {
     label: "Nosotros",
