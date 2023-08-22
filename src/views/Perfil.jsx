@@ -58,10 +58,8 @@ const Perfil = () => {
   });
 
   useEffect(() => {
-    if(!isLoading){
       dispatch(setMail(userMail));
       dispatch(getUser(userMail));
-    }
   }, []);
 
   const handleOnBlur = (e) => {
