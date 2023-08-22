@@ -117,7 +117,7 @@ const Detail = () => {
                   direction={"column"}
                   divider={
                     <StackDivider
-                      borderColor={useColorModeValue("gray.200", "gray.600")}
+                      borderColor={'black'}
                     />
                   }
                 >
