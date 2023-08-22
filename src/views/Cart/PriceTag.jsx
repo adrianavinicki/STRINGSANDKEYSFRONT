@@ -37,7 +37,7 @@ const Price = (props) => {
     <Text
       as="span"
       fontWeight="medium"
-      color={color}
+      color={"white"}
       textDecoration={isOnSale ? 'line-through' : 'none'}
       {...textProps}
     >

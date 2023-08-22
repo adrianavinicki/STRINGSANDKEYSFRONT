@@ -10,7 +10,6 @@ import {
   MenuList,
   MenuItem,
   HStack,
-  extendTheme 
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -22,25 +21,24 @@ export const Profile = () => {
   const dispatch = useDispatch()
 
 
-
   return (
     isAuthenticated && (
-      <Menu>
+      <Menu >
         <MenuButton as={Flex} alignItems="center">
           <HStack spacing={2}>
             <Text color={"white"}>{user.name}</Text>
             <Avatar src={user.picture} alt={user.name} />
           </HStack>
         </MenuButton>
-        <MenuList  >
+        <MenuList bg={'#1B1B1B'} border={'none'} >
           <Link to={'/profile'}>
-          <MenuItem  >Mi Perfil</MenuItem>
+          <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >Mi Perfil</MenuItem>
           </Link>
-          <MenuItem >Mis Compras</MenuItem>
+          <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}} >Mis Compras</MenuItem>
           <Link to={'/token'}>
-          <MenuItem  >MetaData</MenuItem>
+          <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >MetaData</MenuItem>
           </Link>
-          <MenuItem
+          <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}
             onClick={() =>
               logout({ logoutParams: { returnTo: window.location.origin } })
             }

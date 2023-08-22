@@ -203,6 +203,7 @@ export default function Payment(props) {
                           color={"white"}
                           _hover={"none"}
                           w={"120px"}
+                          bg={'#1B1B1B'}
                         >
                           Volver
                         </Button>
