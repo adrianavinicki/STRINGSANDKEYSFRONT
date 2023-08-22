@@ -52,7 +52,7 @@ import {
       if (!isAuthenticated) {
         toast({
           title: "No has iniciado sesión",
-          description: "Por favor, inicia sesión para continuar",
+          description: "Por favor, inicia sesión y completa tus datos para continuar",
           status: "warning",
           duration: 5000,
           isClosable: true,
