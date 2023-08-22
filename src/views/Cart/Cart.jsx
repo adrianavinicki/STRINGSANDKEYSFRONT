@@ -114,8 +114,8 @@ export default function Cart() {
             <CartOrderSummary />
             <HStack mt="6" fontWeight="semibold">
               <Text color={'white'}>ó</Text>
-              <Link to="/" color={'white'}>
-                seguir comprando
+              <Link to="/">
+                <Text color={'white'}>seguir comprando</Text>
               </Link>
             </HStack>
           </Flex>

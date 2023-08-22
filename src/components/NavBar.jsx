@@ -1,5 +1,6 @@
 "use client";
-import { Box, Flex, Stack, Image, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Stack, Image, useColorModeValue, useColorMode, Button  } from "@chakra-ui/react";
+import React, { useState } from 'react';
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -9,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function WithSubnavigation() {
   const { isAuthenticated } = useAuth0();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Box>
@@ -85,7 +87,6 @@ export default function WithSubnavigation() {
             </Flex>
           </Box>
         </Flex>
-
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}

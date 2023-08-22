@@ -28,10 +28,10 @@ import {
   
     return (
       <Flex justify="space-between" fontSize="sm">
-        <Text fontWeight="medium" color={mode("gray.600", "gray.400")}>
+        <Text fontWeight="medium" color={'white'}>
           {label}
         </Text>
-        {value ? <Text fontWeight="medium">{value}</Text> : children}
+        {value ? <Text color={'white'} fontWeight="medium">{value}</Text> : children}
       </Flex>
     );
   };
