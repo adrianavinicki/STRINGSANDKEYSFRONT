@@ -26,6 +26,7 @@ import { useState, useEffect } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyStates } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 
 

@@ -16,9 +16,13 @@ import {
   DECREASE_PRODUCT_QUANTITY,
   ADD_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
+  SET_MAIL,
   EMPTY_CART,
   GET_ORDERS_USERS_ID,
+  EMPTY_ACTUAL_USER,
   EMPTY_ORDERS_ID,
+  GET_USER,
+  CLEAN_DETAIL,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -33,15 +37,32 @@ const initialState = {
   currentPage: 0,
   cartItems: [],
   ordersUsersID: [],
+  actualUser: [],
+  userEmail:[],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_USER:
+      if(!action.payload){
+      return {
+        ...state,
+        actualUser: ["vacio"],
+      }
+    } else return {
+      ...state,
+      actualUser: action.payload,
+    }
     case SET_PAGE:
       return {
         ...state,
         currentPage: action.payload,
       };
+      case SET_MAIL:
+        return {
+          ...state,
+          userEmail: action.payload,
+        };
     case ORDER_BY_PRICE:
       const { payload } = action;
       let orderPrice;
@@ -189,6 +210,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: [],
       };
+      case EMPTY_ACTUAL_USER:
+        return {
+          ...state,
+          actualUser: [],
+        };
     case GET_ORDERS_USERS_ID:
       return {
         ...state,
@@ -198,6 +224,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ordersUsersID: [],
+      };
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        details:{},
       };
 
     default:
