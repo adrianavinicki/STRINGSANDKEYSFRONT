@@ -33,6 +33,8 @@ const Perfil = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const toast = useToast();
 
+  const loading = isLoading
+
   const [update, setUpdate] = useState(false);
 
   const dispatch = useDispatch();
@@ -44,10 +46,6 @@ const Perfil = () => {
   }
 
   const userMail = user?.email;
-  console.log(userMail, "1");
-  console.log(actualUserMail, "2");
-  console.log(actualUser, "3", actualUser);
-  console.log(user);
 
   const [form, setForm] = useState({
     first_name: "",
@@ -60,8 +58,10 @@ const Perfil = () => {
   });
 
   useEffect(() => {
-    dispatch(setMail(userMail));
-    dispatch(getUser(userMail));
+    if(!isLoading){
+      dispatch(setMail(userMail));
+      dispatch(getUser(userMail));
+    }
   }, []);
 
   const handleOnBlur = (e) => {
@@ -70,7 +70,6 @@ const Perfil = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(form, "acaaa");
     dispatch(PostUser(form));
     dispatch(handleSendEmail(user));
     toast({
