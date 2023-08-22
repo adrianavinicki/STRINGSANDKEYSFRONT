@@ -23,7 +23,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProductName } from '../redux/actions';
-import EmailButton from "../components/EmailNotification"
+//import EmailButton from "../components/WelcomeButtonNotification"
 
 
 export default function EditProduct() {
@@ -64,11 +64,8 @@ export default function EditProduct() {
                 textAlign={"center"}
               >
                 <Heading color={"black"} fontSize={"4vh"}>
-                  Modificar Producto
+                  Dashboard Admin
                 </Heading>
-                <Box bg={''} h={'5vh'}>
-                <EmailButton></EmailButton>
-                </Box>
                 <Text color={"black"} fontSize={"xl"}>
                   Panel para modificar o crear productos
                 </Text>
@@ -93,7 +90,7 @@ export default function EditProduct() {
                     w={"80%"}
                   ></Input>
                   <Link to={"/admin/crear-producto"}>
-                    <Button bg={"#ffa200"} color={"black"} _hover={"none"}>
+                    <Button bg={"#ffa200"} color={"black"} >
                       Crear Nuevo Producto
                     </Button>
                   </Link>

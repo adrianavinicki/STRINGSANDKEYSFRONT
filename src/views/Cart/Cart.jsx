@@ -34,17 +34,6 @@ export default function Cart() {
     return acumulador + producto.quantity;
   }, 0);
 
-  const handleRemoveProduct = (productId) => {
-    dispatch(removeProductFromCart(productId));
-  };
-
-  const handleDecreaseQuantity = (productId) => {
-    dispatch(decreaseProductQuantity(productId));
-  };
-
-  const handleIncreaseQuantity = (productId) => {
-    dispatch(increaseProductQuantity(productId));
-  };
 
   const handleEmptyCart = (event) => {
     dispatch(emptyCart());
@@ -90,12 +79,12 @@ export default function Cart() {
           >
             <Box>
               <Flex justify={"space-between"}>
-                <Heading fontSize="2xl" fontWeight="extrabold">
+                <Heading color={'white'} fontSize="2xl" fontWeight="extrabold">
                   {totalCantidad} Productos
                 </Heading>
                 <Button
                   _hover={"none"}
-                  bg={"gray.800"}
+                  bg={"#1B1B1B"}
                   color={"white"}
                   onClick={handleEmptyCart}
                 >
@@ -106,7 +95,7 @@ export default function Cart() {
 
             <Box overflowY="auto" maxHeight="40vh">
               {productsToBuy.length === 0 ? (
-                <Text >el carrito esta vacio.</Text>
+                <Text color={'white'}>el carrito esta vacio.</Text>
               ) : (
                 <Stack spacing="4">
                   {productsToBuy.map(
@@ -124,9 +113,9 @@ export default function Cart() {
           <Flex direction="column" align="center" flex="1" marginTop={"30px"}>
             <CartOrderSummary />
             <HStack mt="6" fontWeight="semibold">
-              <p>ó</p>
-              <Link to="/" color={mode("blue.500", "blue.200")}>
-                seguir comprando
+              <Text color={'white'}>ó</Text>
+              <Link to="/">
+                <Text color={'white'}>seguir comprando</Text>
               </Link>
             </HStack>
           </Flex>

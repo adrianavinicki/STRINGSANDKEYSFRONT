@@ -42,10 +42,6 @@ export const CartItem = (props) => {
     dispatch(removeProductFromCart(productId));
   };
 
-  const handleEmptyCart = () => {
-    dispatch(emptyCart());
-  };
-
   const handleDecreaseQuantity = (productId) => {
     dispatch(decreaseProductQuantity(productId));
     };
@@ -86,7 +82,7 @@ export const CartItem = (props) => {
           // }}
         /> */}
         <Box marginLeft={'100px'}>
-          <Text>Cantidad: {quantity}</Text>
+          <Text color={'white'}>Cantidad: {quantity}</Text>
           <PriceTag price={price} currency={currency} />
           <Button variant="outline" color="#ffa200" border={'1px solid #ffa200'} size="sm" onClick={() => handleDecreaseQuantity(props.id)} mt={2}>
                           -
