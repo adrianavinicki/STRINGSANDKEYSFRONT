@@ -94,7 +94,7 @@ export default function Cart() {
             </Box>
 
             <Box overflowY="auto" maxHeight="40vh">
-              {productsToBuy.length === 0 ? (
+              {productsToBuy?.length === 0 ? (
                 <Text color={'white'}>el carrito esta vacio.</Text>
               ) : (
                 <Stack spacing="4">
