@@ -19,7 +19,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useToast } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/react";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -27,11 +27,13 @@ import React, { useEffect, useState } from "react";
 import { PostUser, getUser, emptyActualUser, setMail } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {handleSendEmail} from "../components/WelcomeButtonNotification"
+import { handleSendEmail } from "../components/WelcomeButtonNotification";
 
 const Perfil = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const toast = useToast();
+
+  const [update, setUpdate] = useState(false);
 
   const dispatch = useDispatch();
   const actualUser = useSelector((state) => state.actualUser);
@@ -45,7 +47,7 @@ const Perfil = () => {
   console.log(userMail, "1");
   console.log(actualUserMail, "2");
   console.log(actualUser, "3", actualUser);
-  console.log(user)
+  console.log(user);
 
   const [form, setForm] = useState({
     first_name: "",
@@ -70,7 +72,7 @@ const Perfil = () => {
   const handleSubmit = (e) => {
     console.log(form, "acaaa");
     dispatch(PostUser(form));
-    dispatch(handleSendEmail(user))
+    dispatch(handleSendEmail(user));
     toast({
       title: "Mail de Bienvenida Enviado",
       description: "Se ha registrado con exito.",
@@ -85,15 +87,20 @@ const Perfil = () => {
     setForm((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
+  const handleUpdateTrue = () => {
+    setUpdate(true);
+  };
+  const handleUpdateFalse = () => {
+    setUpdate(false);
+  };
 
-  let isError = []
-  if(form.first_name === '') isError.first_name = "Nombre Requerido."
-  if(form.last_name === '') isError.last_name = "Apellido Requerido."
-  if(form.gender === '') isError.gender = "Genero Requerido."
-  if(form.mobile === '') isError.mobile = "Celular Requerido."
-  if(form.delivery_address === '') isError.delivery_address = "Direccion Requerida."
-
-
+  let isError = [];
+  if (form.first_name === "") isError.first_name = "Nombre Requerido.";
+  if (form.last_name === "") isError.last_name = "Apellido Requerido.";
+  if (form.gender === "") isError.gender = "Genero Requerido.";
+  if (form.mobile === "") isError.mobile = "Celular Requerido.";
+  if (form.delivery_address === "")
+    isError.delivery_address = "Direccion Requerida.";
 
   return (
     <Box>
@@ -130,81 +137,146 @@ const Perfil = () => {
                 h={"60vh"}
               >
                 {actualUser.id ? (
-                  <Stack spacing={3}>
-                    <FormControl id="email">
-                      <FormLabel color={'white'} fontSize={"1.8vh"}>
-                        Mail: {user?.email}
-                      </FormLabel>
-                    </FormControl>
-                    <FormControl id="gender">
-                      <FormLabel color={'white'} fontSize={"1.8vh"}>
-                        Genero: {actualUser?.gender}
-                      </FormLabel>
-                    </FormControl>
-                    <FormControl id="first_name">
-                      <FormLabel color={'white'} fontSize={"1.8vh"}>
-                        Nombre: {actualUser?.first_name}
-                      </FormLabel>
-                      <Input
-                        h={"4vh"}
-                        placeholder="Nuevo Nombre"
-                        _placeholder={{ color: "gray.500" }}
-                      ></Input>
-                    </FormControl>
-                    <FormControl id="last_name">
-                      <FormLabel color={'white'} fontSize={"1.8vh"}>
-                        Apellido: {actualUser?.last_name}
-                      </FormLabel>
-                      <Input
-                        h={"4vh"}
-                        placeholder="Nuevo Apellido"
-                        _placeholder={{ color: "gray.500" }}
-                      ></Input>
-                    </FormControl>
-                    <FormControl id="email">
-                      <FormLabel color={'white'} fontSize={"1.8vh"}>
-                        Celular: {actualUser?.mobile}
-                      </FormLabel>
-                      <Input
-                        h={"4vh"}
-                        placeholder="Nuevo Celular"
-                        _placeholder={{ color: "gray.500" }}
-                      ></Input>
-                    </FormControl>
-                    <FormControl id="delivery_address">
-                      <FormLabel color={'white'} fontSize={"1.8vh"}>
-                        Direccion: {actualUser?.delivery_address}
-                      </FormLabel>
-                      <Input
-                        h={"4vh"}
-                        placeholder="Nueva Direccion"
-                        _placeholder={{ color: "gray.500" }}
-                      ></Input>
-                    </FormControl>
-                    <Stack spacing={5} pt={2}>
-                      <Button
-                        h={"5vh"}
-                        bg={"#ffa200"}
-                        color={"black"}
-                        _hover={"none"}
-                      >
-                        Modificar
-                      </Button>
+                  update ? (
+                    <Stack spacing={"1vh"}>
+                      <FormControl id="email">
+                        <FormLabel color={"white"} fontSize={"1.8vh"}>
+                          Mail: {user?.email}
+                        </FormLabel>
+                      </FormControl>
+                      <FormControl id="gender">
+                        <FormLabel color={"white"} fontSize={"1.8vh"}>
+                          Genero: {actualUser?.gender}
+                        </FormLabel>
+                      </FormControl>
+                      <FormControl id="first_name">
+                        <FormLabel color={"white"} fontSize={"1.8vh"}>
+                          Nombre: {actualUser?.first_name}
+                        </FormLabel>
+                        <Input
+                          h={"4vh"}
+                          placeholder="Nuevo Nombre"
+                          _placeholder={{ color: "gray.500" }}
+                        ></Input>
+                      </FormControl>
+                      <FormControl id="last_name">
+                        <FormLabel color={"white"} fontSize={"1.8vh"}>
+                          Apellido: {actualUser?.last_name}
+                        </FormLabel>
+                        <Input
+                          h={"4vh"}
+                          placeholder="Nuevo Apellido"
+                          _placeholder={{ color: "gray.500" }}
+                        ></Input>
+                      </FormControl>
+                      <FormControl id="email">
+                        <FormLabel color={"white"} fontSize={"1.8vh"}>
+                          Celular: {actualUser?.mobile}
+                        </FormLabel>
+                        <Input
+                          h={"4vh"}
+                          placeholder="Nuevo Celular"
+                          _placeholder={{ color: "gray.500" }}
+                        ></Input>
+                      </FormControl>
+                      <FormControl id="delivery_address">
+                        <FormLabel color={"white"} fontSize={"1.8vh"}>
+                          Direccion: {actualUser?.delivery_address}
+                        </FormLabel>
+                        <Input
+                          h={"4vh"}
+                          placeholder="Nueva Direccion"
+                          _placeholder={{ color: "gray.500" }}
+                        ></Input>
+                      </FormControl>
+                      <Stack spacing={"4vh"} pt={2}>
+                        <Button
+                          h={"5vh"}
+                          bg={"#ffa200"}
+                          color={"black"}
+                          _hover={"none"}
+                          onClick={handleUpdateFalse}
+                        >
+                          Guardar
+                        </Button>
+                      </Stack>
                     </Stack>
-                  </Stack>
+                  ) : (
+                    <Stack spacing={"2vh"}>
+                      <Center>
+                        {" "}
+                        <Heading color={"white"} fontSize={"2.5vh"}>
+                          MIS DATOS
+                        </Heading>
+                      </Center>
+                      <FormLabel
+                        rounded={"5px"}
+                        color={"#ffa200"}
+                        fontSize={"2vh"}
+                      >
+                        Mail:{" "}
+                        <span style={{ color: "white", fontSize: "2.3vh" }}>
+                          {user?.email}
+                        </span>
+                      </FormLabel>
+                      <FormLabel color={"#ffa200"} fontSize={"2vh"}>
+                        Nombre:{" "}
+                        <span style={{ color: "white", fontSize: "2.3vh" }}>
+                          {actualUser?.first_name}
+                        </span>
+                      </FormLabel>
+                      <FormLabel color={"#ffa200"} fontSize={"2vh"}>
+                        Apellido:{" "}
+                        <span style={{ color: "white", fontSize: "2.3vh" }}>
+                          {actualUser?.last_name}
+                        </span>
+                      </FormLabel>
+                      <FormLabel color={"#ffa200"} fontSize={"2vh"}>
+                        Genero:{" "}
+                        <span style={{ color: "white", fontSize: "2.3vh" }}>
+                          {actualUser?.gender}
+                        </span>
+                      </FormLabel>
+                      <FormLabel color={"#ffa200"} fontSize={"2vh"}>
+                        Celular:{" "}
+                        <span style={{ color: "white", fontSize: "2.3vh" }}>
+                          {actualUser?.mobile}
+                        </span>
+                      </FormLabel>
+                      <FormLabel color={"#ffa200"} fontSize={"2vh"}>
+                        Direccion:{" "}
+                        <span style={{ color: "white", fontSize: "2.3vh" }}>
+                          {actualUser?.delivery_address}
+                        </span>
+                      </FormLabel>
+                      <Stack spacing={5} pt={2}>
+                        <Button
+                          h={"5vh"}
+                          bg={"#ffa200"}
+                          color={"black"}
+                          _hover={"none"}
+                          onClick={handleUpdateTrue}
+                        >
+                          Modificar Datos
+                        </Button>
+                      </Stack>
+                    </Stack>
+                  )
                 ) : (
                   <form onSubmit={handleSubmit}>
                     <Stack spacing={4}>
                       <FormControl id="email">
-                        <FormLabel color={'white'}>Mail: {user?.email}</FormLabel>
+                        <FormLabel color={"white"}>
+                          Mail: {user?.email}
+                        </FormLabel>
                       </FormControl>
                       <HStack>
-                        <Box minH={'11vh'}>
+                        <Box minH={"11vh"}>
                           <FormControl
                             id="first_name"
                             isInvalid={isError.first_name}
                           >
-                            <FormLabel color={'white'}>Nombre</FormLabel>
+                            <FormLabel color={"white"}>Nombre</FormLabel>
                             <Input
                               bg={"white"}
                               color={"black"}
@@ -219,12 +291,12 @@ const Perfil = () => {
                             </FormErrorMessage>
                           </FormControl>
                         </Box>
-                        <Box minH={'11vh'}>
+                        <Box minH={"11vh"}>
                           <FormControl
                             id="last_name"
                             isInvalid={isError.last_name}
                           >
-                            <FormLabel color={'white'}>Apellido</FormLabel>
+                            <FormLabel color={"white"}>Apellido</FormLabel>
                             <Input
                               bg={"white"}
                               color={"black"}
@@ -245,9 +317,9 @@ const Perfil = () => {
                         </Box>
                       </HStack>
                       <HStack>
-                        <Box minH={'11vh'}>
+                        <Box minH={"11vh"}>
                           <FormControl id="gender" isInvalid={isError.gender}>
-                            <FormLabel color={'white'}>Genero</FormLabel>
+                            <FormLabel color={"white"}>Genero</FormLabel>
                             <Select
                               _hover={"none"}
                               bg={"white"}
@@ -272,9 +344,9 @@ const Perfil = () => {
                             )}
                           </FormControl>
                         </Box>
-                        <Box minH={'11vh'}>
+                        <Box minH={"11vh"}>
                           <FormControl id="mobile" isInvalid={isError.mobile}>
-                            <FormLabel color={'white'}>Celular</FormLabel>
+                            <FormLabel color={"white"}>Celular</FormLabel>
                             <Input
                               bg={"white"}
                               color={"black"}
@@ -294,11 +366,12 @@ const Perfil = () => {
                           </FormControl>
                         </Box>
                       </HStack>
-                      <FormControl minH={'11vh'}
+                      <FormControl
+                        minH={"11vh"}
                         id="delivery_address"
                         isInvalid={isError.delivery_address}
                       >
-                        <FormLabel color={'white'}>Direccion</FormLabel>
+                        <FormLabel color={"white"}>Direccion</FormLabel>
                         <Input
                           bg={"white"}
                           color={"black"}
@@ -319,16 +392,16 @@ const Perfil = () => {
                       <Stack spacing={10} pt={2}>
                         <Link to={"/"}>
                           <Center>
-                          <Button
-                            h={"5vh"}
-                            bg={"#ffa200"}
-                            color={"black"}
-                            _hover={"none"}
-                            onClick={handleSubmit}
-                            isDisabled={isError.delivery_address}
-                          >
-                            Guardar
-                          </Button>
+                            <Button
+                              h={"5vh"}
+                              bg={"#ffa200"}
+                              color={"black"}
+                              _hover={"none"}
+                              onClick={handleSubmit}
+                              isDisabled={isError.delivery_address}
+                            >
+                              Guardar
+                            </Button>
                           </Center>
                         </Link>
                       </Stack>
