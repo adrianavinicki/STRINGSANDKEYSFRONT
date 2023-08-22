@@ -74,6 +74,7 @@ export default function Nosotros() {
                     rounded={"full"}
                     px={6}
                     colorScheme={"orange"}
+                    color={'black'}
                     bg={"#ffa200"}
                     _hover={{ bg: "orange.300" }}
                   >

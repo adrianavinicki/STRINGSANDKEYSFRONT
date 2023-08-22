@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProductName, getProductNamePrice } from "../redux/actions";
+import { getProductName, getProductNamePrice, setPage } from "../redux/actions";
 import { Input, Box, Button, Flex } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { MdGraphicEq } from "react-icons/md";
@@ -19,7 +19,7 @@ const SearchBar = () => {
   }
 
   function handlerSubmit(e) {
-    e.preventDefault();
+    //e.preventDefault();
     dispatch(getProductName(name));
     dispatch(getProductNamePrice(name));
     setName("");
@@ -44,28 +44,20 @@ const SearchBar = () => {
           }}
           value={name}
         />
-        {
-          location.pathname != "/products"?
-          (
+        {location.pathname != "/products" ? (
+          <Link to={`/products?search=${encodeURIComponent(name)}`}>
             <Button
-            bg={""}
-            color={"black"}
-            _placeholder={{ opacity: 1, color: "gray.500" }}
-            onClick={(e) => handlerSubmit(e)}
-            type="submit"
-          >
-            <Link to={`/products?search=${encodeURIComponent(name)}`}>
-              <Box
-                pt={'20%'}
-                w={'40px'}
-                h={'6vh'}
-              >
+              bg={""}
+              color={"black"}
+              _placeholder={{ opacity: 1, color: "gray.500" }}
+              onClick={(e) => handlerSubmit(e)}
+              type="submit"
+            >
               {<SearchIcon color="#ffa200" />}
-              </Box>
-            </Link>
-          </Button>
-          ):(
-            <Button
+            </Button>
+          </Link>
+        ) : (
+          <Button
             bg={""}
             color={"black"}
             _placeholder={{ opacity: 1, color: "gray.500" }}
@@ -74,8 +66,7 @@ const SearchBar = () => {
           >
             {<SearchIcon color="#ffa200" />}
           </Button>
-          )
-        }
+        )}
       </Flex>
     </Box>
   );
