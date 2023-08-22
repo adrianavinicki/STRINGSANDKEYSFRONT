@@ -56,14 +56,14 @@ const Perfil = () => {
     role_id: "client",
     email: userMail,
   });
-
+  
+  if(!isLoading){
   useEffect(() => {
-    if(!isLoading){
       dispatch(setMail(userMail));
       dispatch(getUser(userMail));
-    }
-  }, []);
-
+    }, []);
+  }
+    
   const handleOnBlur = (e) => {
     handleChange(e);
     //setErrors(validateForm(form, image));
