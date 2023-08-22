@@ -9,7 +9,6 @@ import {
   Text,
   Heading,
   FormLabel,
-  Link,
   Input,
   Button,
 } from "@chakra-ui/react";
@@ -21,6 +20,7 @@ import {
   getProducts,
   setPage,
 } from "../redux/actions";
+import { Link } from "react-router-dom";
 import { MdGraphicEq } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -30,15 +30,16 @@ import { emptyStates } from "../redux/actions";
 
 
 const FilterAndOrder = () => {
-  
+
   const dispatch = useDispatch();
+  
 
   //useEffect(() => {
-//
+  //
   //}, [])
 
   const filteredProducts = useSelector((state) => state.filteredProducts);
-
+  
   const brandsRaw = filteredProducts.map((el) => el.brand);
   const brands = brandsRaw.filter((item, index) => {
     return brandsRaw.indexOf(item) === index;
@@ -56,8 +57,6 @@ const FilterAndOrder = () => {
   console.log(brands);
 
   const handleBrandFilter = (e) => {
-    
-
     const selectedBrand = e.target.innerText;
     console.log(selectedBrand);
     dispatch(filterBrand(selectedBrand));
@@ -70,11 +69,17 @@ const FilterAndOrder = () => {
     dispatch(setPage(0));
   };
 
+  const handleAllProducts = (e) => {
+    dispatch(filterCategory("todos"));
+    dispatch(filterBrand("todos"));
+    dispatch(setPage(0));
+  }
+
   const handlePriceFilter = () => {
     const val = sliderValue;
     const cat = firstCategory;
-    const bra = firstBrand; 
-  
+    const bra = firstBrand;
+
     if (isSingleCategory && isSingleBrand) {
       dispatch(filterPrice({ val, cat, bra }));
     } else if (isSingleCategory && !isSingleBrand) {
@@ -90,7 +95,7 @@ const FilterAndOrder = () => {
 
   const handlePrice = (val) => {
     setSliderValue(val)
-    
+
   }
 
   const [sliderValue, setSliderValue] = useState(150000);
@@ -117,14 +122,22 @@ const FilterAndOrder = () => {
   return (
     <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"} p={"5%"}>
       <Flex direction={"column"}>
-        {filteredProducts.length === 0? <Text>No se encontraron productos.</Text> :
-        <Text fontSize={"1.5vh"}>
-          {isSingleCategory && isSingleBrand
-            ? `Todos los Productos > ${firstCategory} > ${firstBrand}`
-            : isSingleCategory
-            ? `Todos los Productos > ${firstCategory}`
-            : "Todos los Productos"}
-        </Text>}
+        {filteredProducts.length === 0 ? <Text>No se encontraron productos.</Text> :
+          <Text fontSize={"1.5vh"}>
+            {isSingleCategory && isSingleBrand ? 
+            <span>
+              <Link onClick={() => handleAllProducts()} style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos</Link> {">"} 
+              <Link style={{color:"#ffa200"}} cursor="pointer" onClick={handleCategoryFilter} >{firstCategory}</Link> {">"} 
+              <Link style={{color:"#ffa200"}} cursor="pointer" >{firstBrand}</Link>
+            </span> :
+              isSingleCategory ? <span>
+              <Link onClick={() => handleAllProducts()} style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos</Link> {">"} 
+              <Link style={{color:"#ffa200"}} cursor="pointer" >{firstCategory}</Link> {">"} 
+            </span> :
+                <span>
+                <Link style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos</Link> {">"} 
+              </span>}
+          </Text>}
         <Box>
           <Flex direction={"column"}>
             {isSingleCategory ? (
@@ -167,8 +180,8 @@ const FilterAndOrder = () => {
           <Flex>
             <Heading w={'70%'} fontSize={"3.5vh"}>$ {sliderValue}</Heading>
             <Button
-            w={'24%'}
-            h={'6vh'}
+              w={'24%'}
+              h={'6vh'}
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"black"}
               color={"black"}
@@ -232,8 +245,8 @@ const FilterAndOrder = () => {
               onClick={() => {
                 resetInput();
               }}
-              
-            ><Link href="/products" >Limpiar Filtros</Link>
+
+            ><Link to="/products" >Limpiar Filtros</Link>
             </Button>
           </Flex>
         </Box>
