@@ -38,11 +38,15 @@ export const getProducts = () => {
 
 export const getUser = (email) => {
   return async function (dispatch) {
-    const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {email});
-    dispatch({
-      type: GET_USER,
-      payload: response.data,
-    });
+    try {
+      const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {email});
+      return dispatch({
+        type: GET_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log("Error al obtener el usuario por mail");
+    }
   }
 }
 
