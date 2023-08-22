@@ -27,13 +27,17 @@ const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
 export const getProducts = () => {
   return async function (dispatch) {
+    try {
     const response = await axios.get(`${VITE_LOCAL_HOST}/products`);
     const products = response.data;
     dispatch({
       type: GET_PRODUCTS,
       payload: products,
     });
+  } catch (error) {
+    console.log("Error al obtener todos los productos");
   };
+}
 };
 
 export const getUser = (email) => {
