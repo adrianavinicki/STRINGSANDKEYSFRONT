@@ -22,6 +22,7 @@ export const SET_MAIL = "SET_MAIL"
 
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
+export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -200,3 +201,9 @@ export const PostUser = (payload) => {
     return response;
   }
 }
+
+export const cleanDetail = () => {
+  return {
+    type: CLEAN_DETAIL,
+  }
+};
