@@ -22,6 +22,7 @@ import {
   EMPTY_ACTUAL_USER,
   EMPTY_ORDERS_ID,
   GET_USER,
+  CLEAN_DETAIL,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -223,6 +224,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ordersUsersID: [],
+      };
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        details:{},
       };
 
     default:

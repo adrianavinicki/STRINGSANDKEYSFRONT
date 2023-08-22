@@ -23,7 +23,7 @@ import { useParams } from "react-router";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { addProductToCart, getDetailProduct } from "../redux/actions";
+import { addProductToCart, getDetailProduct, cleanDetail } from "../redux/actions";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { FaShoppingCart } from "react-icons/fa";
@@ -31,23 +31,30 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Detail = () => {
+
   const { id } = useParams();
+
+  let detailProduct = useSelector((state) => state.details);
+  const cartItems = useSelector((state) => state.cartItems);
+
   const dispatch = useDispatch();
   const toast = useToast();
-
-
-  const cartItems = useSelector((state) => state.cartItems);
 
   const getProductQuantityInCart = () => {
     const item = cartItems.find((item) => item.id === parseInt(id));
     return item ? item.quantity : 0;
   };
 
-
-  let detailProduct = useSelector((state) => state.details);
   useEffect(() => {
     dispatch(getDetailProduct(id));
+
+    return () => {
+      dispatch(cleanDetail())
+    }
   }, [dispatch, id]);
+
+
+
 
   const getCarrito = (product) => {
     dispatch(addProductToCart(product));
