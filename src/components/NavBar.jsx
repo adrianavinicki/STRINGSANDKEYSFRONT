@@ -10,7 +10,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function WithSubnavigation() {
   const { isAuthenticated } = useAuth0();
-  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Box>

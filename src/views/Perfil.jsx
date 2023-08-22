@@ -132,17 +132,17 @@ const Perfil = () => {
                 {actualUser.id ? (
                   <Stack spacing={3}>
                     <FormControl id="email">
-                      <FormLabel fontSize={"1.8vh"}>
+                      <FormLabel color={'white'} fontSize={"1.8vh"}>
                         Mail: {user?.email}
                       </FormLabel>
                     </FormControl>
                     <FormControl id="gender">
-                      <FormLabel fontSize={"1.8vh"}>
+                      <FormLabel color={'white'} fontSize={"1.8vh"}>
                         Genero: {actualUser?.gender}
                       </FormLabel>
                     </FormControl>
                     <FormControl id="first_name">
-                      <FormLabel fontSize={"1.8vh"}>
+                      <FormLabel color={'white'} fontSize={"1.8vh"}>
                         Nombre: {actualUser?.first_name}
                       </FormLabel>
                       <Input
@@ -152,7 +152,7 @@ const Perfil = () => {
                       ></Input>
                     </FormControl>
                     <FormControl id="last_name">
-                      <FormLabel fontSize={"1.8vh"}>
+                      <FormLabel color={'white'} fontSize={"1.8vh"}>
                         Apellido: {actualUser?.last_name}
                       </FormLabel>
                       <Input
@@ -162,7 +162,7 @@ const Perfil = () => {
                       ></Input>
                     </FormControl>
                     <FormControl id="email">
-                      <FormLabel fontSize={"1.8vh"}>
+                      <FormLabel color={'white'} fontSize={"1.8vh"}>
                         Celular: {actualUser?.mobile}
                       </FormLabel>
                       <Input
@@ -172,7 +172,7 @@ const Perfil = () => {
                       ></Input>
                     </FormControl>
                     <FormControl id="delivery_address">
-                      <FormLabel fontSize={"1.8vh"}>
+                      <FormLabel color={'white'} fontSize={"1.8vh"}>
                         Direccion: {actualUser?.delivery_address}
                       </FormLabel>
                       <Input
@@ -196,7 +196,7 @@ const Perfil = () => {
                   <form onSubmit={handleSubmit}>
                     <Stack spacing={4}>
                       <FormControl id="email">
-                        <FormLabel>Mail: {user?.email}</FormLabel>
+                        <FormLabel color={'white'}>Mail: {user?.email}</FormLabel>
                       </FormControl>
                       <HStack>
                         <Box minH={'11vh'}>
@@ -204,7 +204,7 @@ const Perfil = () => {
                             id="first_name"
                             isInvalid={isError.first_name}
                           >
-                            <FormLabel>Nombre</FormLabel>
+                            <FormLabel color={'white'}>Nombre</FormLabel>
                             <Input
                               bg={"white"}
                               color={"black"}
@@ -224,7 +224,7 @@ const Perfil = () => {
                             id="last_name"
                             isInvalid={isError.last_name}
                           >
-                            <FormLabel>Apellido</FormLabel>
+                            <FormLabel color={'white'}>Apellido</FormLabel>
                             <Input
                               bg={"white"}
                               color={"black"}
@@ -247,7 +247,7 @@ const Perfil = () => {
                       <HStack>
                         <Box minH={'11vh'}>
                           <FormControl id="gender" isInvalid={isError.gender}>
-                            <FormLabel>Genero</FormLabel>
+                            <FormLabel color={'white'}>Genero</FormLabel>
                             <Select
                               _hover={"none"}
                               bg={"white"}
@@ -274,7 +274,7 @@ const Perfil = () => {
                         </Box>
                         <Box minH={'11vh'}>
                           <FormControl id="mobile" isInvalid={isError.mobile}>
-                            <FormLabel>Celular</FormLabel>
+                            <FormLabel color={'white'}>Celular</FormLabel>
                             <Input
                               bg={"white"}
                               color={"black"}
@@ -298,7 +298,7 @@ const Perfil = () => {
                         id="delivery_address"
                         isInvalid={isError.delivery_address}
                       >
-                        <FormLabel>Direccion</FormLabel>
+                        <FormLabel color={'white'}>Direccion</FormLabel>
                         <Input
                           bg={"white"}
                           color={"black"}
