@@ -86,8 +86,9 @@ export default function Payment(props) {
     console.log(response.data.init_point, "2");
     setPreferenceId(response.data.init_point);
     window.location.href = response.data.init_point;
-    dispatch(BuyButtonNotification(user,detailCarrito))
     dispatch(emptyCart());
+    dispatch(BuyButtonNotification(user,detailCarrito))
+    //dispatch(emptyCart());
   };
 
   const handleClick = async () => {
