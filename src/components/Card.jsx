@@ -52,7 +52,7 @@ export default function ProductSimple(props) {
         <Stack align={"center"} spacing={3}>
           <Text
             color={"gray.500"}
-            fontSize={"1vh"}
+            fontSize={"1.3vh"}
             textTransform={"uppercase"}
           >
             {props.brand}

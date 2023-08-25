@@ -51,12 +51,12 @@ export default function Cart() {
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         w={"100%"}
-        h={"82vh"}
+        h={"83vh"}
         mt={"100px"}
         pt={"2vh"}
         overflow={"hidden"}
       >
-      <Box margin={"70px"} padding={"30px"} rounded={"20px"} h={"60vh"} bg="rgba(0, 0, 0, 0.7)" overflow={'hidden'}>
+      <Box margin={"3%"} padding={"3%"} rounded={"20px"} h={"60vh"} bg="rgba(0, 0, 0, 0.7)" overflow={'hidden'}>
         <Stack
           direction={{
             base: "column",
@@ -110,9 +110,9 @@ export default function Cart() {
             </Box>
           </Stack>
 
-          <Flex direction="column" align="center" flex="1" marginTop={"30px"}>
+          <Flex direction="column" align="center" flex="1" marginTop={"1%"}>
             <CartOrderSummary />
-            <HStack mt="6" fontWeight="semibold">
+            <HStack mt="1vh" fontWeight="semibold">
               <Text color={'white'}>ó</Text>
               <Link to="/">
                 <Text color={'white'}>seguir comprando</Text>

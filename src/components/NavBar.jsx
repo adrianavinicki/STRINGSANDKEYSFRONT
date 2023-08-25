@@ -1,6 +1,14 @@
 "use client";
-import { Box, Flex, Stack, Image, useColorModeValue, useColorMode, Button  } from "@chakra-ui/react";
-import React, { useState } from 'react';
+import {
+  Box,
+  Flex,
+  Stack,
+  Image,
+  useColorModeValue,
+  useColorMode,
+  Button,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -42,45 +50,45 @@ export default function WithSubnavigation() {
             <Flex align={"center"} mt={"2%"}>
               <Box>
                 <Stack direction={"row"} spacing={4}>
-                    <Box >
-                      <Link to={'/'}>
-                        <Box
-                          p={2}
-                          fontSize={"2vh"}
-                          fontWeight={500}
-                          color={"white"}
+                  <Box>
+                    <Link to={"/"}>
+                      <Box
+                        p={2}
+                        fontSize={"2vh"}
+                        fontWeight={500}
+                        color={"white"}
                           _hover={{color:"#ffa200"}}
-                        >
-                          Inicio
-                        </Box>
-                      </Link>
-                    </Box>
-                    <Box >
-                      <Link to={'/us'}>
-                        <Box
-                          p={2}
-                          fontSize={"2vh"}
-                          fontWeight={500}
-                          color={"white"}
+                      >
+                        Inicio
+                      </Box>
+                    </Link>
+                  </Box>
+                  <Box>
+                    <Link to={"/us"}>
+                      <Box
+                        p={2}
+                        fontSize={"2vh"}
+                        fontWeight={500}
+                        color={"white"}
                           _hover={{color:"#ffa200"}}
-                        >
-                          Nosotros
-                        </Box>
-                      </Link>
-                    </Box>
-                    <Box >
-                      <Link to={"/admin/edit"}>
-                        <Box
-                          p={2}
-                          fontSize={"2vh"}
-                          fontWeight={500}
-                          color={"white"}
+                      >
+                        Nosotros
+                      </Box>
+                    </Link>
+                  </Box>
+                  <Box>
+                    <Link to={"/admin/edit"}>
+                      <Box
+                        p={2}
+                        fontSize={"2vh"}
+                        fontWeight={500}
+                        color={"white"}
                           _hover={{color:"#ffa200"}}
-                        >
-                          Admin
-                        </Box>
-                      </Link>
-                    </Box>
+                      >
+                        Admin
+                      </Box>
+                    </Link>
+                  </Box>
                 </Stack>
               </Box>
               <Box ml={"5vh"}>
@@ -96,9 +104,11 @@ export default function WithSubnavigation() {
           spacing={10}
           mr={"2%"}
         >
-          <Link to="/cart">
-            <FaShoppingCart size={"5vh"} color="#ffa200" />
+          <Box mt={'1vh'}>
+          <Link  to="/cart">
+            <FaShoppingCart  size={"5vh"} color="#ffa200" />
           </Link>
+          </Box>
           {isAuthenticated ? (
             <>
               <Profile></Profile>
