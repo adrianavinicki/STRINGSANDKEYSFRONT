@@ -3,15 +3,14 @@ import Home from "./views/Home";
 import Detail from './views/Detail';
 import CreateProduct from "./views/CreateProductoFolder/CreateProduct";
 import Products from "./views/Products";
-import DashboardAdmin from "./views/DashboardAdmin";
+import DashboardAdmin from "./views/DashBoardAdmin/DashboardAdmin";
 import Perfil from "./views/Perfil";
 import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
 import Nosotros from "./views/Nosotros";
 import Payment from "./views/Payment/Payment";
-import ProductsAdmin from "./views/ProductsAdmin"
-import UpdateProduct from "./views/UpdateProduct"
-import ProductsData from "./views/ProductsTable";
+import UpdateProduct from "./views/DashBoardAdmin/UpdateProduct"
+import ProductsData from "./views/DashBoardAdmin/ProductsTable";
 import MisCompras from "./views/MisCompras"
 
 
