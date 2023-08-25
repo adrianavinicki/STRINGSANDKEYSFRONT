@@ -19,9 +19,9 @@ import {
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { brands, categories } from "./formData";
-import { PostProduct } from "../../redux/actions";
-import WithSubnavigation from "../../components/NavBar";
-import SmallWithLogoLeft from "../../components/Footer";
+import { PostProduct } from "../../../redux/actions";
+import WithSubnavigation from "../../../components/NavBar";
+import SmallWithLogoLeft from "../../../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from '@chakra-ui/react'
 
