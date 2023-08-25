@@ -24,7 +24,7 @@ export const Profile = () => {
   return (
     isAuthenticated && (
       <Menu >
-        <MenuButton as={Flex} alignItems="center">
+        <MenuButton as={Flex} alignItems="center" cursor="pointer">
           <HStack spacing={2}>
             <Text color={"white"}>{user.name}</Text>
             <Avatar src={user.picture} alt={user.name} />
