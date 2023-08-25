@@ -9,6 +9,10 @@ import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
 import Nosotros from "./views/Nosotros";
 import Payment from "./views/Payment/Payment";
+import ProductsAdmin from "./views/ProductsAdmin"
+import UpdateProduct from "./views/UpdateProduct"
+import ProductsData from "./views/ProductsTable";
+import MisCompras from "./views/MisCompras"
 
 
 const router = createBrowserRouter([
@@ -17,13 +21,25 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path:"/compras",
+    element: <MisCompras />,
+  },
+  {
     path:'/detail/:id',
     element: <Detail/>,
   },
   {
-    path:"/admin/crear-producto",
+    path:"/admin/edit/product/crear",
     element: <CreateProduct/>,
   },
+  {
+    path:"/admin/edit/product",
+    element: <ProductsData/>,
+  },
+  {
+    path:"/admin/edit/product/:id",
+    element: <UpdateProduct />,
+},
   {
     path:"/admin/edit",
     element: <DashboardAdmin/>,

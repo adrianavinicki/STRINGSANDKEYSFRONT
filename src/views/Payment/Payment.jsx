@@ -123,7 +123,7 @@ export default function Payment(props) {
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           w={"100%"}
-          h={"82vh"}
+          h={"83vh"}
           mt={"100px"}
           pt={"5vh"}
           overflow={"hidden"}
@@ -137,6 +137,7 @@ export default function Payment(props) {
                   h={"70vh"}
                   p={"30px"}
                   roundedLeft="lg"
+                  overflow={'hidden'}
                 >
                   <Flex direction={"column"}>
                     <Text color={"white"}>Por favor revisa tu pedido:</Text>
@@ -158,11 +159,11 @@ export default function Payment(props) {
                             <Icon as={CheckIcon} />
                           </Box>
                           <VStack align={"start"}>
-                            <Text color={'black'} fontWeight={600}>Nombre: {product.name}</Text>
-                            <Text color={'black'} fontWeight={600}>
+                            <Text color={'black'} fontSize={'2.5vh'} fontWeight={600}>Nombre: {product.name}</Text>
+                            <Text color={'black'} fontSize={'2.5vh'} fontWeight={600}>
                               Precio: ${product.price}
                             </Text>
-                            <Text color={"gray.600"}>
+                            <Text color={"gray.600"} fontSize={'2.5vh'}>
                               Cantidad: {product.quantity}
                             </Text>
                           </VStack>
@@ -172,10 +173,9 @@ export default function Payment(props) {
                   </Flex>
                 </Box>
 
-                <Box bg={'black'} w={'30%'} pt={'10%'} roundedRight={'5px'}>
+                <Box bg={'black'} h={'70vh'} w={'30%'} pt={'10%'} roundedRight={'5px'}>
                   <Flex direction={"column"} align={"center"}>
                     <Image src="/Logo White.png" h={"13vh"} alt="Wonder Toys" />
-                    <br />
                     <br />
                     <Heading color={"#ffa200"} fontSize={'3vh'}>Total: ${totalPrice}</Heading>
                     <br />
