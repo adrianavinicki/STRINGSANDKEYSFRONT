@@ -57,6 +57,7 @@ export default function WithSubnavigation() {
                         fontSize={"2vh"}
                         fontWeight={500}
                         color={"white"}
+                          _hover={{color:"#ffa200"}}
                       >
                         Inicio
                       </Box>
@@ -69,6 +70,7 @@ export default function WithSubnavigation() {
                         fontSize={"2vh"}
                         fontWeight={500}
                         color={"white"}
+                          _hover={{color:"#ffa200"}}
                       >
                         Nosotros
                       </Box>
@@ -81,6 +83,7 @@ export default function WithSubnavigation() {
                         fontSize={"2vh"}
                         fontWeight={500}
                         color={"white"}
+                          _hover={{color:"#ffa200"}}
                       >
                         Admin
                       </Box>

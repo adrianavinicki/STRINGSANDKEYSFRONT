@@ -95,7 +95,7 @@ export default function Cart() {
 
             <Box overflowY="auto" maxHeight="40vh">
               {productsToBuy?.length === 0 ? (
-                <Text color={'white'}>el carrito esta vacio.</Text>
+                <Text color={'white'}>El carrito esta vacio.</Text>
               ) : (
                 <Stack spacing="4">
                   {productsToBuy.map(
