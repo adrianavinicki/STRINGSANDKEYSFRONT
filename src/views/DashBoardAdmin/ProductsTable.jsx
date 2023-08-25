@@ -17,14 +17,14 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import SmallWithLogoLeft from "../components/Footer";
-import WithSubnavigation from "../components/NavBar";
+import SmallWithLogoLeft from "../../components/Footer";
+import WithSubnavigation from "../../components/NavBar";
 import { Link } from "react-router-dom";
 import {
   getProductName,
   getProducts,
   orderProductsAdmin,
-} from "../redux/actions";
+} from "../../redux/actions";
 
 function ProductsData() {
   const products = useSelector((state) => state.products);

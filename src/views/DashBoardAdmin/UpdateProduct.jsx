@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
-import ProductProfileEdit from "../components/UpdateProduct"
-import SmallWithLogoLeft from "../components/Footer";
-import WithSubnavigation from "../components/NavBar";
+import ProductProfileEdit from "../../components/UpdateProduct"
+import SmallWithLogoLeft from "../../components/Footer";
+import WithSubnavigation from "../../components/NavBar";
 
 
 const Update = () => {

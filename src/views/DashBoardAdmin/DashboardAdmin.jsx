@@ -17,8 +17,8 @@ import {
   FcPaid,
   FcManager,
 } from "react-icons/fc";
-import SmallWithLogoLeft from "../components/Footer";
-import WithSubnavigation from "../components/NavBar";
+import SmallWithLogoLeft from "../../components/Footer";
+import WithSubnavigation from "../../components/NavBar";
 import { Link } from "react-router-dom";
 
 const Card = ({ heading, description, icon, href }) => {
