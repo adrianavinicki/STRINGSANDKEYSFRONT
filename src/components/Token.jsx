@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const Token = () => {
+export const Token = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
 
@@ -31,7 +31,9 @@ const Token = () => {
           },
         });
 
-        const { user_metadata}  = await metadataResponse.json();
+        const  user_metadata  = await metadataResponse.json();
+
+        console.log('aqui', user_metadata)
 
         setUserMetadata(user_metadata);
       } catch (e) {
@@ -43,6 +45,7 @@ const Token = () => {
   }, [getAccessTokenSilently, user?.sub]);
 
   console.log(userMetadata)
+
 
   return (
     <div>

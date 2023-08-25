@@ -34,10 +34,12 @@ export const Profile = () => {
           <Link to={'/profile'}>
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >Mi Perfil</MenuItem>
           </Link>
+          <Link to={'/compras'}>
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}} >Mis Compras</MenuItem>
-          <Link to={'/token'}>
-          <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >MetaData</MenuItem>
           </Link>
+          {/* <Link to={'/token'}>
+          <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >MetaData</MenuItem>
+          </Link> */}
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}
             onClick={() =>
               logout({ logoutParams: { returnTo: window.location.origin } })

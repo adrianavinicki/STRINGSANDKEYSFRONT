@@ -145,7 +145,7 @@ export default function CreateProduct() {
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         w={"100%"}
-        h={"82vh"}
+        h={"83vh"}
         overflow={"hidden"}
       >
         <VStack h={"80vh"} mt={'1%'}>
@@ -270,7 +270,7 @@ export default function CreateProduct() {
                   <br />
                   <Box>
                     <Flex>
-                      <Link to={"/admin/edit"}>
+                      <Link to={"/admin/edit/product"}>
                         <Button h={'4vh'} _hover={"none"} color={"#ffa200"} bg={"black"}>
                           Volver
                         </Button>
