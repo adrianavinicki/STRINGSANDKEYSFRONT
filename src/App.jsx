@@ -1,14 +1,17 @@
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home from "./views/Home";
 import Detail from './views/Detail';
-import CreateProduct from "./views/CreateProductoFolder/CreateProduct";
+import CreateProduct from "./views/DashBoardAdmin/CreateProductoFolder/CreateProduct";
 import Products from "./views/Products";
-import DashboardAdmin from "./views/DashboardAdmin";
+import DashboardAdmin from "./views/DashBoardAdmin/DashboardAdmin2.0";
 import Perfil from "./views/Perfil";
 import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
 import Nosotros from "./views/Nosotros";
 import Payment from "./views/Payment/Payment";
+import UpdateProduct from "./views/DashBoardAdmin/UpdateProduct"
+import ProductsData from "./views/DashBoardAdmin/ProductsTable";
+import MisCompras from "./views/MisCompras"
 
 
 const router = createBrowserRouter([
@@ -17,15 +20,27 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path:"/compras",
+    element: <MisCompras />,
+  },
+  {
     path:'/detail/:id',
     element: <Detail/>,
   },
   {
-    path:"/admin/crear-producto",
+    path:"/admin/product/crear",
     element: <CreateProduct/>,
   },
   {
-    path:"/admin/edit",
+    path:"/admin/product",
+    element: <ProductsData/>,
+  },
+  {
+    path:"/admin/product/:id",
+    element: <UpdateProduct />,
+},
+  {
+    path:"/admin",
     element: <DashboardAdmin/>,
   },
   {

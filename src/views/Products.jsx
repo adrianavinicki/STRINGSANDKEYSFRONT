@@ -31,7 +31,7 @@ const Products = () => {
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           w={"100%"}
-          h={"82vh"}
+          h={"83vh"}
           mt={"100px"}
           pt={"2vh"}
           overflow={"hidden"}

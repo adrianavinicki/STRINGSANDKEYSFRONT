@@ -19,6 +19,7 @@ export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
 export const EMPTY_CART = "EMPTY_CART";
 export const GET_USER = "GET_USER"
 export const SET_MAIL = "SET_MAIL"
+export const ORDER_PRODUCTS_ADMIN = "ORDER_PRODUCTS_ADMIN"
 
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
@@ -119,6 +120,14 @@ export const orderByPrice = (status) => {
     payload: status,
   };
 };
+
+export const orderProductsAdmin = (status) => {
+  return {
+    type: ORDER_PRODUCTS_ADMIN,
+    payload: status,
+  };
+};
+
 export const emptyStates = () => {
   return {
     type: EMPTY_STATES,
@@ -152,6 +161,13 @@ export const PostProduct = (product) => {
       product
     );
     console.log(response.data);
+    return response;
+  };
+};
+
+export const putProduct = (id, payload) => {
+  return async function (dispatch) {
+    const response = await axios.put(`${VITE_LOCAL_HOST}/products/update/${id}`, payload);
     return response;
   };
 };
@@ -215,3 +231,11 @@ export const cleanDetail = () => {
     type: CLEAN_DETAIL,
   }
 };
+
+export const putUser = (payload) => {
+  return async function (dispatch) {
+    const response = await axios.put(`${VITE_LOCAL_HOST}/users/update`, payload);
+    return response;
+  };
+};
+

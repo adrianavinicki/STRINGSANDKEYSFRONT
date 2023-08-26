@@ -22,6 +22,7 @@ import {
   EMPTY_ACTUAL_USER,
   EMPTY_ORDERS_ID,
   GET_USER,
+  ORDER_PRODUCTS_ADMIN,
   CLEAN_DETAIL,
 } from "./actions";
 const persistConfig = {
@@ -38,31 +39,32 @@ const initialState = {
   cartItems: [],
   ordersUsersID: [],
   actualUser: [],
-  userEmail:[],
+  userEmail: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER:
-      if(!action.payload){
-      return {
-        ...state,
-        actualUser: ["vacio"],
-      }
-    } else return {
-      ...state,
-      actualUser: action.payload,
-    }
+      if (!action.payload) {
+        return {
+          ...state,
+          actualUser: ["vacio"],
+        };
+      } else
+        return {
+          ...state,
+          actualUser: action.payload,
+        };
     case SET_PAGE:
       return {
         ...state,
         currentPage: action.payload,
       };
-      case SET_MAIL:
-        return {
-          ...state,
-          userEmail: action.payload,
-        };
+    case SET_MAIL:
+      return {
+        ...state,
+        userEmail: action.payload,
+      };
     case ORDER_BY_PRICE:
       const { payload } = action;
       let orderPrice;
@@ -75,6 +77,28 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
+    case ORDER_PRODUCTS_ADMIN:
+      let orderAdmin;
+      if (action.payload === "Pausados") {
+        orderAdmin = state.products.sort((a, b) => a.product_status - b.product_status);
+      } else if (action.payload === "Activos") {
+        orderAdmin = state.products.sort((a, b) => b.product_status - a.product_status);
+      } else if (action.payload === "ID") {
+        orderAdmin = state.products.sort((a, b) => a.id - b.id);
+      }
+      else if (action.payload === "Menor Stock") {
+        orderAdmin = state.products.sort((a, b) => a.quantity - b.quantity);
+      } else if (action.payload === "Mayor Stock") {
+        orderAdmin = state.products.sort((a, b) => b.quantity - a.quantity);
+      }
+       else {
+        orderAdmin = state.products;
+      }
+      return { ...state, products: [...orderAdmin] };
+
+    case GET_PRODUCTS:
+      return { ...state, products: action.payload };
+
     case GET_PRODUCT_NAME:
       return {
         ...state,
@@ -86,7 +110,7 @@ const rootReducer = (state = initialState, action) => {
         action.payload === "todos"
           ? [...state.products]
           : [...state.filteredProducts].filter(
-              (el) => el.brand === action.payload
+              (el) => el.brand === action.payload && el.product_status === true
             );
 
       return {
@@ -96,8 +120,8 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_CATEGORY:
       const productsByCategory =
         action.payload === "todos"
-          ? [...state.products]
-          : [...state.products].filter((el) => el.category === action.payload);
+          ? [...state.products].filter((el) =>  el.product_status === true)
+          : [...state.products].filter((el) => el.category === action.payload && el.product_status === true);
 
       return {
         ...state,
@@ -210,11 +234,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: [],
       };
-      case EMPTY_ACTUAL_USER:
-        return {
-          ...state,
-          actualUser: [],
-        };
+    case EMPTY_ACTUAL_USER:
+      return {
+        ...state,
+        actualUser: [],
+      };
     case GET_ORDERS_USERS_ID:
       return {
         ...state,
@@ -228,7 +252,7 @@ const rootReducer = (state = initialState, action) => {
     case CLEAN_DETAIL:
       return {
         ...state,
-        details:{},
+        details: {},
       };
 
     default:
