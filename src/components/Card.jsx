@@ -38,7 +38,6 @@ export default function ProductSimple(props) {
       rounded={"lg"}
       p={1}
       m={'5%'}
-      _hover={{ transform: "translateY(-2px)", transition: "0.5s"}}
     >
       <Flex direction={"column"} justify="space-between" h="100%">
         <Box>
@@ -52,7 +51,7 @@ export default function ProductSimple(props) {
         <Stack align={"center"} spacing={3}>
           <Text
             color={"gray.500"}
-            fontSize={"1.3vh"}
+            fontSize={"1vh"}
             textTransform={"uppercase"}
           >
             {props.brand}

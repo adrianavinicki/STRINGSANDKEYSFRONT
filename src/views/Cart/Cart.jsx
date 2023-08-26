@@ -51,12 +51,12 @@ export default function Cart() {
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         w={"100%"}
-        h={"83vh"}
+        h={"82vh"}
         mt={"100px"}
         pt={"2vh"}
         overflow={"hidden"}
       >
-      <Box margin={"3%"} padding={"3%"} rounded={"20px"} h={"60vh"} bg="rgba(0, 0, 0, 0.7)" overflow={'hidden'}>
+      <Box margin={"70px"} padding={"30px"} rounded={"20px"} h={"60vh"} bg="rgba(0, 0, 0, 0.7)" overflow={'hidden'}>
         <Stack
           direction={{
             base: "column",
@@ -95,7 +95,7 @@ export default function Cart() {
 
             <Box overflowY="auto" maxHeight="40vh">
               {productsToBuy?.length === 0 ? (
-                <Text color={'white'}>El carrito esta vacio.</Text>
+                <Text color={'white'}>el carrito esta vacio.</Text>
               ) : (
                 <Stack spacing="4">
                   {productsToBuy.map(
@@ -110,9 +110,9 @@ export default function Cart() {
             </Box>
           </Stack>
 
-          <Flex direction="column" align="center" flex="1" marginTop={"1%"}>
+          <Flex direction="column" align="center" flex="1" marginTop={"30px"}>
             <CartOrderSummary />
-            <HStack mt="1vh" fontWeight="semibold">
+            <HStack mt="6" fontWeight="semibold">
               <Text color={'white'}>ó</Text>
               <Link to="/">
                 <Text color={'white'}>seguir comprando</Text>

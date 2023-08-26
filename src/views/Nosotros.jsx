@@ -27,7 +27,7 @@ export default function Nosotros() {
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           w={"100%"}
-          h={"83vh"}
+          h={"82vh"}
           mt={"100px"}
           pt={"2vh"}
           overflow={"hidden"}
@@ -42,7 +42,7 @@ export default function Nosotros() {
                 <Image boxSize={'10vh'} src="/LOGO png.png"></Image>
               <Heading
                 fontWeight={600}
-                fontSize={'5.7vh'}
+                fontSize={'5vh'}
                 lineHeight={"110%"}
                 color={"black"}
               >
@@ -51,18 +51,18 @@ export default function Nosotros() {
                   Strings&Keys
                 </Text>
               </Heading>
-              <Text color={"gray.700"} maxW={"3xl"} fontSize={'2.2vh'}>
+              <Text color={"gray.700"} maxW={"3xl"} fontSize={'1.8vh'}>
                 En Strings&Keys, encontrarás una cuidadosa selección de
                 productos de los mejores fabricantes. Nuestro equipo de expertos
                 está aquí para asesorarte en tu viaje musical.
               </Text>
-              <Text color={"gray.700"} maxW={"3xl"} fontSize={'2.2vh'}>
+              <Text color={"gray.700"} maxW={"3xl"} fontSize={'1.8vh'}>
                 Creemos que la música es un lenguaje
                 universal que conecta corazones y almas. Nuestro compromiso es
                 proporcionarte las herramientas necesarias para expresarte a
                 través de la música y llevar tus habilidades al siguiente nivel.
               </Text>
-              <Text color={"gray.700"} maxW={"3xl"} fontSize={'2.2vh'}>
+              <Text color={"gray.700"} maxW={"3xl"} fontSize={'1.8vh'}>
                 Navega por nuestra plataforma de compra intuitiva y disfruta de
                 una experiencia sin complicaciones. Únete a nuestra comunidad de
                 amantes de la música y descubre un mundo de posibilidades

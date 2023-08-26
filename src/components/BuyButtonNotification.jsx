@@ -15,7 +15,7 @@ export const BuyButtonNotification = async (user,detailCarrito) => {
         userMail: userMail,
         titulo: `Gracias por tu compra ${userName}`,
         contenido:
-          `¡Te agradecemos por tu reciente compra en Strings And Keys!, Debajo podras ver los detalles de tu compra: ${ordenCompra.map(e=>(e.name))}`,
+          `¡Te agradecemos por tu reciente compra en Strings And Keys!, Debajo podras ver los detalles de tu compra: ${ordenCompra}`,
       }),
     });
     if (response.ok) {
