@@ -36,8 +36,7 @@ import { Link } from "react-router-dom";
 import { handleSendEmail } from "../components/WelcomeButtonNotification";
 
 const Perfil = () => {
-  const { user, isAuthenticated, isLoading } =
-    useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const toast = useToast();
 
   const loading = isLoading;
@@ -48,9 +47,11 @@ const Perfil = () => {
   const actualUser = useSelector((state) => state.actualUser);
   const actualUserMail = useSelector((state) => state.userMail);
 
-  if (actualUserMail !== actualUser?.email) {
-    dispatch(emptyActualUser);
-  }
+  useEffect(() => {
+    if (actualUserMail !== actualUser?.email) {
+      dispatch(emptyActualUser);
+    }
+  }, [actualUserMail, actualUser, dispatch]);
 
   const userMail = user?.email;
 
@@ -63,13 +64,12 @@ const Perfil = () => {
     role_id: "client",
     email: userMail,
   });
-
-  if (!isLoading) {
-    useEffect(() => {
+  useEffect(() => {
+    if (!isLoading && userMail) {
       dispatch(setMail(userMail));
       dispatch(getUser(userMail));
-    }, []);
-  }
+    }
+  }, [isLoading, userMail, dispatch]);
 
   const handleOnBlur = (e) => {
     handleChange(e);
@@ -151,7 +151,7 @@ const Perfil = () => {
 
   const handleReturn = () => {
     setUpdate(false);
-  }
+  };
 
   let isError = [];
   if (form.first_name === "") isError.first_name = "Nombre Requerido.";
@@ -179,7 +179,7 @@ const Perfil = () => {
           overflow={"hidden"}
         >
           <Flex>
-            <Stack spacing={"2vh"} mx={"auto"} maxW={"lg"} px={'2vh'} w={"30%"}>
+            <Stack spacing={"2vh"} mx={"auto"} maxW={"lg"} px={"2vh"} w={"30%"}>
               <Stack align={"center"}>
                 <Heading fontSize={"4vh"} textAlign={"center"} color={"black"}>
                   Datos del Usuario
@@ -194,7 +194,7 @@ const Perfil = () => {
                 boxShadow={"lg"}
                 p={"5%"}
                 h={"60vh"}
-                display="flex"  // Utiliza el sistema de flexbox
+                display="flex" // Utiliza el sistema de flexbox
                 alignItems="center" // Centra verticalmente los elementos
                 justifyContent="center" // Centra horizontalmente los elementos
               >
@@ -287,16 +287,16 @@ const Perfil = () => {
                       </Flex>
                       <Stack spacing={"5vh"} pt={"3%"}>
                         <Center>
-                        <Button
-                              h={"4vh"}
-                              bg={"#1b1b1b"}
-                              color={"#ffa200"}
-                              _hover={"none"}
-                              onClick={handleReturn}
-                              mr={'3vh'}
-                            >
-                              Volver
-                            </Button>
+                          <Button
+                            h={"4vh"}
+                            bg={"#1b1b1b"}
+                            color={"#ffa200"}
+                            _hover={"none"}
+                            onClick={handleReturn}
+                            mr={"3vh"}
+                          >
+                            Volver
+                          </Button>
                           <Link to={"/"}>
                             <Button
                               h={"4vh"}
@@ -402,7 +402,10 @@ const Perfil = () => {
                               name="first_name"
                               value={form.first_name}
                             />
-                            <FormErrorMessage fontSize={"1.5vh"} color={"#ffa200"}>
+                            <FormErrorMessage
+                              fontSize={"1.5vh"}
+                              color={"#ffa200"}
+                            >
                               {isError.first_name ? "Nombre Requerido." : ""}
                             </FormErrorMessage>
                           </FormControl>
@@ -426,7 +429,10 @@ const Perfil = () => {
                               value={form.last_name}
                             />
                             {isError.last_name ? (
-                              <FormErrorMessage fontSize={"1.5vh"} color={"#ffa200"}>
+                              <FormErrorMessage
+                                fontSize={"1.5vh"}
+                                color={"#ffa200"}
+                              >
                                 Apellido Requerido.
                               </FormErrorMessage>
                             ) : (
@@ -458,7 +464,10 @@ const Perfil = () => {
                               <option value={"X"}>X</option>
                             </Select>
                             {isError.gender ? (
-                              <FormErrorMessage fontSize={"1.5vh"} color={"#ffa200"}>
+                              <FormErrorMessage
+                                fontSize={"1.5vh"}
+                                color={"#ffa200"}
+                              >
                                 Genero Requerido.
                               </FormErrorMessage>
                             ) : (
@@ -482,7 +491,10 @@ const Perfil = () => {
                               value={form.mobile}
                             />
                             {isError.mobile ? (
-                              <FormErrorMessage fontSize={"1.5vh"} color={"#ffa200"}>
+                              <FormErrorMessage
+                                fontSize={"1.5vh"}
+                                color={"#ffa200"}
+                              >
                                 Celular Requerido.
                               </FormErrorMessage>
                             ) : (
@@ -510,14 +522,17 @@ const Perfil = () => {
                           value={form.delivery_address}
                         />
                         {isError.delivery_address ? (
-                          <FormErrorMessage fontSize={"1.5vh"} color={"#ffa200"}>
+                          <FormErrorMessage
+                            fontSize={"1.5vh"}
+                            color={"#ffa200"}
+                          >
                             Direccion Requerida.
                           </FormErrorMessage>
                         ) : (
                           ""
                         )}
                       </FormControl>
-                      <Stack spacing={'2vh'} pt={'2vh'}>
+                      <Stack spacing={"2vh"} pt={"2vh"}>
                         <Link to={"/"}>
                           <Center>
                             <Button
