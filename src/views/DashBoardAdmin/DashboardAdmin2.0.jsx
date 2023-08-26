@@ -14,6 +14,7 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
+  Heading,
   Menu,
   MenuButton,
   MenuDivider,
@@ -23,179 +24,269 @@ import {
 import {
   FiHome,
   FiTrendingUp,
-  FiCompass,
+  FiShoppingBag,
   FiStar,
-  FiSettings,
+  FiBox,
   FiMenu,
+  FiAperture,
+  FiDollarSign,
   FiBell,
+  FiUsers,
   FiChevronDown,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
-const LinkItems = [
-  { name: "Inicio", icon: FiHome, to: "/" },
-  { name: "Estadisticas", icon: FiTrendingUp },
-  { name: "Productos", icon: FiCompass, to: "/admin/edit/product" },
-  { name: "Ventas", icon: FiStar },
-  //{ name: "Settings", icon: FiSettings }
-];
-
-const { user } = useAuth0();
-
-const SidebarContent = ({ onClose, ...rest }) => {
-  return (
-    <Box
-      transition="2s ease"
-      bg={"black"}
-      borderRight="1px"
-      borderRightColor={"#ffa200"}
-      w={'250px'}
-      pos="fixed"
-      h="full"
-      p={'2vh'}
-      {...rest}
-    >
-      <Flex direction={"column"}>
-        <Image ml={'40px'} mb={'5vh'} boxSize={'50%'} src="/Logo White.png"></Image>
-        {LinkItems.map((link) => (
-          <Link to={link.to}>
-            <NavItem key={link.name} icon={link.icon}>
-              {link.name}
-            </NavItem>
-          </Link>
-        ))}
-      </Flex>
-    </Box>
-  );
-};
-
-const NavItem = ({ icon, children, ...rest }) => {
-  return (
-    <Box
-      as="a"
-      href="#"
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: "#ffa200",
-          color: "black",
-        }}
-        {...rest}
-      >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Box>
-  );
-};
-
-const MobileNav = ({ onOpen, ...rest }) => {
-  return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 4 }}
-      height="20"
-      alignItems="center"
-      bg={'black'}
-      borderBottomWidth="1px"
-      borderBottomColor={"#ffa200"}
-      justifyContent={{ base: "space-between", md: "flex-end" }}
-      {...rest}
-    >
-      <IconButton
-        display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
-        variant="outline"
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
-
-      <Text
-        display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Logo
-      </Text>
-
-      <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        />
-        <Flex alignItems={"center"}>
-          <Menu>
-            <MenuButton
-              py={2}
-              transition="all 0.3s"
-              _focus={{ boxShadow: "none" }}
-            >
-              <HStack>
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
-                />
-                <VStack
-                  display={{ base: "none", md: "flex" }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2"
-                >
-                  <Text fontSize="sm">Justina Clark</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    Admin
-                  </Text>
-                </VStack>
-                <Box display={{ base: "none", md: "flex" }}>
-                  <FiChevronDown />
-                </Box>
-              </HStack>
-            </MenuButton>
-            <MenuList
-              bg={useColorModeValue("white", "gray.900")}
-              borderColor={useColorModeValue("gray.200", "gray.700")}
-            >
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
-              <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
-            </MenuList>
-          </Menu>
-        </Flex>
-      </HStack>
-    </Flex>
-  );
-};
+import { useState, useEffect } from "react";
+import ProductsData from "./ProductsTable";
 
 const SidebarWithHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [adminView, setAdminView] = useState("Resumen");
+
+  const handleProduct = () => {
+    setAdminView("Products");
+    console.log(adminView, "adminView");
+  };
+  const handleUser = () => {
+    setAdminView("User");
+    console.log(adminView, "adminView");
+  };
+  const handleResume = () => {
+    setAdminView("Resumen");
+    console.log(adminView, "adminView");
+  };
+  const handleStats = () => {
+    setAdminView("Stats");
+    console.log(adminView, "adminView");
+  };
+  const handleSales = () => {
+    setAdminView("Sales");
+    console.log(adminView, "adminView");
+  };
+  const handlePromotions = () => {
+    setAdminView("Promotions");
+    console.log(adminView, "adminView");
+  };
+
+  useEffect(() => {
+    console.log(adminView, "adminView, del Use Effect");
+  }, [adminView]); // Este efecto se ejecutará cuando adminView cambie
+
+  const SidebarContent = ({ onClose, ...rest }) => {
+    return (
+      <Box
+        transition="2s ease"
+        bg={"black"}
+        borderRight="1px"
+        borderRightColor={"#ffa200"}
+        w={"250px"}
+        pos="fixed"
+        h="full"
+        p={"2vh"}
+        {...rest}
+      >
+        <Flex direction={"column"} align={"center"} mb={"3vh"}>
+          <Image boxSize={"40%"} src="/Logo White.png"></Image>
+        </Flex>
+        <Link to={"/"}>
+          <NavItem
+            h={"5vh"}
+            key={"Inicio"}
+            icon={FiHome}
+            _hover={{ bg: "#1b1b1b" }}
+          >
+            Inicio
+          </NavItem>
+        </Link>
+        <NavItem
+          h={"5vh"}
+          key={"Resumen"}
+          icon={FiAperture}
+          onClick={handleResume}
+          bg={adminView === "Resumen" ? "#ffa200" : ""}
+          color={adminView === "Resumen" ? "black" : ""}
+          _hover={adminView === "Resumen" ? "" : { bg: "#1b1b1b" }}
+        >
+          Resumen
+        </NavItem>
+        <NavItem
+          h={"5vh"}
+          key={"Productos"}
+          icon={FiBox}
+          onClick={handleProduct}
+          bg={adminView === "Products" ? "#ffa200" : ""}
+          color={adminView === "Products" ? "black" : ""}
+          _hover={adminView === "Products" ? "" : { bg: "#1b1b1b" }}
+        >
+          Productos
+        </NavItem>
+        <NavItem
+          h={"5vh"}
+          key={"Usuarios"}
+          icon={FiUsers}
+          onClick={handleUser}
+          bg={adminView === "User" ? "#ffa200" : ""}
+          color={adminView === "User" ? "black" : ""}
+          _hover={adminView === "User" ? "" : { bg: "#1b1b1b" }}
+        >
+          Usuarios
+        </NavItem>
+        <NavItem
+          h={"5vh"}
+          key={"Ventas"}
+          icon={FiDollarSign}
+          onClick={handleSales}
+          bg={adminView === "Sales" ? "#ffa200" : ""}
+          color={adminView === "Sales" ? "black" : ""}
+          _hover={adminView === "Sales" ? "" : { bg: "#1b1b1b" }}
+        >
+          Ventas
+        </NavItem>
+        <NavItem
+          h={"5vh"}
+          key="Estadisticas"
+          icon={FiTrendingUp}
+          onClick={handleStats}
+          bg={adminView === "Stats" ? "#ffa200" : ""}
+          color={adminView === "Stats" ? "black" : ""}
+          _hover={adminView === "Stats" ? "" : { bg: "#1b1b1b" }}
+        >
+          Estadisticas
+        </NavItem>
+        <NavItem
+          h={"5vh"}
+          key={"Promociones"}
+          icon={FiShoppingBag}
+          onClick={handlePromotions}
+          bg={adminView === "Promotions" ? "#ffa200" : ""}
+          color={adminView === "Promotions" ? "black" : ""}
+          _hover={adminView === "Promotions" ? "" : { bg: "#1b1b1b" }}
+        >
+          Promociones
+        </NavItem>
+      </Box>
+    );
+  };
+
+  const NavItem = ({ icon, children, ...rest }) => {
+    return (
+      <Box
+        href="#"
+        style={{ textDecoration: "none" }}
+        _focus={{ boxShadow: "none" }}
+      >
+        <Flex
+          align="center"
+          p="4"
+          mx="4"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          _hover={{
+            bg: "#ffa200",
+            color: "black",
+          }}
+          {...rest}
+        >
+          {icon && (
+            <Icon
+              mr="4"
+              fontSize="16"
+              _groupHover={{
+                color: "white",
+              }}
+              as={icon}
+            />
+          )}
+          {children}
+        </Flex>
+      </Box>
+    );
+  };
+
+  const MobileNav = ({ onOpen, ...rest }) => {
+    const { user } = useAuth0();
+
+    return (
+      <Flex
+        ml={{ base: 0, md: 60 }}
+        px={{ base: 4, md: 4 }}
+        height="20"
+        alignItems="center"
+        bg={"black"}
+        borderBottomWidth="1px"
+        borderBottomColor={"#ffa200"}
+        justifyContent={"space-between"}
+        {...rest}
+      >
+        <Heading color={"white"} fontSize={"3.5vh"}>
+          Panel de Administrador
+        </Heading>
+        <HStack spacing={{ base: "0", md: "6" }}>
+          <IconButton
+            size="lg"
+            variant="ghost"
+            aria-label="open menu"
+            icon={<FiBell />}
+          />
+          <Flex alignItems={"center"}>
+            <Menu>
+              <MenuButton
+                py={2}
+                transition="all 0.3s"
+                _focus={{ boxShadow: "none" }}
+              >
+                <HStack>
+                  <Avatar size={"sm"} src={user?.image} />
+                  <VStack
+                    display={{ base: "none", md: "flex" }}
+                    alignItems="flex-start"
+                    spacing="1px"
+                    ml="2"
+                  >
+                    <Text fontSize="sm">{user?.name}</Text>
+                    <Text fontSize="xs" color="gray.600">
+                      Admin
+                    </Text>
+                  </VStack>
+                  <Box display={{ base: "none", md: "flex" }}>
+                    <FiChevronDown />
+                  </Box>
+                </HStack>
+              </MenuButton>
+              <MenuList bg={"#1B1B1B"} border={"none"}>
+                <Link to={"/profile"}>
+                  <MenuItem bg={"#1B1B1B"} _hover={{ color: "#ffa200" }}>
+                    Mi Perfil
+                  </MenuItem>
+                </Link>
+                <Link to={"/compras"}>
+                  <MenuItem bg={"#1B1B1B"} _hover={{ color: "#ffa200" }}>
+                    Mis Compras
+                  </MenuItem>
+                </Link>
+                <MenuItem
+                  bg={"#1B1B1B"}
+                  _hover={{ color: "#ffa200" }}
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  Cerrar Sesión
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+        </HStack>
+      </Flex>
+    );
+  };
+
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg={"#1b1b1b"}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -214,8 +305,29 @@ const SidebarWithHeader = () => {
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }}>
         {/* Content */}
+        {adminView === "Resumen" ? (
+          <Heading p={"5vh"}>Aca va componente para Resumen</Heading>
+        ) : adminView === "Promotions" ? (
+          <>
+            <Heading p={"5vh"}>Aca va componente para Promociones</Heading>
+          </>
+        ) : adminView === "User" ? (
+          <>
+            <Heading p={"5vh"}>Aca va componente para Usuarios</Heading>
+          </>
+        ) : adminView === "Sales" ? (
+          <>
+            <Heading p={"5vh"}>Aca va componente para Ventas</Heading>
+          </>
+        ) : adminView === "Stats" ? (
+          <>
+            <Heading p={"5vh"}>Aca va componente para Estadísticas</Heading>
+          </>
+        ) : (
+          <ProductsData />
+        )}
       </Box>
     </Box>
   );
