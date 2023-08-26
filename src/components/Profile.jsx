@@ -24,7 +24,7 @@ export const Profile = () => {
   return (
     isAuthenticated && (
       <Menu >
-        <MenuButton as={Flex} alignItems="center" cursor="pointer">
+        <MenuButton as={Flex} alignItems="center">
           <HStack spacing={2}>
             <Text color={"white"}>{user.name}</Text>
             <Avatar src={user.picture} alt={user.name} />
@@ -34,12 +34,10 @@ export const Profile = () => {
           <Link to={'/profile'}>
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >Mi Perfil</MenuItem>
           </Link>
-          <Link to={'/compras'}>
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}} >Mis Compras</MenuItem>
-          </Link>
-          {/* <Link to={'/token'}>
+          <Link to={'/token'}>
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}  >MetaData</MenuItem>
-          </Link> */}
+          </Link>
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}
             onClick={() =>
               logout({ logoutParams: { returnTo: window.location.origin } })

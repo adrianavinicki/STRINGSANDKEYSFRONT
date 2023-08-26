@@ -245,12 +245,14 @@ export default function CategoryCards() {
             <Box>
               <Flex direction={'column'} align={'center'} >
                 <Link
-                _hover={{transform: 'scale(1.03)',}}
                   to={"/products"}
                   key={"todos"}
                   value={"todos"}
                   onClick={(e) => {
                     handleCategoryFilter({ target: { value: "todos" } });
+                  }}
+                  _hover={{
+                    transform: 'scale(1.03)',
                   }}
                 >
                   <Image src="/all.png"></Image>
