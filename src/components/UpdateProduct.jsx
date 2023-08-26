@@ -310,7 +310,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <Stack spacing={6} mt={"1vh"} direction={["column", "row"]}>
-              <Link to={"/admin/edit/product"}>
+              <Link to={"/admin"}>
                 <Button
                   bg={"#1b1b1b"}
                   color={"white"}

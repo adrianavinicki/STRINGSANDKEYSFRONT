@@ -77,7 +77,7 @@ export default function WithSubnavigation() {
                     </Link>
                   </Box>
                   <Box>
-                    <Link to={"/admin/edit"}>
+                    <Link to={"/admin"}>
                       <Box
                         p={2}
                         fontSize={"2vh"}
