@@ -38,6 +38,7 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import ProductsData from "./ProductsTable";
+import StatsCharts from "./StatsChart";
 
 const SidebarWithHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -323,7 +324,7 @@ const SidebarWithHeader = () => {
           </>
         ) : adminView === "Stats" ? (
           <>
-            <Heading p={"5vh"}>Aca va componente para Estadísticas</Heading>
+            <StatsCharts/>
           </>
         ) : (
           <ProductsData />
