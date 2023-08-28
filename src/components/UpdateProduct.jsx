@@ -113,7 +113,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
         product_status: "",
       });
 
-      navigate("/admin/edit/product");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     }
