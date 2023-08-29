@@ -24,6 +24,8 @@ export const ORDER_PRODUCTS_ADMIN = "ORDER_PRODUCTS_ADMIN"
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const GET_USER_ROL = "GET_USER_ROL";
+export const CLEAN_USER_ROL = "CLEAN_USER_ROL";
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -236,6 +238,22 @@ export const putUser = (payload) => {
   return async function (dispatch) {
     const response = await axios.put(`${VITE_LOCAL_HOST}/users/update`, payload);
     return response;
+  };
+};
+
+export const getUserRol = (email) => {
+  return async function () {
+    const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {email: email});
+    return {
+      type: GET_USER_ROL,
+      payload: response.data.role_id,
+    };
+  }
+};
+
+export const cleanUserRol = () => {
+  return {
+    type: CLEAN_USER_ROL
   };
 };
 

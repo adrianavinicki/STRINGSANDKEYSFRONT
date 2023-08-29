@@ -39,7 +39,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import ProductsData from "./ProductsTable";
 import StatsCharts from "./StatsChart";
-import BasicStatistics from "./Resumen"
+import BasicStatistics from "./Resumen";
+import AdminVentas from "./viewVentas/VentasAdmin";
 
 
 const SidebarWithHeader = () => {
@@ -322,7 +323,8 @@ const SidebarWithHeader = () => {
           </>
         ) : adminView === "Sales" ? (
           <>
-            <Heading p={"5vh"}>Aca va componente para Ventas</Heading>
+           {/* <Heading p={"5vh"}>Aca va componente para Ventas</Heading>*/}
+           <AdminVentas/>
           </>
         ) : adminView === "Stats" ? (
           <>

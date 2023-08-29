@@ -24,6 +24,7 @@ import {
   GET_USER,
   ORDER_PRODUCTS_ADMIN,
   CLEAN_DETAIL,
+  GET_USER_ROL,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -253,6 +254,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         details: {},
+      };
+    case GET_USER_ROL:
+      return {
+        ...state,
+        actualUser: payload,
+      };
+
+    case EMPTY_ACTUAL_USER:
+      return {
+        ...state,
+        actualUser: [],
       };
 
     default:
