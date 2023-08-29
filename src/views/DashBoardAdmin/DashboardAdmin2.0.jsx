@@ -38,6 +38,9 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import ProductsData from "./ProductsTable";
+import StatsCharts from "./StatsChart";
+import BasicStatistics from "./Resumen"
+
 
 const SidebarWithHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -213,7 +216,7 @@ const SidebarWithHeader = () => {
       <Flex
         ml={{ base: 0, md: 60 }}
         px={{ base: 4, md: 4 }}
-        height="20"
+        height="10vh"
         alignItems="center"
         bg={"black"}
         borderBottomWidth="1px"
@@ -311,7 +314,7 @@ const SidebarWithHeader = () => {
       <Box ml={{ base: 0, md: 60 }}>
         {/* Content */}
         {adminView === "Resumen" ? (
-          <Heading color={'white'} p={"5vh"}>Aca va componente para Resumen</Heading>
+          <BasicStatistics></BasicStatistics>
         ) : adminView === "Promotions" ? (
           <>
             <Heading color={'white'} p={"5vh"}>Aca va componente para Promociones</Heading>
@@ -326,7 +329,7 @@ const SidebarWithHeader = () => {
           </>
         ) : adminView === "Stats" ? (
           <>
-            <Heading color={'white'} p={"5vh"}>Aca va componente para Estadísticas</Heading>
+            <StatsCharts/>
           </>
         ) : (
           <ProductsData />
