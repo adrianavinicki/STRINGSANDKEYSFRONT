@@ -18,20 +18,28 @@ import {
   ListItem,
   Icon,
   useToast,
+  HStack,
+  Center,
 } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { addProductToCart, getDetailProduct, cleanDetail } from "../redux/actions";
+import { useEffect, useState } from "react";
+import {
+  addProductToCart,
+  getDetailProduct,
+  cleanDetail,
+} from "../redux/actions";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import axios from "axios";
+import { LiaStarSolid } from "react-icons/lia";
+
+const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
 const Detail = () => {
-
   const { id } = useParams();
 
   let detailProduct = useSelector((state) => state.details);
@@ -49,12 +57,9 @@ const Detail = () => {
     dispatch(getDetailProduct(id));
 
     return () => {
-      dispatch(cleanDetail())
-    }
+      dispatch(cleanDetail());
+    };
   }, [dispatch, id]);
-
-
-
 
   const getCarrito = (product) => {
     dispatch(addProductToCart(product));
@@ -66,6 +71,20 @@ const Detail = () => {
       isClosable: true,
     });
   };
+
+  const [productReviews, setProductReviews] = useState([]);
+
+  useEffect(() => {
+    const getProductReviews = async (id) => {
+      const response = await axios.get(
+        `${VITE_LOCAL_HOST}/rating/product/${id}`
+      );
+      const reviews = response.data;
+      setProductReviews(reviews);
+    };
+
+    getProductReviews(id);
+  }, [id]);
 
   return (
     <Box>
@@ -84,32 +103,32 @@ const Detail = () => {
           pt={"2vh"}
           overflow={"hidden"}
         >
-          <Container maxW={"7xl"} bg={""}>
+          <Container maxW={"7xl"} bg={""} h={"70vh"}>
             <SimpleGrid
               columns={{ base: 1, lg: 2 }}
               spacing={{ base: 8, md: 10 }}
-              py={{ base: 18, md: 6 }}
+              // py={{ base: 18, md: 6 }}
             >
-              <Flex mt={"20%"}>
+              <Flex align={"center"} mt={""} ml={"20%"}>
                 <Image
                   rounded={"md"}
                   alt={"product image"}
                   src={detailProduct.image}
-                  align={"center"}
+                  // align={"center"}
                   maxH={"50vh"}
                 />
               </Flex>
-              <Stack spacing={{ base: 6, md: 8 }}>
+              <Stack spacing={'1vh'}>
                 <Box as={"header"} bg={""}>
                   <Heading
                     lineHeight={1.1}
                     fontWeight={600}
                     fontSize={"4vh"}
                     color={"black"}
+                    mt={'1vh'}
                   >
                     {detailProduct.name}
                   </Heading>
-                  <br />
                   <Text
                     color={useColorModeValue("black", "black")}
                     fontWeight={"bold"}
@@ -122,32 +141,18 @@ const Detail = () => {
                 <Stack
                   spacing={{ base: 4, sm: 6 }}
                   direction={"column"}
-                  divider={
-                    <StackDivider
-                      borderColor={'black'}
-                    />
-                  }
+                  divider={<StackDivider borderColor={"black"} />}
                 >
                   <VStack spacing={{ base: 4, sm: 6 }}>
                     <Text fontWeight={"bold"} fontSize={"2vh"} color={"black"}>
                       {detailProduct.description}
                     </Text>
                   </VStack>
-                  <Box>
-                    <Flex>
-                      <Box bg={""} w={"40%"} mt={"1%"}>
-                        <Text
-                          fontSize={"3vh"}
-                          color={useColorModeValue("black", "black")}
-                          fontWeight={"bold"}
-                          textTransform={"uppercase"}
-                          mb={"4"}
-                        >
-                          Información:
-                        </Text>
-
-                        <List spacing={2}>
-                          <ListItem>
+                  <Box bg={""} width={"100%"}>
+                    <Center>
+                      <Flex direction={"column"}>
+                        <Box bg={""} w={"100%"}>
+                          <Flex direction={"row"} justify={'space-between'}>
                             <Text
                               fontSize={"2vh"}
                               color={"black"}
@@ -156,8 +161,6 @@ const Detail = () => {
                             >
                               Marca: {detailProduct.brand}
                             </Text>{" "}
-                          </ListItem>
-                          <ListItem>
                             <Text
                               fontSize={"2vh"}
                               color={"black"}
@@ -166,10 +169,83 @@ const Detail = () => {
                             >
                               Categoria: {detailProduct.category}
                             </Text>{" "}
-                          </ListItem>
-                        </List>
-                      </Box>
-                    </Flex>
+                          </Flex>
+                        </Box>
+                        <Box bg={""} w={"100%"}>
+                          {/* <Text
+                            color={"black"}
+                            fontWeight={"bold"}
+                            fontSize={"30px"}
+                          >
+                            Reviews
+                          </Text> */}
+                          <Box
+                            mt={"15px"}
+                            bg={"#1b1b1b"}
+                            h={"25vh"}
+                            overflowY="auto"
+                            maxH={""}
+                            maxW={""}
+                            rounded={"5px"}
+                            w={'100%'}
+                          >
+                            {!productReviews?.length ? (
+                              <Center mt={"8vh"}>
+                                <HStack
+                                  //align={"center"}
+
+                                  w={""}
+                                  h={"6vh"}
+                                  bg={"white"}
+                                  m={"10px"}
+                                  rounded={"5px"}
+                                >
+                                  <Flex>
+                                    <Text
+                                      color={"gray.600"}
+                                      align={"center"}
+                                      m={"1vh"}
+                                    >
+                                      Lo siento, este producto aun no tiene
+                                      reviews.
+                                    </Text>
+                                  </Flex>
+                                </HStack>
+                              </Center>
+                            ) : (
+                              productReviews?.map((review) => (
+                                <HStack
+                                  key={review.userId}
+                                  w={""}
+                                  h={""}
+                                  bg={"white"}
+                                  m={"10px"}
+                                  rounded={"5px"}
+                                  
+                                >
+                                  <VStack ml={"10px"} align={"start"}>
+                                    <Text fontWeight={600}>
+                                      {review.user.first_name}
+                                    </Text>
+                                    <Box>
+                                      <Flex>
+                                        <Text color={"gray.600"}>
+                                          Ratings: {review.rate}
+                                        </Text>
+                                        <LiaStarSolid size="1.4em" />
+                                      </Flex>
+                                    </Box>
+                                    <Text color={"gray.600"}>
+                                      Reviews: {review.review}
+                                    </Text>
+                                  </VStack>
+                                </HStack>
+                              ))
+                            )}
+                          </Box>
+                        </Box>
+                      </Flex>
+                    </Center>
                   </Box>
                 </Stack>
                 <Box>

@@ -26,7 +26,7 @@ const CardsContainer = () => {
   const filteredPage = useSelector((state) => state.currentPage)
 
   const [currentPage, setCurrentPage] = useState(0);
-  const productPerPage = 10;
+  const productPerPage = 8;
   const totalPages = filteredProducts? Math.ceil(filteredProducts.length / productPerPage) : Math.ceil(allproducts.length / productPerPage);
 
   const displayedProducts = filteredProducts? filteredProducts.slice(
@@ -72,12 +72,11 @@ const CardsContainer = () => {
       </Box>
       <Box>
         <Flex>
-          <SimpleGrid columns={5} bg={""} w={"100%"} h={"100%"}>
+          <SimpleGrid columns={4} bg={""} w={"100%"} h={"100%"}>
             {
               displayedProducts?.length ? (
                 displayedProducts.map((product) => {
-                  return (
-                    <Link key={product.id} to={`/detail/${product.id}`}>
+                  return (                    
                     <ProductSimple
                       key={product.id}
                       id={product.id}
@@ -86,8 +85,7 @@ const CardsContainer = () => {
                       brand={product.brand}
                       price={product.price}
                       productoInfo={product}
-                    />
-                    </Link>
+                    />                    
                   );
                 })
               ) : (
