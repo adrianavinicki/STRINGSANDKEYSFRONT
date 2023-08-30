@@ -24,6 +24,9 @@ import {
   GET_USER,
   ORDER_PRODUCTS_ADMIN,
   CLEAN_DETAIL,
+  GET_ALL_USERS,
+  ORDER_USERS_ADMIN,
+  GET_USERS_NAME,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -40,6 +43,8 @@ const initialState = {
   ordersUsersID: [],
   actualUser: [],
   userEmail: [],
+  allUsers: [],
+  filteredUsers: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -77,6 +82,7 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
+      
     case ORDER_PRODUCTS_ADMIN:
       let orderAdmin;
       if (action.payload === "Pausados") {
@@ -105,6 +111,12 @@ const rootReducer = (state = initialState, action) => {
         filteredProducts: action.payload,
         products: action.payload,
       };
+    case GET_USERS_NAME:
+      return {
+        ...state,
+        filteredUsers: action.payload,
+        allUsers: action.payload,
+      }
     case FILTER_BRAND:
       const productsByBrand =
         action.payload === "todos"
@@ -254,6 +266,31 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         details: {},
       };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+      case ORDER_USERS_ADMIN:
+        let orderUsersAdmin;
+        if (action.payload === "Nombre") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.first_name - b.first_name);
+        } else if (action.payload === "Activos") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => b.user_status - a.user_status);
+        } else if (action.payload === "Inactivos") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.user_status - b.user_status);
+        } else if (action.payload === "ID") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.id - b.id);
+        }
+        else if (action.payload === "Admin") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.role_id - b.role_id);
+        } else if (action.payload === "Cliente") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => b.role_id - a.role_id);
+        }
+         else {
+          orderUsersAdmin = state.allUsers;
+        }
+        return { ...state, allUsers: orderUsersAdmin };
 
     default:
       return { ...state };

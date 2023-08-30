@@ -12,6 +12,7 @@ import Payment from "./views/Payment/Payment";
 import UpdateProduct from "./views/DashBoardAdmin/UpdateProduct"
 import ProductsData from "./views/DashBoardAdmin/ProductsTable";
 import MisCompras from "./views/MisCompras"
+import UsersTable from "./views/DashBoardAdmin/UsersTable";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path:'/detail/:id',
     element: <Detail/>,
+  },
+  {
+    path:"/admin/edit/users",
+    element: <UsersTable/>
   },
   {
     path:"/admin/edit/product/crear",

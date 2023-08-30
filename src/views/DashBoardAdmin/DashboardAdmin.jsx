@@ -104,7 +104,7 @@ export default function gridListWith() {
                     href={"#"}
                   />
                 </Link>
-                <Link>
+                <Link to={'/admin/edit/users'}>
                   <Card
                     heading={"Usuarios"}
                     icon={<Icon as={FcManager} w={'5vh'} h={'5vh'} />}

@@ -20,10 +20,12 @@ export const EMPTY_CART = "EMPTY_CART";
 export const GET_USER = "GET_USER"
 export const SET_MAIL = "SET_MAIL"
 export const ORDER_PRODUCTS_ADMIN = "ORDER_PRODUCTS_ADMIN"
-
+export const GET_ALL_USERS = "GET_ALL_USERS"
+export const ORDER_USERS_ADMIN = "ORDER_USERS_ADMIN"
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const GET_USERS_NAME = 'GET_USERS_NAME';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -84,7 +86,23 @@ export function getProductName(name) {
       console.log("Error al obtener el nombre del producto");
     }
   };
-}
+};
+
+export function getUsersByName(name) {
+  return async function (dispatch){
+    try {
+    const usersName = await axios.get(
+      `${VITE_LOCAL_HOST}/users/name?name=${name}`
+    );
+    return dispatch({
+      type: GET_USERS_NAME,
+      payload: usersName.data,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+};
 
 export const filterBrand = (brand) => {
   return {
@@ -152,6 +170,28 @@ export const getDetailProduct = (id) => {
       throw new Error(error.message);
     }
   };
+};
+
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${VITE_LOCAL_HOST}/users`);
+      const allUsers = response.data;
+      dispatch({
+        type: GET_ALL_USERS,
+        payload: allUsers
+      })
+    } catch (error) {
+      throw new Error (error.message)
+    }
+  }
+};
+
+export const orderUsersAdmin = (status) => {
+  return {
+    type: ORDER_USERS_ADMIN,
+    payload: status,
+  }
 };
 
 export const PostProduct = (product) => {
@@ -239,3 +279,9 @@ export const putUser = (payload) => {
   };
 };
 
+export const putRolUser = (id) => {
+  return async function () {
+    const response = await axios.put(`${VITE_LOCAL_HOST}/users/updateDos/${id}`);
+    return response;
+  };
+};

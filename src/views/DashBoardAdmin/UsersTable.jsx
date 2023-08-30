@@ -17,36 +17,50 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
+import { TbArrowsExchange } from "react-icons/tb"
 import SmallWithLogoLeft from "../../components/Footer";
 import WithSubnavigation from "../../components/NavBar";
 import { Link } from "react-router-dom";
 import {
-  getProductName,
-  getProducts,
-  orderProductsAdmin,
+  getUsersByName,
+  orderUsersAdmin,
+  putRolUser,
+  getAllUsers,
 } from "../../redux/actions";
 
-function ProductsData() {
-  const products = useSelector((state) => state.products);
+function UsersData() {
+  const users = useSelector((state) => state.allUsers);
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
   const [order, setOrder] = useState("");
 
-  console.log("order", order);
-
   const handleChange = (e) => {
     const { value } = e.target;
     setOrder(value);
-    dispatch(orderProductsAdmin(value));
+    dispatch(orderUsersAdmin(value));
   };
 
   function handlerInput(e) {
     //e.preventDefaut()
-    setName(e.target.value);
-    dispatch(getProductName(name));
-  }
+    const search = e.target.value
+    setName(search);
+    dispatch(getUsersByName(name));
+  };
+
+  function handleUserRol(id){
+    console.log("id", id)
+    dispatch(putRolUser(id))
+    //dispatch(getAllUsers())
+  };
+
+  /* function handleUserRol(status){
+    if (!status || !status.users) {
+        return;
+    }
+    dispatch(putRolUser(status.users.id))
+}; */
 
   return (
     <Box>
@@ -58,7 +72,7 @@ function ProductsData() {
           <Center>
             {" "}
             <Heading color={"white"} fontSize={"4vh"}>
-              Modificar o Crear Producto
+              Administración de usuarios
             </Heading>
           </Center>
           <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
@@ -79,7 +93,7 @@ function ProductsData() {
                 <Input
                   bg={"white"}
                   color={"black"}
-                  placeholder="Buscar Producto"
+                  placeholder="Buscar usuario"
                   _placeholder={{ opacity: 1, color: "gray.500" }}
                   onChange={(e) => {
                     handlerInput(e);
@@ -96,23 +110,14 @@ function ProductsData() {
                   onChange={handleChange}
                 >
                   <option style={{ backgroundColor: "white" }}>Ordenar</option>
-                  <option style={{ backgroundColor: "white" }}>Menor Stock</option>
-                  <option style={{ backgroundColor: "white" }}>Mayor Stock</option>
-                  <option style={{ backgroundColor: "white" }}>Activos</option>
-                  <option style={{ backgroundColor: "white" }}>Pausados</option>
+                  <option style={{ backgroundColor: "white" }}>Nombre</option>
                   <option style={{ backgroundColor: "white" }}>ID</option>
+                  <option style={{ backgroundColor: "white" }}>Admin</option>
+                  <option style={{ backgroundColor: "white" }}>Cliente</option>
+                  <option style={{ backgroundColor: "white" }}>Activos</option>
+                  <option style={{ backgroundColor: "white" }}>Inactivos</option>
                 </Select>
-                <Link to={"/admin/edit/product/crear"}>
-                  <Button
-                    bg={"#ffa200"}
-                    color={"black"}
-                    fontSize="2vh"
-                    h={"4.5vh"}
-                    ml={"5vh"}
-                  >
-                    Crear Nuevo Producto
-                  </Button>
-                </Link>
+    
               </Flex>
             </Box>
           </Flex>
@@ -128,55 +133,52 @@ function ProductsData() {
               <Thead>
                 <Tr>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Id Producto
+                    Id Usuario
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Nombre
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Marca
+                    Apellido
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Categoria
+                    Email
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Precio
+                    Celular
                   </Th>
                   {/* <Th fontSize={"1.5vh"} color={"black"}>
                     Descripcion
                   </Th> */}
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Stock
+                    Role Id
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Estado
+                    Estado de usuario
                   </Th>
                 </Tr>
               </Thead>
-              {products !== undefined && products.length > 0 && (
+              {users !== undefined && users.length > 0 && (
                 <Tbody>
-                  {products.map((product) => (
-                    <Tr h={"2"} key={product.id}>
+                  {users.map((user) => (
+                    <Tr h={"2"} key={user.id}>
                       <Td>
-                        <Link key={product.id} to={`${product.id}`}>
                           <span
                             style={{ color: "#ffa200", fontWeight: "bold" }}
                           >
-                            {product.id}
+                            {user.id}
                           </span>
-                        </Link>
                       </Td>
-                      <Td>
-                        <Link key={product.id} to={`${product.id}`}>
-                          {product.name.substring(0, 30)}...
-                        </Link>
-                      </Td>
-                      <Td><Link to={`${product.id}`}>{product.brand}</Link></Td>
-                      <Td><Link to={`${product.id}`}>{product.category}</Link></Td>
-                      <Td><Link to={`${product.id}`}>${product.price}</Link></Td>
+                      <Td>{user.first_name}</Td>
+                      <Td>{user.last_name}</Td>
+                      <Td>{user.email}</Td>
                       {/* <Td>{product.description.substring(0, 30)}...</Td> */}
-                      <Td><Link to={`${product.id}`}>{product.quantity}</Link></Td>
-                      <Td><Link to={`${product.id}`}>{product.product_status ? "Activo" : "Pausado"}</Link></Td>
+                      <Td>{user.mobile}</Td>
+                      {/* <Td><button onClick={handleUserRol(user.id)}>{user.role_id}</button></Td> */}
+                      {/* <Td><button name={user.id} onClick={(e) => handleUserRol(e.target.name)}>{user.role_id}</button></Td> */}
+                      <Td>{user.role_id} <button onClick={(e) => handleUserRol(user.id)}><TbArrowsExchange size={"3vh"} ></TbArrowsExchange></button></Td>
+                      {/* <Td>{user.user_status}</Td> */}
+                      <Td>{user.user_status ? "Activo" : "Inactivo"}</Td>
                     </Tr>
                   ))}
                 </Tbody>
@@ -192,4 +194,4 @@ function ProductsData() {
   );
 }
 
-export default ProductsData;
+export default UsersData;
