@@ -24,6 +24,9 @@ export const ORDER_PRODUCTS_ADMIN = "ORDER_PRODUCTS_ADMIN"
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const GET_USER_ROL = "GET_USER_ROL";
+export const CLEAN_USER_ROL = "CLEAN_USER_ROL";
+export const GET_ALL_PURCHASES = "GET_ALL_PURCHASES";
 export const GET_RATINGS_AVERAGES = 'GET_RATINGS_AVERAGES';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
@@ -239,6 +242,37 @@ export const putUser = (payload) => {
     return response;
   };
 };
+
+export const getUserRol = (email) => {
+  return async function (dispatch) {
+    const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {email: email});
+    return dispatch({
+      type: GET_USER_ROL,
+      payload: response.data.role_id,
+    });
+  }
+};
+
+export const cleanUserRol = () => {
+  return {
+    type: CLEAN_USER_ROL
+  };
+};
+
+export const getAllPurchases = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${VITE_LOCAL_HOST}/purchases/getAllPurchases?condition=ventas`)
+      return dispatch({
+        type: GET_ALL_PURCHASES,
+        payload: response.data,
+      })
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 
 export const getRatingsAverages = () => {
   return async function (dispatch) {

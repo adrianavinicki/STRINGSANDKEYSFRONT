@@ -39,7 +39,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import ProductsData from "./ProductsTable";
 import StatsCharts from "./StatsChart";
-import BasicStatistics from "./Resumen"
+import BasicStatistics from "./Resumen";
+import AdminVentas from "./viewVentas/VentasAdmin";
 
 
 const SidebarWithHeader = () => {
@@ -74,6 +75,7 @@ const SidebarWithHeader = () => {
 
   useEffect(() => {
     console.log(adminView, "adminView, del Use Effect");
+     
   }, [adminView]); // Este efecto se ejecutará cuando adminView cambie
 
   const SidebarContent = ({ onClose, ...rest }) => {
@@ -210,7 +212,7 @@ const SidebarWithHeader = () => {
   };
 
   const MobileNav = ({ onOpen, ...rest }) => {
-    const { user } = useAuth0();
+    const { user, logout } = useAuth0();
 
     return (
       <Flex
@@ -325,7 +327,8 @@ const SidebarWithHeader = () => {
           </>
         ) : adminView === "Sales" ? (
           <>
-            <Heading color={'white'} p={"5vh"}>Aca va componente para Ventas</Heading>
+           {/* <Heading p={"5vh"}>Aca va componente para Ventas</Heading>*/}
+           <AdminVentas/>
           </>
         ) : adminView === "Stats" ? (
           <>
