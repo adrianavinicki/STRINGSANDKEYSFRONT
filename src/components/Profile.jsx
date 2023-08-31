@@ -20,6 +20,9 @@ export const Profile = () => {
 
   const dispatch = useDispatch()
 
+  function DeleteRolUser() {
+    dispatch(emptyActualUser());
+  } 
 
   return (
     isAuthenticated && (
@@ -42,7 +45,7 @@ export const Profile = () => {
           </Link> */}
           <MenuItem bg={'#1B1B1B'} _hover={{color:"#ffa200"}}
             onClick={() =>
-              logout({ logoutParams: { returnTo: window.location.origin } })
+              {DeleteRolUser(); logout({ logoutParams: { returnTo: window.location.origin } })}
             }
           >
             Cerrar Sesión

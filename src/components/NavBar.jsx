@@ -23,13 +23,7 @@ export default function WithSubnavigation() {
   const dispatch = useDispatch();
   const rolUsuario = useSelector((state) => state.actualUser);
 
-  useEffect(() => {
-    if(user) {
-      console.log(user)
-      dispatch(getUserRol(user.email));
-    
-    }
-  }, [user])
+  
 
   return (
     <Box>
@@ -90,7 +84,7 @@ export default function WithSubnavigation() {
                     </Link>
                   </Box>
                   { rolUsuario.role_id === "admin" && <Box>
-                    {console.log(rolUsuario)}
+                    
                     <Link to={"/admin"}>
                       <Box
                         p={2}

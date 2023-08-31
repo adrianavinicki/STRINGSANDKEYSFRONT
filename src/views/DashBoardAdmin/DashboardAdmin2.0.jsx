@@ -75,6 +75,7 @@ const SidebarWithHeader = () => {
 
   useEffect(() => {
     console.log(adminView, "adminView, del Use Effect");
+     
   }, [adminView]); // Este efecto se ejecutará cuando adminView cambie
 
   const SidebarContent = ({ onClose, ...rest }) => {
