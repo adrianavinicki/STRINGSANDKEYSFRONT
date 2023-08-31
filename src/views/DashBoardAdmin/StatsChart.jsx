@@ -16,6 +16,7 @@ import {
     Box,
 } from "@chakra-ui/react";
 import { BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Bar, PieChart, Pie, Cell } from "recharts";
+import React, { useState } from "react";
 
 const data = [
     { valX: "June", valY: "10" },
@@ -47,65 +48,211 @@ const data02 = [
     { name: "Grupo I", value: 1000 },
 ]
 
-const COLORS = ['#ce93d8', '#5c6bc0', '#b39ddb'];
+const COLORS = ['#ffa200', '#ffc200', '#ffe200', '#ffa200', '#ffc200', '#ffe200', '#ffa200', '#ffc200', '#ffe200',];
 const StatsCharts = () => {
+    const [showAdditionalCharts, setShowAdditionalCharts] = useState(false);
+    const [originalChartOpacity, setOriginalChartOpacity] = useState(1);
+
+    const toggleAdditionalCharts = () => {
+        setShowAdditionalCharts(!showAdditionalCharts);
+    };
+
+    const handleOriginalChartClick = () => {
+        toggleAdditionalCharts();
+        setOriginalChartOpacity(showAdditionalCharts ? 1 : 0);
+    };
 
     return (
         <Box>
-            <Flex direction={"column"}>
-                <Center>
-                    <Heading color={"white"} fontSize={"4vh"}>
-                        Insertar graficas
-                    </Heading>
-                </Center>
-                <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
-                    <ResponsiveContainer width="40%" aspect={2}>
-                        <BarChart data={data} margin={{ top: 5, right: 30, left: 20, buttom: 5 }}>
-                            <Tooltip />
-                            <CartesianGrid strokeDasharray="4 1 2" />
-                            <XAxis dataKey="valX" />
-                            <YAxis dataKey="valY" />
-                            <Legend />
-                            <Bar dataKey="valY" fill="#6b48ff" />
-                        </BarChart>
-                    </ResponsiveContainer>
+            <Flex direction="column">
+                <Flex direction="row" justify="space-around" mt="2%">
+                    <Box
+                        width="100%"
+                        style={{ opacity: originalChartOpacity }}
+                        onClick={handleOriginalChartClick}
+                        _hover={{ opacity: showAdditionalCharts ? 1 : 0 }}
+                        transition="opacity 1s ease-in-out"
+                    >
+                        <Flex justify="center">
+                            <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                <BarChart data={data} barSize={15}>
+                                    <Tooltip />
+                                    <CartesianGrid strokeDasharray="4 1 2" />
+                                    <XAxis dataKey="valX" />
+                                    <YAxis dataKey="valY" />
+                                    <Legend />
+                                    <Bar dataKey="valY" fill="#6b48ff" />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </Flex>
+                    </Box>
                 </Flex>
-                <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
-                    <ResponsiveContainer width="40%" aspect={2} >
-                        <PieChart>
-                            <Pie dataKey="value" data={data02} innerRadius={60} outerRadius={85} fill="#82ca9d">
-                                {data02.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS.length} />
-                                ))}
-                            </Pie>
-                            <Tooltip />
-                        </PieChart>
-                    </ResponsiveContainer>
-                </Flex>
-                <Flex align={"center"} justify={"space-around"} mt={"2%"}>
-                    <ResponsiveContainer width="50%" aspect={2}>
-                        <PieChart width={730} height={250}>
-                            <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
-                            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
-                        </PieChart>
-                    </ResponsiveContainer>
-                </Flex>
-                <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
-                    <ResponsiveContainer width="40%" aspect={2}>
-                        <BarChart data={data} margin={{ top: 5, right: 30, left: 20, buttom: 5 }}>
-                            <CartesianGrid strokeDasharray="4 1 2" />
-                            <Tooltip />
-                            <XAxis dataKey="valX" />
-                            <YAxis dataKey="valY" />
-                            <Legend />
-                            <Bar dataKey="valY" fill="#6b48ff" />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </Flex>
+                {showAdditionalCharts && (
+                    <Box>
+                        <Flex direction="column">
+                            <Flex direction="row" justify="space-around" mt="2%">
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                            </Flex>
+                            <Flex direction="row" justify="space-around" mt="1.5%">
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                                <Box width="100%">
+                                    <Flex justify="center">
+                                        <ResponsiveContainer width={200} height="100%" aspect={1}>
+                                            <BarChart data={data} barSize={15}>
+                                                <Tooltip />
+                                                <CartesianGrid strokeDasharray="4 1 2" />
+                                                <XAxis dataKey="valX" />
+                                                <YAxis dataKey="valY" />
+                                                <Legend />
+                                                <Bar dataKey="valY" fill="#6b48ff" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </Flex>
+                                </Box>
+                                {/*  */}
+                            </Flex>
+                        </Flex>
+                    </Box>
+                )}
             </Flex>
         </Box>
-
     );
 };
 
 export default StatsCharts;
+

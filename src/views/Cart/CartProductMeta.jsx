@@ -13,7 +13,7 @@ import {
   export const CartProductMeta = (props) => {
     const { isGiftWrapping = true, image, name, description } = props
 
-    const truncatedDescription = props.description.length > 50 ? `${props.description.substring(0, 80)}...` : props.description;
+    const truncatedDescription = props.description?.length > 50 ? `${props.description.substring(0, 80)}...` : props.description;
 
     return (
       <Stack direction="row" spacing="5" width="full">
