@@ -11,6 +11,7 @@ import {
   getUser,
   setMail,
   emptyActualUser,
+  getRatingsAverages,
   getAllUsers,
 } from "../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -24,6 +25,7 @@ const Home = () => {
     dispatch(emptyStates());
     dispatch(emptyOrdersId());
     dispatch(getProducts()); //me traigo los productos
+    dispatch(getRatingsAverages());
     dispatch(setMail(user?.email));
     dispatch(getUser(user?.email));
     dispatch(getAllUsers());

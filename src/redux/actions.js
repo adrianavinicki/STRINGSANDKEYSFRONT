@@ -25,6 +25,7 @@ export const ORDER_USERS_ADMIN = "ORDER_USERS_ADMIN"
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const GET_RATINGS_AVERAGES = 'GET_RATINGS_AVERAGES';
 export const GET_USERS_NAME = 'GET_USERS_NAME';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
@@ -277,6 +278,18 @@ export const putUser = (payload) => {
     const response = await axios.put(`${VITE_LOCAL_HOST}/users/update`, payload);
     return response;
   };
+};
+
+export const getRatingsAverages = () => {
+  return async function (dispatch) {
+    const response = await axios.get(`${VITE_LOCAL_HOST}/rating/average`);
+    const ratingAverages = response.data;
+    dispatch({
+      type: GET_RATINGS_AVERAGES,
+      payload: ratingAverages
+    })
+  };
+
 };
 
 export const putRolUser = (id) => {

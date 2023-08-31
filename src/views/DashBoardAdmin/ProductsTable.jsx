@@ -26,15 +26,13 @@ import {
   orderProductsAdmin,
 } from "../../redux/actions";
 
-function ProductsData() {
+const ProductsData = () => {
   const products = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
   const [order, setOrder] = useState("");
-
-  console.log("order", order);
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -51,10 +49,7 @@ function ProductsData() {
   return (
     <Box>
       <Flex direction={"column"}>
-        <Box>
-          <WithSubnavigation></WithSubnavigation>
-        </Box>
-        <Box bg={"black"} h={"10vh"} mt={"100px"} pt={""}>
+        <Box bg={"#1b1b1b"} h={"10vh"}>
           <Center>
             {" "}
             <Heading color={"white"} fontSize={"4vh"}>
@@ -62,7 +57,7 @@ function ProductsData() {
             </Heading>
           </Center>
           <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
-            <Link to={"/admin/edit"}>
+            {/* <Link to={"/admin/edit"}>
               <Button
                 _hover={"none"}
                 bg={"white"}
@@ -73,7 +68,7 @@ function ProductsData() {
               >
                 Volver
               </Button>
-            </Link>
+            </Link> */}
             <Box>
               <Flex>
                 <Input
@@ -102,7 +97,7 @@ function ProductsData() {
                   <option style={{ backgroundColor: "white" }}>Pausados</option>
                   <option style={{ backgroundColor: "white" }}>ID</option>
                 </Select>
-                <Link to={"/admin/edit/product/crear"}>
+                <Link to={"/admin/product/crear"}>
                   <Button
                     bg={"#ffa200"}
                     color={"black"}
@@ -117,7 +112,7 @@ function ProductsData() {
             </Box>
           </Flex>
         </Box>
-        <Box bg={"black"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
+        <Box bg={"#1b1b1b"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
           <TableContainer
             bg={"gray.200"}
             overflowY="auto"
@@ -158,7 +153,7 @@ function ProductsData() {
                   {products.map((product) => (
                     <Tr h={"2"} key={product.id}>
                       <Td>
-                        <Link key={product.id} to={`${product.id}`}>
+                        <Link key={product.id} to={`product/${product.id}`}>
                           <span
                             style={{ color: "#ffa200", fontWeight: "bold" }}
                           >
@@ -167,16 +162,28 @@ function ProductsData() {
                         </Link>
                       </Td>
                       <Td>
-                        <Link key={product.id} to={`${product.id}`}>
+                        <Link key={product.id} to={`product/${product.id}`}>
                           {product.name.substring(0, 30)}...
                         </Link>
                       </Td>
-                      <Td><Link to={`${product.id}`}>{product.brand}</Link></Td>
-                      <Td><Link to={`${product.id}`}>{product.category}</Link></Td>
-                      <Td><Link to={`${product.id}`}>${product.price}</Link></Td>
+                      <Td>
+                        <Link to={`product/${product.id}`}>{product.brand}</Link>
+                      </Td>
+                      <Td>
+                        <Link to={`product/${product.id}`}>{product.category}</Link>
+                      </Td>
+                      <Td>
+                        <Link to={`product/${product.id}`}>${product.price}</Link>
+                      </Td>
                       {/* <Td>{product.description.substring(0, 30)}...</Td> */}
-                      <Td><Link to={`${product.id}`}>{product.quantity}</Link></Td>
-                      <Td><Link to={`${product.id}`}>{product.product_status ? "Activo" : "Pausado"}</Link></Td>
+                      <Td>
+                        <Link to={`product/${product.id}`}>{product.quantity}</Link>
+                      </Td>
+                      <Td>
+                        <Link to={`product/${product.id}`}>
+                          {product.product_status ? "Activo" : "Pausado"}
+                        </Link>
+                      </Td>
                     </Tr>
                   ))}
                 </Tbody>
@@ -184,12 +191,9 @@ function ProductsData() {
             </Table>
           </TableContainer>
         </Box>
-        <Box marginTop="auto">
-          <SmallWithLogoLeft></SmallWithLogoLeft>
-        </Box>
       </Flex>
     </Box>
   );
-}
+};
 
 export default ProductsData;

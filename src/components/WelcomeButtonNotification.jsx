@@ -7,6 +7,15 @@ export const handleSendEmail = async (user) => {
     const userMail = user.email
     const userName = user.nickname
 
+    const htmlContent = `
+    <html>
+      <body style="text-align: center;">
+        <h1 style="color: black;">¡Felicidades por registrarte ${userName}!</h1>
+        <img src="https://res.cloudinary.com/dhit7strk/image/upload/v1693429374/MAIL_2_pyl5ik.png" alt="Imagen de Bienvenida">
+      </body>
+    </html>
+  `;
+
     const response = await fetch(`${VITE_LOCAL_HOST}/email`, {
       method: "POST",
       headers: {
@@ -15,7 +24,7 @@ export const handleSendEmail = async (user) => {
       body: JSON.stringify({
         userMail: userMail,
         titulo: `Felicidades por registrarte ${userName}`,
-        contenido: `Te damos la bienvenida a Strings And Keys. ¡Tu registro fue exitoso!`,
+        contenido: htmlContent,
       }),
     });
 

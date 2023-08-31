@@ -24,6 +24,7 @@ import {
   GET_USER,
   ORDER_PRODUCTS_ADMIN,
   CLEAN_DETAIL,
+  GET_RATINGS_AVERAGES,
   GET_ALL_USERS,
   ORDER_USERS_ADMIN,
   GET_USERS_NAME,
@@ -43,6 +44,7 @@ const initialState = {
   ordersUsersID: [],
   actualUser: [],
   userEmail: [],
+  ratingsAverage: [],
   allUsers: [],
   filteredUsers: [],
 };
@@ -266,6 +268,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         details: {},
       };
+    case GET_RATINGS_AVERAGES:
+      return {
+        ...state,
+        ratingsAverage: action.payload
+      }; 
     case GET_ALL_USERS:
       return {
         ...state,
