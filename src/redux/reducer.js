@@ -26,6 +26,7 @@ import {
   CLEAN_DETAIL,
   GET_USER_ROL,
   GET_ALL_PURCHASES,
+  GET_RATINGS_AVERAGES,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -43,7 +44,8 @@ const initialState = {
   actualUser: [],
   userEmail: [],
   currentPurchases: [],
-  actualUserRol: []
+  actualUserRol: [],
+  ratingsAverage: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -275,6 +277,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         currentPurchases: action.payload,
       };
+    case GET_RATINGS_AVERAGES:
+      return {
+        ...state,
+        ratingsAverage: action.payload
+      }; 
 
     default:
       return { ...state };

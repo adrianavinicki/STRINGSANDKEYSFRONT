@@ -27,6 +27,7 @@ export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 export const GET_USER_ROL = "GET_USER_ROL";
 export const CLEAN_USER_ROL = "CLEAN_USER_ROL";
 export const GET_ALL_PURCHASES = "GET_ALL_PURCHASES";
+export const GET_RATINGS_AVERAGES = 'GET_RATINGS_AVERAGES';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -272,4 +273,16 @@ export const getAllPurchases = () => {
     }
   }
 }
+
+export const getRatingsAverages = () => {
+  return async function (dispatch) {
+    const response = await axios.get(`${VITE_LOCAL_HOST}/rating/average`);
+    const ratingAverages = response.data;
+    dispatch({
+      type: GET_RATINGS_AVERAGES,
+      payload: ratingAverages
+    })
+  };
+
+};
 

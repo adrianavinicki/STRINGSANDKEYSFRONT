@@ -100,6 +100,7 @@ const SidebarWithHeader = () => {
             key={"Inicio"}
             icon={FiHome}
             _hover={{ bg: "#1b1b1b" }}
+            color={'white'}
           >
             Inicio
           </NavItem>
@@ -110,7 +111,7 @@ const SidebarWithHeader = () => {
           icon={FiAperture}
           onClick={handleResume}
           bg={adminView === "Resumen" ? "#ffa200" : ""}
-          color={adminView === "Resumen" ? "black" : ""}
+          color={adminView === "Resumen" ? "black" : "white"}
           _hover={adminView === "Resumen" ? "" : { bg: "#1b1b1b" }}
         >
           Resumen
@@ -121,7 +122,7 @@ const SidebarWithHeader = () => {
           icon={FiBox}
           onClick={handleProduct}
           bg={adminView === "Products" ? "#ffa200" : ""}
-          color={adminView === "Products" ? "black" : ""}
+          color={adminView === "Products" ? "black" : "white"}
           _hover={adminView === "Products" ? "" : { bg: "#1b1b1b" }}
         >
           Productos
@@ -132,7 +133,7 @@ const SidebarWithHeader = () => {
           icon={FiUsers}
           onClick={handleUser}
           bg={adminView === "User" ? "#ffa200" : ""}
-          color={adminView === "User" ? "black" : ""}
+          color={adminView === "User" ? "black" : "white"}
           _hover={adminView === "User" ? "" : { bg: "#1b1b1b" }}
         >
           Usuarios
@@ -143,7 +144,7 @@ const SidebarWithHeader = () => {
           icon={FiDollarSign}
           onClick={handleSales}
           bg={adminView === "Sales" ? "#ffa200" : ""}
-          color={adminView === "Sales" ? "black" : ""}
+          color={adminView === "Sales" ? "black" : "white"}
           _hover={adminView === "Sales" ? "" : { bg: "#1b1b1b" }}
         >
           Ventas
@@ -154,7 +155,7 @@ const SidebarWithHeader = () => {
           icon={FiTrendingUp}
           onClick={handleStats}
           bg={adminView === "Stats" ? "#ffa200" : ""}
-          color={adminView === "Stats" ? "black" : ""}
+          color={adminView === "Stats" ? "black" : "white"}
           _hover={adminView === "Stats" ? "" : { bg: "#1b1b1b" }}
         >
           Estadisticas
@@ -165,7 +166,7 @@ const SidebarWithHeader = () => {
           icon={FiShoppingBag}
           onClick={handlePromotions}
           bg={adminView === "Promotions" ? "#ffa200" : ""}
-          color={adminView === "Promotions" ? "black" : ""}
+          color={adminView === "Promotions" ? "black" : "white"}
           _hover={adminView === "Promotions" ? "" : { bg: "#1b1b1b" }}
         >
           Promociones
@@ -230,6 +231,7 @@ const SidebarWithHeader = () => {
         </Heading>
         <HStack spacing={{ base: "0", md: "6" }}>
           <IconButton
+            color={'white'}
             size="lg"
             variant="ghost"
             aria-label="open menu"
@@ -250,8 +252,8 @@ const SidebarWithHeader = () => {
                     spacing="1px"
                     ml="2"
                   >
-                    <Text fontSize="sm">{user?.name}</Text>
-                    <Text fontSize="xs" color="gray.600">
+                    <Text color={'white'} fontSize="sm">{user?.name}</Text>
+                    <Text fontSize="xs" color="gray.400">
                       Admin
                     </Text>
                   </VStack>
@@ -260,18 +262,19 @@ const SidebarWithHeader = () => {
                   </Box>
                 </HStack>
               </MenuButton>
-              <MenuList bg={"#1B1B1B"} border={"none"}>
+              <MenuList bg={"#1B1B1B"} border={"1px solid #ffa200"}>
                 <Link to={"/profile"}>
-                  <MenuItem bg={"#1B1B1B"} _hover={{ color: "#ffa200" }}>
+                  <MenuItem bg={"#1B1B1B"} color={'white'} _hover={{ color: "#ffa200" }}>
                     Mi Perfil
                   </MenuItem>
                 </Link>
                 <Link to={"/compras"}>
-                  <MenuItem bg={"#1B1B1B"} _hover={{ color: "#ffa200" }}>
+                  <MenuItem bg={"#1B1B1B"} color={'white'} _hover={{ color: "#ffa200" }}>
                     Mis Compras
                   </MenuItem>
                 </Link>
                 <MenuItem
+                  color={'white'}
                   bg={"#1B1B1B"}
                   _hover={{ color: "#ffa200" }}
                   onClick={() =>
@@ -316,11 +319,11 @@ const SidebarWithHeader = () => {
           <BasicStatistics></BasicStatistics>
         ) : adminView === "Promotions" ? (
           <>
-            <Heading p={"5vh"}>Aca va componente para Promociones</Heading>
+            <Heading color={'white'} p={"5vh"}>Aca va componente para Promociones</Heading>
           </>
         ) : adminView === "User" ? (
           <>
-            <Heading p={"5vh"}>Aca va componente para Usuarios</Heading>
+            <Heading color={'white'} p={"5vh"}>Aca va componente para Usuarios</Heading>
           </>
         ) : adminView === "Sales" ? (
           <>
