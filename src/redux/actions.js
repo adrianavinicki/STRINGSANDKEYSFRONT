@@ -28,6 +28,7 @@ export const GET_USER_ROL = "GET_USER_ROL";
 export const CLEAN_USER_ROL = "CLEAN_USER_ROL";
 export const GET_ALL_PURCHASES = "GET_ALL_PURCHASES";
 export const GET_RATINGS_AVERAGES = 'GET_RATINGS_AVERAGES';
+export const GET_DATA_STATS = 'GET_DATA_STATS';
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
@@ -284,5 +285,19 @@ export const getRatingsAverages = () => {
     })
   };
 
+};
+
+export function getInfoPurchase(){
+  return async function (dispatch){
+    try{
+      const dataPurchase = await axios.get(`${VITE_LOCAL_HOST}/purchases/dataStats`);
+      return dispatch({
+        type: GET_DATA_STATS,
+        payload:dataPurchase
+        });
+      } catch (error){
+        console.log("Error al obtener la data de Stats")
+      }
+  }
 };
 
