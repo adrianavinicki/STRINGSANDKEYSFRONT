@@ -16,6 +16,7 @@ import {
   TableContainer,
   Flex,
   Box,
+  Text,
 } from "@chakra-ui/react";
 import { TbArrowsExchange } from "react-icons/tb"
 import SmallWithLogoLeft from "../../components/Footer";
@@ -26,19 +27,22 @@ import {
   orderUsersAdmin,
   putRolUser,
   getAllUsers,
+  putStateUser,
 } from "../../redux/actions";
 
 function UsersData() {
   const users = useSelector((state) => state.allUsers);
+  //const users = usersDos.sort((a, b) => a.id - b.id);
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
-  const [order, setOrder] = useState("");
+  //const [order, setOrder] = useState("");
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    setOrder(value);
+    const value = e.target.value;
+    //console.log("event", e.target.value)
+    //setOrder(value);
     dispatch(orderUsersAdmin(value));
   };
 
@@ -46,13 +50,27 @@ function UsersData() {
     //e.preventDefaut()
     const search = e.target.value
     setName(search);
-    dispatch(getUsersByName(name));
+    dispatch(getUsersByName(search));
   };
 
-  function handleUserRol(id){
-    console.log("id", id)
-    dispatch(putRolUser(id))
-    //dispatch(getAllUsers())
+  async function handleUserRol(id) {
+    console.log("id", id);
+    try {
+      await dispatch(putRolUser(id)); // Espera a que putRolUser se complete
+      await dispatch(getAllUsers());  // Espera a que getAllUsers se complete
+    } catch (error) {
+      console.error("Error:", error);
+    };
+  };
+
+  async function handleUserStatus(id) {
+    console.log("id", id);
+    try {
+      await dispatch(putStateUser(id)); // Espera a que putRolUser se complete
+      await dispatch(getAllUsers());  // Espera a que getAllUsers se complete
+    } catch (error) {
+      console.error("Error:", error);
+    };
   };
 
   /* function handleUserRol(status){
@@ -65,10 +83,7 @@ function UsersData() {
   return (
     <Box>
       <Flex direction={"column"}>
-        <Box>
-          <WithSubnavigation></WithSubnavigation>
-        </Box>
-        <Box bg={"black"} h={"10vh"} mt={"100px"} pt={""}>
+      <Box bg={"#1b1b1b"} h={"10vh"}>
           <Center>
             {" "}
             <Heading color={"white"} fontSize={"4vh"}>
@@ -76,18 +91,6 @@ function UsersData() {
             </Heading>
           </Center>
           <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
-            <Link to={"/admin/edit"}>
-              <Button
-                _hover={"none"}
-                bg={"white"}
-                color={"blue.900"}
-                ml={"48%"}
-                mt={"0.5%"}
-                h={"4.5vh"}
-              >
-                Volver
-              </Button>
-            </Link>
             <Box>
               <Flex>
                 <Input
@@ -110,7 +113,6 @@ function UsersData() {
                   onChange={handleChange}
                 >
                   <option style={{ backgroundColor: "white" }}>Ordenar</option>
-                  <option style={{ backgroundColor: "white" }}>Nombre</option>
                   <option style={{ backgroundColor: "white" }}>ID</option>
                   <option style={{ backgroundColor: "white" }}>Admin</option>
                   <option style={{ backgroundColor: "white" }}>Cliente</option>
@@ -122,7 +124,7 @@ function UsersData() {
             </Box>
           </Flex>
         </Box>
-        <Box bg={"black"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
+        <Box bg={"#1b1b1b"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
           <TableContainer
             bg={"gray.200"}
             overflowY="auto"
@@ -151,10 +153,10 @@ function UsersData() {
                     Descripcion
                   </Th> */}
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Role Id
+                    Rol
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Estado de usuario
+                    Estado
                   </Th>
                 </Tr>
               </Thead>
@@ -176,18 +178,19 @@ function UsersData() {
                       <Td>{user.mobile}</Td>
                       {/* <Td><button onClick={handleUserRol(user.id)}>{user.role_id}</button></Td> */}
                       {/* <Td><button name={user.id} onClick={(e) => handleUserRol(e.target.name)}>{user.role_id}</button></Td> */}
-                      <Td>{user.role_id} <button onClick={(e) => handleUserRol(user.id)}><TbArrowsExchange size={"3vh"} ></TbArrowsExchange></button></Td>
+                      <Td> <span style={{ fontWeight: "bold" }}>{user.role_id === "client" ? "Cliente" : "Admin"}</span> <Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserRol(user.id)}><TbArrowsExchange size={"2.5vh"} ></TbArrowsExchange></Button></Td>
+                      {/* <Td><select>
+                        <option >Client</option>
+                        <option>Admin</option>
+                        </select></Td> */}
                       {/* <Td>{user.user_status}</Td> */}
-                      <Td>{user.user_status ? "Activo" : "Inactivo"}</Td>
+                      <Td color={ user.user_status === true ? "green" : "red"} ><span style={{ fontWeight: "bold" }} >{user.user_status === true ? "Activo" : "Inactivo"}</span><Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserStatus(user.id)}><TbArrowsExchange size={"2.5vh"} ></TbArrowsExchange></Button></Td>
                     </Tr>
                   ))}
                 </Tbody>
               )}
             </Table>
           </TableContainer>
-        </Box>
-        <Box marginTop="auto">
-          <SmallWithLogoLeft></SmallWithLogoLeft>
         </Box>
       </Flex>
     </Box>

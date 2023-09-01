@@ -192,7 +192,7 @@ export const orderUsersAdmin = (status) => {
   return {
     type: ORDER_USERS_ADMIN,
     payload: status,
-  }
+  };
 };
 
 export const PostProduct = (product) => {
@@ -295,6 +295,13 @@ export const getRatingsAverages = () => {
 export const putRolUser = (id) => {
   return async function () {
     const response = await axios.put(`${VITE_LOCAL_HOST}/users/updateDos/${id}`);
+    return response;
+  };
+};
+
+export const putStateUser = (id) => {
+  return async function () {
+    const response = await axios.put(`${VITE_LOCAL_HOST}/users/updateTres/${id}`);
     return response;
   };
 };

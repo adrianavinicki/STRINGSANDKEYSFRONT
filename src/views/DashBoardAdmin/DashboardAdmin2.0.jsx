@@ -38,6 +38,7 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import ProductsData from "./ProductsTable";
+import UsersData from "./UsersTable";
 import StatsCharts from "./StatsChart";
 import BasicStatistics from "./Resumen"
 
@@ -321,7 +322,8 @@ const SidebarWithHeader = () => {
           </>
         ) : adminView === "User" ? (
           <>
-            <Heading color={'white'} p={"5vh"}>Aca va componente para Usuarios</Heading>
+            {/* <Heading color={'white'} p={"5vh"}>Aca va componente para Usuarios</Heading> */}
+            <UsersData/>
           </>
         ) : adminView === "Sales" ? (
           <>
