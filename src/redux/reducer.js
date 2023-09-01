@@ -30,6 +30,7 @@ import {
   GET_ALL_USERS,
   ORDER_USERS_ADMIN,
   GET_USERS_NAME,
+  GET_DATA_STATS,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -51,6 +52,7 @@ const initialState = {
   ratingsAverage: [],
   allUsers: [],
   filteredUsers: [],
+  dataStats: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -298,6 +300,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+      };
+    case GET_DATA_STATS : 
+      return{
+        ...state,
+        dataStats: action.payload
       };
       case ORDER_USERS_ADMIN:
         let orderUsersAdmin;
