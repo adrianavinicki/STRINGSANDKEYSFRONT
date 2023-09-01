@@ -3,7 +3,7 @@ import Home from "./views/Home";
 import Detail from './views/Detail';
 import CreateProduct from "./views/DashBoardAdmin/CreateProductoFolder/CreateProduct";
 import Products from "./views/Products";
-import DashboardAdmin from "./views/DashBoardAdmin/DashboardAdmin";
+import DashboardAdmin from "./views/DashBoardAdmin/DashboardAdmin2.0";
 import Perfil from "./views/Perfil";
 import Cart from "./views/Cart/Cart";
 import Token from "./components/Token"
@@ -12,6 +12,8 @@ import Payment from "./views/Payment/Payment";
 import UpdateProduct from "./views/DashBoardAdmin/UpdateProduct"
 import ProductsData from "./views/DashBoardAdmin/ProductsTable";
 import MisCompras from "./views/MisCompras"
+import PrivateRoute from "./components/SecurityRoutes/PrivateRoutes";
+import UsersTable from "./views/DashBoardAdmin/UsersTable";
 
 
 const router = createBrowserRouter([
@@ -28,20 +30,29 @@ const router = createBrowserRouter([
     element: <Detail/>,
   },
   {
-    path:"/admin/edit/product/crear",
-    element: <CreateProduct/>,
+    path:"/admin/users",
+    element: <UsersTable/>
+  },
+
+  {
+    path:"/admin/product/crear",
+    element: <PrivateRoute><CreateProduct/></PrivateRoute>  ,
   },
   {
-    path:"/admin/edit/product",
-    element: <ProductsData/>,
+    path:"/admin/product",
+    element: 
+      <PrivateRoute>
+    <ProductsData/>
+    </PrivateRoute>
+  ,
   },
   {
-    path:"/admin/edit/product/:id",
-    element: <UpdateProduct />,
+    path:"/admin/product/:id",
+    element: <PrivateRoute><UpdateProduct /></PrivateRoute> ,
 },
   {
-    path:"/admin/edit",
-    element: <DashboardAdmin/>,
+    path:"/admin/*",
+    element: <PrivateRoute><DashboardAdmin/></PrivateRoute> ,
   },
   {
     path:"/products",

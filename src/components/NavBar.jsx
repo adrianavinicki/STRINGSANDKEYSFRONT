@@ -8,16 +8,22 @@ import {
   useColorMode,
   Button,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import { Profile } from "./Profile";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserRol } from "../redux/actions";
 
 export default function WithSubnavigation() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch();
+  const rolUsuario = useSelector((state) => state.actualUser);
+
+  
 
   return (
     <Box>
@@ -36,6 +42,7 @@ export default function WithSubnavigation() {
         position="fixed"
         zIndex={10}
       >
+        
         <Flex
           flex={{ base: 1 }}
           justify={{ base: "center", md: "start" }}
@@ -76,8 +83,9 @@ export default function WithSubnavigation() {
                       </Box>
                     </Link>
                   </Box>
-                  <Box>
-                    <Link to={"/admin/edit"}>
+                  { rolUsuario.role_id === "admin" && <Box>
+                    
+                    <Link to={"/admin"}>
                       <Box
                         p={2}
                         fontSize={"2vh"}
@@ -88,7 +96,7 @@ export default function WithSubnavigation() {
                         Admin
                       </Box>
                     </Link>
-                  </Box>
+                  </Box>}
                 </Stack>
               </Box>
               <Box ml={"5vh"}>

@@ -13,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart } from "../redux/actions";
+import RatingDisplay from './RatingDisplay';
+import { Link } from "react-router-dom";
 
 export default function ProductSimple(props) {
 
@@ -26,7 +28,7 @@ export default function ProductSimple(props) {
   const truncatedName = props.name.length > 50 ? `${props.name.substring(0, 30)}...` : props.name;
 
   return (
-<Box
+    <Box
       role={"group"}
       pb={"50%"}
       maxW={"90%"}
@@ -36,35 +38,48 @@ export default function ProductSimple(props) {
       bg={"white"}
       boxShadow={"2xl"}
       rounded={"lg"}
-      p={1}
-      m={'5%'}
-      _hover={{ transform: "translateY(-2px)", transition: "0.5s"}}
+      p={'1vh'}
+      m={"3%"}
+      _hover={{ transform: "translateY(-2px)", transition: "0.5s" }}
     >
-      <Flex direction={"column"} justify="space-between" h="100%">
-        <Box>
-          <Image
-            h={"20vh"}
-            rounded={"lg"}
-            src={props.image}
-            alt="#"
-          />
-        </Box>
-        <Stack align={"center"} spacing={3}>
-          <Text
-            color={"gray.500"}
-            fontSize={"1.3vh"}
-            textTransform={"uppercase"}
-          >
-            {props.brand}
-          </Text>
-          <Heading h={"5vh"} fontSize={"2vh"} fontFamily={"body"} fontWeight={500}>
-            {truncatedName}
-          </Heading>
-          <Text fontWeight={800} fontSize={"3vh"}>
-            ${props.price}
-          </Text>
-        </Stack>
-      </Flex>
+      <Link key={props.id} to={`/detail/${props.id}`}>
+        <Flex
+          direction={"column"}
+          align={"center"}
+          justify="space-between"
+          h="100%"
+        >
+          <Box>
+            <Image h={"20vh"} rounded={"lg"} src={props.image} alt="#" />
+          </Box>
+          <Stack align={"center"} spacing={3}>
+            <Text
+              color={"gray.500"}
+              fontSize={"1.3vh"}
+              textTransform={"uppercase"}
+            >
+              {props.brand}
+            </Text>
+            <Heading
+              h={"3.5vh"}
+              fontSize={"2vh"}
+              fontFamily={"body"}
+              fontWeight={500}
+            >
+              {truncatedName}
+            </Heading>
+            <Flex align={'center'}>
+              <Text fontWeight={800} fontSize={"3vh"}>
+                ${props.price}
+              </Text>
+              <Text fontWeight={800} fontSize={"3vh"} ml={'2vh'}>-</Text>
+              <Box ml={'1.8vh'}>
+                <RatingDisplay productId={props.id} />
+              </Box>
+            </Flex>
+          </Stack>
+        </Flex>
+      </Link>
     </Box>
   );
 }

@@ -270,7 +270,7 @@ export default function CreateProduct() {
                   <br />
                   <Box>
                     <Flex>
-                      <Link to={"/admin/edit/product"}>
+                      <Link to={"/admin"}>
                         <Button h={'4vh'} _hover={"none"} color={"#ffa200"} bg={"black"}>
                           Volver
                         </Button>

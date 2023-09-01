@@ -24,6 +24,12 @@ import {
   GET_USER,
   ORDER_PRODUCTS_ADMIN,
   CLEAN_DETAIL,
+  GET_USER_ROL,
+  GET_ALL_PURCHASES,
+  GET_RATINGS_AVERAGES,
+  GET_ALL_USERS,
+  ORDER_USERS_ADMIN,
+  GET_USERS_NAME,
 } from "./actions";
 const persistConfig = {
   key: "root",
@@ -40,6 +46,11 @@ const initialState = {
   ordersUsersID: [],
   actualUser: [],
   userEmail: [],
+  currentPurchases: [],
+  actualUserRol: [],
+  ratingsAverage: [],
+  allUsers: [],
+  filteredUsers: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -77,6 +88,7 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
+      
     case ORDER_PRODUCTS_ADMIN:
       let orderAdmin;
       if (action.payload === "Pausados") {
@@ -105,6 +117,12 @@ const rootReducer = (state = initialState, action) => {
         filteredProducts: action.payload,
         products: action.payload,
       };
+    case GET_USERS_NAME:
+      return {
+        ...state,
+        filteredUsers: action.payload,
+        allUsers: action.payload,
+      }
     case FILTER_BRAND:
       const productsByBrand =
         action.payload === "todos"
@@ -254,6 +272,50 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         details: {},
       };
+    case GET_USER_ROL:
+      return {
+        ...state,
+        actualUserRol: action.payload,
+      };
+
+    case EMPTY_ACTUAL_USER:
+      return {
+        ...state,
+        actualUserRol: [],
+      };
+
+    case GET_ALL_PURCHASES:
+      return {
+        ...state,
+        currentPurchases: action.payload,
+      };
+    case GET_RATINGS_AVERAGES:
+      return {
+        ...state,
+        ratingsAverage: action.payload
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+      case ORDER_USERS_ADMIN:
+        let orderUsersAdmin;
+        if (action.payload === "Activos") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => b.user_status - a.user_status);
+        } else if (action.payload === "Inactivos") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.user_status - b.user_status);
+        } else if (action.payload === "ID") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.id - b.id);
+        } else if (action.payload === "Admin") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => a.role_id.localeCompare(b.role_id));
+        } else if (action.payload === "Cliente") {
+          orderUsersAdmin = state.allUsers.sort((a, b) => b.role_id.localeCompare(a.role_id));
+        }
+         else {
+          return orderUsersAdmin = state.allUsers.sort((a, b) => a.id - b.id);
+        }
+        return { ...state, allUsers: [...orderUsersAdmin] };
 
     default:
       return { ...state };
