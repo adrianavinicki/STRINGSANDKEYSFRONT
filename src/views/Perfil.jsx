@@ -47,11 +47,11 @@ const Perfil = () => {
   const actualUser = useSelector((state) => state.actualUser);
   const actualUserMail = useSelector((state) => state.userMail);
 
-  useEffect(() => {
-    if (actualUserMail !== actualUser?.email) {
-      dispatch(emptyActualUser);
-    }
-  }, [actualUserMail, actualUser, dispatch]);
+  //useEffect(() => {
+  //  if (actualUserMail !== actualUser?.email) {
+  //    dispatch(emptyActualUser);
+  //  }
+  //}, [actualUserMail, actualUser, dispatch]);
 
   const userMail = user?.email;
 

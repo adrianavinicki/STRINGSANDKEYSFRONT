@@ -11,6 +11,7 @@ import {
   getUser,
   setMail,
   emptyActualUser,
+  getUserRol,
   getRatingsAverages,
   getAllUsers,
 } from "../redux/actions";
@@ -21,6 +22,15 @@ const Home = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
 
+  useEffect(() => {
+    if(isAuthenticated && !isLoading) {
+     
+      const usuario = user?.email
+      dispatch(getUser(usuario));
+      
+    }
+  }, [user, dispatch])
+
   useEffect (() => {
     dispatch(emptyStates());
     dispatch(emptyOrdersId());
@@ -29,11 +39,19 @@ const Home = () => {
     dispatch(setMail(user?.email));
     dispatch(getUser(user?.email));
     dispatch(getAllUsers());
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isLoading) {
       dispatch(emptyActualUser())
     }
+
+    if(user && isAuthenticated) {
+     
+      dispatch(getUserRol(user?.email));
+      
+    }
+
   },[])
 
+  
 
 
   return (

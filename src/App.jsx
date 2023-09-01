@@ -12,6 +12,7 @@ import Payment from "./views/Payment/Payment";
 import UpdateProduct from "./views/DashBoardAdmin/UpdateProduct"
 import ProductsData from "./views/DashBoardAdmin/ProductsTable";
 import MisCompras from "./views/MisCompras"
+import PrivateRoute from "./components/SecurityRoutes/PrivateRoutes";
 import UsersTable from "./views/DashBoardAdmin/UsersTable";
 
 
@@ -35,19 +36,23 @@ const router = createBrowserRouter([
 
   {
     path:"/admin/product/crear",
-    element: <CreateProduct/>,
+    element: <PrivateRoute><CreateProduct/></PrivateRoute>  ,
   },
   {
     path:"/admin/product",
-    element: <ProductsData/>,
+    element: 
+      <PrivateRoute>
+    <ProductsData/>
+    </PrivateRoute>
+  ,
   },
   {
     path:"/admin/product/:id",
-    element: <UpdateProduct />,
+    element: <PrivateRoute><UpdateProduct /></PrivateRoute> ,
 },
   {
-    path:"/admin",
-    element: <DashboardAdmin/>,
+    path:"/admin/*",
+    element: <PrivateRoute><DashboardAdmin/></PrivateRoute> ,
   },
   {
     path:"/products",

@@ -24,6 +24,8 @@ import {
   GET_USER,
   ORDER_PRODUCTS_ADMIN,
   CLEAN_DETAIL,
+  GET_USER_ROL,
+  GET_ALL_PURCHASES,
   GET_RATINGS_AVERAGES,
   GET_ALL_USERS,
   ORDER_USERS_ADMIN,
@@ -44,6 +46,8 @@ const initialState = {
   ordersUsersID: [],
   actualUser: [],
   userEmail: [],
+  currentPurchases: [],
+  actualUserRol: [],
   ratingsAverage: [],
   allUsers: [],
   filteredUsers: [],
@@ -267,6 +271,23 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         details: {},
+      };
+    case GET_USER_ROL:
+      return {
+        ...state,
+        actualUserRol: action.payload,
+      };
+
+    case EMPTY_ACTUAL_USER:
+      return {
+        ...state,
+        actualUserRol: [],
+      };
+
+    case GET_ALL_PURCHASES:
+      return {
+        ...state,
+        currentPurchases: action.payload,
       };
     case GET_RATINGS_AVERAGES:
       return {
