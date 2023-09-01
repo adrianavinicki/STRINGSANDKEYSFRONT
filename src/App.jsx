@@ -13,6 +13,7 @@ import UpdateProduct from "./views/DashBoardAdmin/UpdateProduct"
 import ProductsData from "./views/DashBoardAdmin/ProductsTable";
 import MisCompras from "./views/MisCompras"
 import PrivateRoute from "./components/SecurityRoutes/PrivateRoutes";
+import UsersTable from "./views/DashBoardAdmin/UsersTable";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
     path:'/detail/:id',
     element: <Detail/>,
   },
+  {
+    path:"/admin/users",
+    element: <UsersTable/>
+  },
+
   {
     path:"/admin/product/crear",
     element: <PrivateRoute><CreateProduct/></PrivateRoute>  ,
