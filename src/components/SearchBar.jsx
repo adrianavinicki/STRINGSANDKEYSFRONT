@@ -31,9 +31,10 @@ const SearchBar = () => {
 
   return (
     <Box>
-      <Flex>
+      <Flex align={'center'}>
         <Input
           w={"80%"}
+          h={'5vh'}
           bg={"white"}
           color={"black"}
           mr={"2%"}

@@ -5,7 +5,7 @@ import { Button } from "@chakra-ui/react";
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <Button color={"#ffa200"} bg={'#1B1B1B'} onClick={() => loginWithRedirect()}>Iniciar Sesión</Button>;
+  return <Button h={'5vh'} color={"#ffa200"} bg={'#1B1B1B'} onClick={() => loginWithRedirect()}>Iniciar Sesión</Button>;
 };
 
 export default LoginButton;

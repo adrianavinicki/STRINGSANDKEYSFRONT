@@ -38,7 +38,7 @@ const Rating = ({ ratingValue, numRatings, handleRatingClick }) => {
   return (
     <Flex alignItems="center">
       {renderStars(ratingValue)}
-      <Text ml={2} fontSize="sm" color="gray.500">
+      <Text ml={2} fontSize="sm" color="#ffa200">
         ({numRatings} Ratings)
       </Text>
     </Flex>
