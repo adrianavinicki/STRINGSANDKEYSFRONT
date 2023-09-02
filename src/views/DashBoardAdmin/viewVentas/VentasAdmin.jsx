@@ -23,7 +23,9 @@ import { getAllPurchases } from "../../../redux/actions";
 
 export default function AdminVentas () {
 
-    const products = useSelector((state) => state.currentPurchases);
+    const purchases = useSelector((state) => state.currentPurchases);
+
+    const products = purchases.filter( purchase => purchase.purchase_status === "success")
 
     const dispatch = useDispatch();
 
@@ -119,25 +121,33 @@ export default function AdminVentas () {
               <Thead>
                 <Tr>
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Id Compra
+                    ID Cliente
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Nombre Cliente
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  {/*<Th fontSize={"1.5vh"} color={"black"}>
                     Email
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Direccion
-                  </Th>
+              </Th>*/}
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Compra Total
                   </Th>
-                  {/* <Th fontSize={"1.5vh"} color={"black"}>
-                    Descripcion
-                  </Th> */}
+
                   <Th fontSize={"1.5vh"} color={"black"}>
-                    Articulos
+                    Fecha Compra
+                  </Th>
+
+                   <Th fontSize={"1.5vh"} color={"black"}>
+                    Detalles Articulos
+                  </Th> 
+                  <Th fontSize={"1.5vh"} color={"black"}>
+                    Precio Unitario
+                  </Th> 
+                  <Th fontSize={"1.5vh"} color={"black"}>
+                    Articulos ID
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Estado
@@ -153,7 +163,7 @@ export default function AdminVentas () {
                           <span
                             style={{ color: "#ffa200", fontWeight: "bold" }}
                           >
-                            {product.id}
+                            {product.userId}
                           </span>
                         
                       </Td>
@@ -162,33 +172,58 @@ export default function AdminVentas () {
                           {product.user?.first_name + " " + product.user?.last_name}
                   
                       </Td>
-                      <Td>
+                     {/* <Td>
                         {product.user?.email}
                       </Td>
                       <Td>
                         {product.user?.delivery_address}
-                      </Td>
+                  </Td>*/}
                       <Td>
                         ${product.totalprice}
                       </Td>
-                      {/* <Td>{product.description.substring(0, 30)}...</Td> */}
+
+                      <Td>
+                        {product.orderdetails[0].order_date}
+                      </Td>
+
+                       <Td>
+                        <ul>
+                        {product.orderdetails.map((item, index) =>(
+                          <li key={index}>
+                            {item.product?.name} X {item.quantity}
+                          </li>
+                        ))}
+                        </ul>
+                        </Td> 
+
+                        <Td>
+                          <ul>
+                            {product.orderdetails.map((item, index) => (
+                              <li key={index}>
+                                ${item.price}
+                              </li>
+                            ))}
+                          </ul>
+                        </Td>
+
                       <Td>
                         <ul>
-                        {product.user?.purchase_history.map((item, index) => (
+                        {product.orderdetails.map((item, index) => (
                           <li key={index}>
-                          <Link to={`product/${item.productId}`}><span style={{ color: "#ffa200", fontWeight: "bold" }}> 
-                            id:{item.productId}
+                          <Link to={`product/${item.product?.id}`}><span style={{ color: "#ffa200", fontWeight: "bold" }}> 
+                            id:{item.product?.id}
                             </span> </Link>
                             <br />
-                            cantidad: {item.quantity}, 
-                             precio: {item.price}
+                           {/* cantidad: {item.quantity}, 
+                             precio: {item.price}*/}
                           </li>
                         ))}
                         </ul>
                       </Td>
+                      
                       <Td>
                        
-                          {product.purchase_status === "in process" ? "en proceso" : "Pausado"}
+                          {product.purchase_status === "success"? "Aprovado" :product.purchase_status === "in process" ? "en proceso" :  "Pausado"}
                        
                       </Td>
                     </Tr>
