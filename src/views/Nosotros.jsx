@@ -28,7 +28,7 @@ export default function Nosotros() {
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
           w={"100%"}
-          h={"83vh"}
+          h={"82vh"}
           mt={"100px"}
           pt={"2vh"}
           overflow={"hidden"}

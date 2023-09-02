@@ -11,48 +11,50 @@ export const FILTER_PRICE = "FILTER_PRICE";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const FILTER_PRICE_NAME = "FILTER_PRICE_NAME";
 export const SET_PAGE = "SET_PAGE";
-export const EMPTY_ACTUAL_USER = "EMPTY_ACTUAL_USER"
+export const EMPTY_ACTUAL_USER = "EMPTY_ACTUAL_USER";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_PRODUCT_FROM_CART = "REMOVE_PRODUCT_FROM_CART";
 export const DECREASE_PRODUCT_QUANTITY = "DECREASE_PRODUCT_QUANTITY";
 export const INCREASE_PRODUCT_QUANTITY = "INCREASE_PRODUCT_QUANTITY";
 export const EMPTY_CART = "EMPTY_CART";
-export const GET_USER = "GET_USER"
-export const SET_MAIL = "SET_MAIL"
-export const ORDER_PRODUCTS_ADMIN = "ORDER_PRODUCTS_ADMIN"
-export const GET_ALL_USERS = "GET_ALL_USERS"
-export const ORDER_USERS_ADMIN = "ORDER_USERS_ADMIN"
+export const GET_USER = "GET_USER";
+export const SET_MAIL = "SET_MAIL";
+export const ORDER_PRODUCTS_ADMIN = "ORDER_PRODUCTS_ADMIN";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const ORDER_USERS_ADMIN = "ORDER_USERS_ADMIN";
 export const GET_ORDERS_USERS_ID = "GET_ORDERS_USERS_ID";
 export const EMPTY_ORDERS_ID = "EMPTY_ORDERS_ID";
-export const CLEAN_DETAIL = 'CLEAN_DETAIL';
+export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_USER_ROL = "GET_USER_ROL";
 export const CLEAN_USER_ROL = "CLEAN_USER_ROL";
 export const GET_ALL_PURCHASES = "GET_ALL_PURCHASES";
-export const GET_RATINGS_AVERAGES = 'GET_RATINGS_AVERAGES';
-export const GET_USERS_NAME = 'GET_USERS_NAME';
-export const GET_DATA_STATS = 'GET_DATA_STATS';
+export const GET_RATINGS_AVERAGES = "GET_RATINGS_AVERAGES";
+export const GET_USERS_NAME = "GET_USERS_NAME";
+export const GET_DATA_STATS = "GET_DATA_STATS";
 
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
 
 export const getProducts = () => {
   return async function (dispatch) {
     try {
-    const response = await axios.get(`${VITE_LOCAL_HOST}/products`);
-    const products = response.data;
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: products,
-    });
-  } catch (error) {
-    console.log("Error al obtener todos los productos");
+      const response = await axios.get(`${VITE_LOCAL_HOST}/products`);
+      const products = response.data;
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: products,
+      });
+    } catch (error) {
+      console.log("Error al obtener todos los productos");
+    }
   };
-}
 };
 
 export const getUser = (email) => {
   return async function (dispatch) {
     try {
-      const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {email});
+      const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {
+        email,
+      });
       return dispatch({
         type: GET_USER,
         payload: response.data,
@@ -60,8 +62,8 @@ export const getUser = (email) => {
     } catch (error) {
       console.log("Error al obtener el usuario por mail");
     }
-  }
-}
+  };
+};
 
 export const setPage = (page) => {
   return {
@@ -91,23 +93,23 @@ export function getProductName(name) {
       console.log("Error al obtener el nombre del producto");
     }
   };
-};
+}
 
 export function getUsersByName(name) {
-  return async function (dispatch){
+  return async function (dispatch) {
     try {
-    const usersName = await axios.get(
-      `${VITE_LOCAL_HOST}/users/name?name=${name}`
-    );
-    return dispatch({
-      type: GET_USERS_NAME,
-      payload: usersName.data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-};
+      const usersName = await axios.get(
+        `${VITE_LOCAL_HOST}/users/name?name=${name}`
+      );
+      return dispatch({
+        type: GET_USERS_NAME,
+        payload: usersName.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
 
 export const filterBrand = (brand) => {
   return {
@@ -143,14 +145,6 @@ export const orderByPrice = (status) => {
     payload: status,
   };
 };
-
-export const orderProductsAdmin = (status) => {
-  return {
-    type: ORDER_PRODUCTS_ADMIN,
-    payload: status,
-  };
-};
-
 export const emptyStates = () => {
   return {
     type: EMPTY_STATES,
@@ -184,12 +178,12 @@ export const getAllUsers = () => {
       const allUsers = response.data;
       dispatch({
         type: GET_ALL_USERS,
-        payload: allUsers
-      })
+        payload: allUsers,
+      });
     } catch (error) {
-      throw new Error (error.message)
+      throw new Error(error.message);
     }
-  }
+  };
 };
 
 export const orderUsersAdmin = (status) => {
@@ -206,13 +200,6 @@ export const PostProduct = (product) => {
       product
     );
     console.log(response.data);
-    return response;
-  };
-};
-
-export const putProduct = (id, payload) => {
-  return async function (dispatch) {
-    const response = await axios.put(`${VITE_LOCAL_HOST}/products/update/${id}`, payload);
     return response;
   };
 };
@@ -265,55 +252,64 @@ export const emptyOrdersId = () => {
 };
 
 export const PostUser = (payload) => {
-  return async function(dispatch) {
-    const response = await axios.post(`${VITE_LOCAL_HOST}/users/create`, payload);
+  return async function (dispatch) {
+    const response = await axios.post(
+      `${VITE_LOCAL_HOST}/users/create`,
+      payload
+    );
     return response;
-  }
-}
+  };
+};
 
 export const cleanDetail = () => {
   return {
     type: CLEAN_DETAIL,
-  }
+  };
 };
 
 export const putUser = (payload) => {
   return async function (dispatch) {
-    const response = await axios.put(`${VITE_LOCAL_HOST}/users/update`, payload);
+    const response = await axios.put(
+      `${VITE_LOCAL_HOST}/users/update`,
+      payload
+    );
     return response;
   };
 };
 
 export const getUserRol = (email) => {
   return async function (dispatch) {
-    const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {email: email});
+    const response = await axios.post(`${VITE_LOCAL_HOST}/users/mail`, {
+      email: email,
+    });
     return dispatch({
       type: GET_USER_ROL,
       payload: response.data.role_id,
     });
-  }
+  };
 };
 
 export const cleanUserRol = () => {
   return {
-    type: CLEAN_USER_ROL
+    type: CLEAN_USER_ROL,
   };
 };
 
 export const getAllPurchases = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${VITE_LOCAL_HOST}/purchases/getAllPurchases?condition=ventas`)
+      const response = await axios.get(
+        `${VITE_LOCAL_HOST}/purchases/getAllPurchases?condition=ventas`
+      );
       return dispatch({
         type: GET_ALL_PURCHASES,
         payload: response.data,
-      })
-      
+      });
     } catch (error) {
       console.log(error);
     }
-  }
-}
+  };
+};
 
 export const getRatingsAverages = () => {
   return async function (dispatch) {
@@ -321,36 +317,41 @@ export const getRatingsAverages = () => {
     const ratingAverages = response.data;
     dispatch({
       type: GET_RATINGS_AVERAGES,
-      payload: ratingAverages
-    })
+      payload: ratingAverages,
+    });
   };
-
 };
 
 export const putRolUser = (id) => {
   return async function () {
-    const response = await axios.put(`${VITE_LOCAL_HOST}/users/updateDos/${id}`);
+    const response = await axios.put(
+      `${VITE_LOCAL_HOST}/users/updateDos/${id}`
+    );
     return response;
   };
 };
 
 export const putStateUser = (id) => {
   return async function () {
-    const response = await axios.put(`${VITE_LOCAL_HOST}/users/updateTres/${id}`);
+    const response = await axios.put(
+      `${VITE_LOCAL_HOST}/users/updateTres/${id}`
+    );
     return response;
   };
 };
 
-export function getInfoPurchase(){
-  return async function (dispatch){
-    try{
-      const dataPurchase = await axios.get(`${VITE_LOCAL_HOST}/purchases/dataStats`);
+export function getInfoPurchase() {
+  return async function (dispatch) {
+    try {
+      const dataPurchase = await axios.get(
+        `${VITE_LOCAL_HOST}/purchases/dataStats`
+      );
       return dispatch({
         type: GET_DATA_STATS,
-        payload:dataPurchase
-        });
-      } catch (error){
-        console.log("Error al obtener la data de Stats")
-      }
-  }
-};
+        payload: dataPurchase,
+      });
+    } catch (error) {
+      console.log("Error al obtener la data de Stats");
+    }
+  };
+}

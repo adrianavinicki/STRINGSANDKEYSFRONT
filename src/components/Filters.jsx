@@ -11,7 +11,6 @@ import {
   FormLabel,
   Input,
   Button,
-  transition,
 } from "@chakra-ui/react";
 import {
   filterBrand,
@@ -151,8 +150,7 @@ const FilterAndOrder = () => {
                     key={index}
                     onClick={handleBrandFilter}
                     cursor="pointer"
-                    fontSize={"1.8vh"}
-                    _hover={{ transform: "translateY(-2px)", transition: "0.3s" }}
+                    fontSize={"1.5vh"}
                   >
                     {el}
                   </Text>
@@ -168,8 +166,7 @@ const FilterAndOrder = () => {
                     key={index}
                     onClick={handleCategoryFilter}
                     cursor="pointer"
-                    fontSize={"2vh"}
-                    _hover={{ transform: "translateY(-2px)", transition: "0.3s" }}
+                    fontSize={"1.5vh"}
                   >
                     {el}
                   </Text>

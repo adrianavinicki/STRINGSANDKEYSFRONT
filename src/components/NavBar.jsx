@@ -112,11 +112,9 @@ export default function WithSubnavigation() {
           spacing={10}
           mr={"2%"}
         >
-          <Box mt={'1vh'}>
-          <Link  to="/cart">
-            <FaShoppingCart  size={"5vh"} color="#ffa200" />
+          <Link to="/cart">
+            <FaShoppingCart size={"5vh"} color="#ffa200" />
           </Link>
-          </Box>
           {isAuthenticated ? (
             <>
               <Profile></Profile>
