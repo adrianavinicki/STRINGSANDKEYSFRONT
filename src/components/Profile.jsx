@@ -32,7 +32,7 @@ export const Profile = () => {
         <Menu>
           <MenuButton as={Flex} alignItems="center" cursor="pointer">
             <HStack spacing={2}>
-              <Text fontSize={"2.5vh"} color={"white"}>
+              <Text fontSize={"2vh"} color={"white"}>
                 {user.name}
               </Text>
               <Avatar h={"6vh"} w={"6vh"} src={user.picture} alt={user.name} />

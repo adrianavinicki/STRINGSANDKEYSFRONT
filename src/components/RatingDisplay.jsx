@@ -22,7 +22,7 @@ const RatingDisplay = ({ productId }) => {
         }
 
         return (
-          <Box cursor="pointer" key={i} ml={'0.3vh'}>
+          <Box w={'1vw'} cursor="pointer" key={i} ml={'0.3vh'} mt={'0.3vh'}>
             {starIcon}
           </Box>
         );
