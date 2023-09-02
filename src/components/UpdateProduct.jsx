@@ -146,7 +146,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
           p={"2vh"}
           h={"75vh"}
         >
-          <Heading mb={"1vh"} lineHeight={"1vh"} fontSize={"2vh"}>
+          <Heading color={'white'} mb={"1vh"} lineHeight={"1vh"} fontSize={"2vh"}>
             Modificar:
           </Heading>
           <form onSubmit={handleSubmit}>
@@ -169,13 +169,14 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                     onChange={handleImageChange}
                     h={"4vh"}
                     fontSize={"1.8vh"}
+                    color={'white'}
                     // onBlur={handleOnBlur}
                   ></Input>
                 </Center>
               </Stack>
             </FormControl>
             <FormControl id="productName">
-              <FormLabel fontSize={"1.8vh"}>
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Nombre Actual:{" "}
                 <span style={{ color: "#ffa200" }}>{detailProduct?.name}</span>
               <Input
@@ -193,7 +194,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productBrand">
-              <FormLabel fontSize={"1.8vh"}>
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Marca Actual:{" "}
                 <span style={{ color: "#ffa200" }}>{detailProduct?.brand}</span>
               <Input
@@ -211,7 +212,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productCategory">
-              <FormLabel fontSize={"1.8vh"}>
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Categoria Actual:{" "}
                 <span style={{ color: "#ffa200" }}>
                   {detailProduct?.category}
@@ -231,7 +232,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productPrice">
-              <FormLabel fontSize={"1.8vh"}>
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Precio Actual:{" "}
                 <span style={{ color: "#ffa200" }}>
                   ${detailProduct?.price}
@@ -251,7 +252,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productQuantity">
-              <FormLabel fontSize={"1.8vh"}>
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Stock Actual:{" "}
                 <span style={{ color: "#ffa200" }}>
                   {detailProduct?.quantity}
@@ -271,7 +272,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productCategory">
-              <FormLabel fontSize={"1.8vh"}>Descripcion
+              <FormLabel color={'white'} fontSize={"1.8vh"}>Descripcion
               <Input
                 h={"4vh"}
                 fontSize={"1.8vh"}
@@ -287,7 +288,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productCategory">
-              <FormLabel fontSize={"1.8vh"}>
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Estado:{" "}
                 {detailProduct?.product_status === true ? (
                   <span style={{ color: "#ffa200" }}>Activo</span>
@@ -298,7 +299,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                 h={"4vh"}
                 fontSize={"1.8vh"}
                 placeholder="Cambiar Estado"
-                _placeholder={{ color: "gray.500" }}
+                _placeholder={{ color: "white" }}
                 type="boolean"
                 name="product_status"
                 value={update.product_status}
