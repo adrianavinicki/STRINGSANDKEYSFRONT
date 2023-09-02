@@ -66,7 +66,7 @@ const Home = () => {
     >
       <Flex direction={"column"}>
         <WithSubnavigation></WithSubnavigation>
-        <Box h={"240vh"} pt={"10vh"} bg={""}>
+        <Box h={"280vh"} pt={"10vh"} bg={""}>
           <Flex direction={"column"} align={"center"}>
               <Image borderBottom={'2px solid #ffa200'} src="/slider2.jpg"></Image>
             <Box mt={'5vh'}>

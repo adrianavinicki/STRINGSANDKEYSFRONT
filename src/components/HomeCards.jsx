@@ -25,13 +25,13 @@ export default function CategoryCards() {
         <SimpleGrid columns={5} row={2} spacing={"4vh"}>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
               <Text color={"#ffa200"} fontSize={"2.5vh"} fontWeight={"700"}>
                 Afinadores
               </Text>
@@ -51,13 +51,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -81,13 +81,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -111,13 +111,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -141,13 +141,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -171,13 +171,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -201,13 +201,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -233,13 +233,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -265,13 +265,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
@@ -295,13 +295,13 @@ export default function CategoryCards() {
           </Box>
           <Box
             _hover={{ transform: "scale(1.01)" }}
-            bg="black"
+            //bg="black"
             rounded={"10px"}
             align={"center"}
             overflow={"hidden"}
-            h={"33vh"}
+            h={"43vh"}
           >
-            <Box h={"7vh"} display="flex" alignItems="center" justifyContent="center">
+            <Box bg="black" h={"7vh"} display="flex" alignItems="center" justifyContent="center">
             <Text
               color={"#ffa200"}
               fontSize={"2.5vh"}
