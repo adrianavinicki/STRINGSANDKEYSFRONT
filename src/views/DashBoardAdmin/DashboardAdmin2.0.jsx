@@ -161,7 +161,7 @@ const SidebarWithHeader = () => {
         >
           Estadisticas
         </NavItem>
-        <NavItem
+        {/* <NavItem
           h={"5vh"}
           key={"Promociones"}
           icon={FiShoppingBag}
@@ -171,7 +171,7 @@ const SidebarWithHeader = () => {
           _hover={adminView === "Promotions" ? "" : { bg: "#1b1b1b" }}
         >
           Promociones
-        </NavItem>
+        </NavItem> */}
       </Box>
     );
   };
