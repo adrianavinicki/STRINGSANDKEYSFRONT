@@ -94,18 +94,24 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_PRODUCTS_ADMIN:
       let orderAdmin;
       if (action.payload === "Pausados") {
-        orderAdmin = state.products.sort((a, b) => a.product_status - b.product_status);
+        orderAdmin = state.products.sort(
+          (a, b) => a.product_status - b.product_status
+        );
       } else if (action.payload === "Activos") {
-        orderAdmin = state.products.sort((a, b) => b.product_status - a.product_status);
+        orderAdmin = state.products.sort(
+          (a, b) => b.product_status - a.product_status
+        );
       } else if (action.payload === "ID") {
         orderAdmin = state.products.sort((a, b) => a.id - b.id);
-      }
-      else if (action.payload === "Menor Stock") {
+      } else if (action.payload === "Menor Stock") {
         orderAdmin = state.products.sort((a, b) => a.quantity - b.quantity);
       } else if (action.payload === "Mayor Stock") {
         orderAdmin = state.products.sort((a, b) => b.quantity - a.quantity);
-      }
-      else {
+      } else if (action.payload === "Menor Precio") {
+        orderAdmin = state.products.sort((a, b) => a.price - b.price);
+      } else if (action.payload === "Mayor Precio") {
+        orderAdmin = state.products.sort((a, b) => b.price - a.price);
+      } else {
         orderAdmin = state.products;
       }
       return { ...state, products: [...orderAdmin] };
@@ -124,7 +130,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filteredUsers: action.payload,
         allUsers: action.payload,
-      }
+      };
     case FILTER_BRAND:
       const productsByBrand =
         action.payload === "todos"
@@ -294,7 +300,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_RATINGS_AVERAGES:
       return {
         ...state,
-        ratingsAverage: action.payload
+        ratingsAverage: action.payload,
       };
     case GET_ALL_USERS:
       return {
@@ -304,7 +310,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_DATA_STATS:
       return {
         ...state,
-        dataStats: action.payload
+        dataStats: action.payload,
       };
     case ORDER_USERS_ADMIN:
       let orderUsersAdmin;

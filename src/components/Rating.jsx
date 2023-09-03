@@ -24,11 +24,11 @@ const Rating = ({ ratingValue, numRatings, handleRatingClick }) => {
             cursor='pointer'
           >
             {ratingValue - i >= 1 ? (
-              <BsStarFill style={{ marginLeft: "1" }} />
+              <BsStarFill color="white" style={{ marginLeft: "1" }} />
             ) : ratingValue - i === 0.5 ? (
-              <BsStarHalf style={{ marginLeft: "1" }} />
+              <BsStarHalf color="white" style={{ marginLeft: "1" }} />
             ) : (
-              <BsStar style={{ marginLeft: "1" }} />
+              <BsStar color="white" style={{ marginLeft: "1" }} />
             )}
           </Box>
         );

@@ -8,11 +8,7 @@ import {
   Input,
   Select,
   VStack,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  NumberInput,
+  useColorModeValue,
   Button,
   Text,
 } from "@chakra-ui/react";
@@ -140,7 +136,7 @@ export default function CreateProduct() {
         <WithSubnavigation></WithSubnavigation>
       </Box>
       <Box
-        backgroundImage="url('/bg.jpg')"
+        backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -148,8 +144,8 @@ export default function CreateProduct() {
         h={"83vh"}
         overflow={"hidden"}
       >
-        <VStack h={"80vh"} mt={'1%'}>
-          <Heading color={"black"} fontSize={"4vh"}>
+        <VStack h={"80vh"} mt={'3vh'}>
+          <Heading color={useColorModeValue('black', 'white')} fontSize={"4vh"}>
             Crear Producto
           </Heading>
           {/* {console.log(form, image)} */}

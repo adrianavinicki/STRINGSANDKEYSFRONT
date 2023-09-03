@@ -8,6 +8,7 @@ import {
   Button,
   Th,
   Image,
+  Icon,
   Heading,
   Select,
   Td,
@@ -17,6 +18,7 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
+import { EditIcon } from '@chakra-ui/icons';
 import { Link } from "react-router-dom";
 import {
   getProductName,
@@ -95,6 +97,8 @@ const ProductsData = () => {
                   <option style={{ backgroundColor: "white" }}>Ordenar</option>
                   <option style={{ backgroundColor: "white" }}>Menor Stock</option>
                   <option style={{ backgroundColor: "white" }}>Mayor Stock</option>
+                  <option style={{ backgroundColor: "white" }}>Menor Precio</option>
+                  <option style={{ backgroundColor: "white" }}>Mayor Precio</option>
                   <option style={{ backgroundColor: "white" }}>Activos</option>
                   <option style={{ backgroundColor: "white" }}>Pausados</option>
                   <option style={{ backgroundColor: "white" }}>ID</option>
@@ -161,6 +165,7 @@ const ProductsData = () => {
                           >
                             {product.id}
                           </span>
+                          <Icon ml={'1vh'} boxSize={'2vh'} as={EditIcon} />
                         </Link>
                       </Td>
                       <Td>

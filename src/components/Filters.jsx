@@ -12,6 +12,7 @@ import {
   Input,
   Button,
   transition,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   filterBrand,
@@ -121,13 +122,13 @@ const FilterAndOrder = () => {
   );
 
   return (
-    <Box bg={"gray.200"} w={"25vh"} color={"black"} rounded={"5px"} p={"5%"}>
+    <Box bg={useColorModeValue('rgb(0,0,0,0.2)', 'rgb(0,0,0,0.7)')} w={"25vh"} color={"black"} rounded={"5px"} p={"5%"}>
       <Flex direction={"column"}>
-        {filteredProducts.length === 0 ? <Text>No se encontraron productos.</Text> :
+        {filteredProducts.length === 0 ? <Text color={useColorModeValue('black', 'white')}>No se encontraron productos.</Text> :
           <Text fontSize={"1.5vh"}>
             {isSingleCategory && isSingleBrand ? 
             <span>
-              <Link onClick={() => handleAllProducts()} style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos</Link> {">"} 
+              <Link onClick={() => handleAllProducts()} style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos </Link> {">"} 
               <Link style={{color:"#ffa200"}} cursor="pointer" onClick={handleCategoryFilter} >{firstCategory}</Link> {">"} 
               <Link style={{color:"#ffa200"}} cursor="pointer" >{firstBrand}</Link>
             </span> :
@@ -143,11 +144,12 @@ const FilterAndOrder = () => {
           <Flex direction={"column"}>
             {isSingleCategory ? (
               <Box h={"35vh"}>
-                <Text fontWeight={"bold"} fontSize={"3vh"}>
+                <Text color={useColorModeValue('black', 'white')} fontWeight={"bold"} fontSize={"3vh"}>
                   Marcas:
                 </Text>
                 {brands?.map((el, index) => (
                   <Text
+                  color={useColorModeValue('black', 'white')}
                     key={index}
                     onClick={handleBrandFilter}
                     cursor="pointer"
@@ -160,11 +162,12 @@ const FilterAndOrder = () => {
               </Box>
             ) : (
               <Box h={"38vh"}>
-                <Text fontWeight={"bold"} fontSize={"3vh"}>
+                <Text color={useColorModeValue('black', 'white')} fontWeight={"bold"} fontSize={"3vh"}>
                   Categorias:
                 </Text>
                 {category?.map((el, index) => (
                   <Text
+                  color={useColorModeValue('black', 'white')}
                     key={index}
                     onClick={handleCategoryFilter}
                     cursor="pointer"
@@ -181,7 +184,7 @@ const FilterAndOrder = () => {
         <br />
         <Box>
           <Flex>
-            <Heading w={'70%'} fontSize={"3.5vh"}>$ {sliderValue}</Heading>
+            <Heading color={useColorModeValue('black', 'white')} w={'70%'} fontSize={"3.5vh"}>$ {sliderValue}</Heading>
             <Button
               w={'24%'}
               h={'6vh'}
@@ -203,7 +206,7 @@ const FilterAndOrder = () => {
               min={0}
               max={350000}
             >
-              <SliderTrack bg="black">
+              <SliderTrack bg={useColorModeValue("black", "white")}>
                 <SliderFilledTrack bg="#ffa200" />
               </SliderTrack>
               <SliderThumb boxSize={5}>

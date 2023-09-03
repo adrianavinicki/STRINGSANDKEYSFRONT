@@ -7,7 +7,7 @@ import {
   Button,
   /*Link,*/
   Stack,
-  useColorModeValue as mode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import {
@@ -46,7 +46,7 @@ export default function Cart() {
         <WithSubnavigation></WithSubnavigation>
       </Box>
       <Box
-        backgroundImage="url('/bg.jpg')"
+        backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -114,7 +114,7 @@ export default function Cart() {
             <CartOrderSummary />
             <HStack mt="1vh" fontWeight="semibold">
               <Text color={'white'}>ó</Text>
-              <Link to="/">
+              <Link to="/products">
                 <Text color={'white'}>seguir comprando</Text>
               </Link>
             </HStack>

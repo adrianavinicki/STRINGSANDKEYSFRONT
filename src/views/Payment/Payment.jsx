@@ -3,35 +3,30 @@ import {
   Flex,
   Heading,
   Image,
-  Container,
   HStack,
+  Center,
+  Avatar,
   SimpleGrid,
   Icon,
   VStack,
-  Avatar,
+  useColorModeValue,
   Box,
-  Center,
   Text,
 } from "@chakra-ui/react";
 
-import { SiMercadopago, SiCashapp } from "react-icons/si";
+import { SiMercadopago } from "react-icons/si";
 import WithSubnavigation from "../../components/NavBar";
 import SmallWithLogoLeft from "../../components/Footer";
 import { CheckIcon } from "@chakra-ui/icons";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { EditIcon } from "@chakra-ui/icons";
 import { useSelector } from "react-redux";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  emptyCart,
-  getOrdersIDArray,
-  emptyOrdersId,
-} from "../../redux/actions";
+import { emptyCart, emptyOrdersId } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import {BuyButtonNotification} from "../../components/BuyButtonNotification"
+import { BuyButtonNotification } from "../../components/BuyButtonNotification";
 
 const apiUrl = import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY; //ya esta actualizada
 const VITE_LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST;
@@ -49,7 +44,7 @@ export default function Payment(props) {
   const idUser = useSelector((state) => state.idUser);
   const idCliente = useSelector((state) => state.actualUser);
 
-  const {user} = useAuth0();
+  const { user } = useAuth0();
 
   const totalPrice = detailCarrito.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -64,7 +59,6 @@ export default function Payment(props) {
   // console.log(orderIdsArray[0].userId, "hola")
 
   const handleOrder = async () => {
-    
     //esto se podria hacer con un useEffect
     const purchaseArray = orderIdsArray[0];
     //const userId = idUser; // ojo recordar arreglar con lo de user de martin ver si no hay que hardcodear
@@ -82,12 +76,11 @@ export default function Payment(props) {
       cart: detailCarrito,
     });
 
-
     console.log(response.data.init_point, "2");
     setPreferenceId(response.data.init_point);
     window.location.href = response.data.init_point;
     dispatch(emptyCart());
-    dispatch(BuyButtonNotification(user,detailCarrito))
+    dispatch(BuyButtonNotification(user, detailCarrito));
     //dispatch(emptyCart());
   };
 
@@ -119,7 +112,10 @@ export default function Payment(props) {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage="url('/bg.jpg')"
+          backgroundImage={useColorModeValue(
+            "url('/bg.jpg')",
+            "url('/bgdark.jpg')"
+          )}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -136,30 +132,26 @@ export default function Payment(props) {
                   bg="rgba(0, 0, 0, 0.7)"
                   w={"70%"}
                   h={"70vh"}
-                  p={"30px"}
+                  p={"3vh"}
                   roundedLeft="lg"
-                  overflow={'hidden'}
                 >
                   <Flex direction={"column"}>
                     <Text color={"white"}>Por favor revisa tu pedido:</Text>
                     <br />
-                    <SimpleGrid
-                      columns={{ base: 1, md: 1, lg: 1 }}
-                      overflowY="auto"
-                      maxH={"500px"}
-                      bg={""}
-                    >
+                    <SimpleGrid columns={1} overflow={'hidden'} overflowY="auto" bg={""} h={'55vh'}>
                       {detailCarrito.map((product, index) => (
                         <HStack
                           key={index}
                           align={"center"}
                           bg={"gray.200"}
                           margin={"10px"}
+                          rounded={"5px"}
+                          
                         >
-                          <Box color={"green.400"} px={2}>
+                          <Box color={"#ffa200"} px={2}>
                             <Icon as={CheckIcon} />
                           </Box>
-                          <VStack align={"start"}>
+                          {/* <VStack align={"start"}>
                             <Text color={'black'} fontSize={'2.5vh'} fontWeight={600}>Nombre: {product.name}</Text>
                             <Text color={'black'} fontSize={'2.5vh'} fontWeight={600}>
                               Precio: ${product.price}
@@ -167,18 +159,40 @@ export default function Payment(props) {
                             <Text color={"gray.600"} fontSize={'2.5vh'}>
                               Cantidad: {product.quantity}
                             </Text>
+                          </VStack> */}
+                          <VStack align={"start"}>
+                            <Text fontWeight={600} fontSize={'2vh'} color={'black'}>{product.name}</Text>
+                            <Text fontSize={'2vh'} color={"gray.600"}>
+                              Cantidad: {product.quantity}
+                            </Text>
+                            <Text color={'black'} fontSize={'2vh'} fontWeight={600}>
+                              Precio: ${product.price}
+                            </Text>
                           </VStack>
+                          <Box>
+                            <Center>
+                              <Avatar size="xl" src={product.image}></Avatar>
+                            </Center>
+                          </Box>
                         </HStack>
                       ))}
                     </SimpleGrid>
                   </Flex>
                 </Box>
 
-                <Box bg={'black'} h={'70vh'} w={'30%'} pt={'10%'} roundedRight={'5px'}>
+                <Box
+                  bg={"black"}
+                  h={"70vh"}
+                  w={"30%"}
+                  pt={"10%"}
+                  roundedRight={"5px"}
+                >
                   <Flex direction={"column"} align={"center"}>
                     <Image src="/Logo White.png" h={"13vh"} alt="Wonder Toys" />
                     <br />
-                    <Heading color={"#ffa200"} fontSize={'3vh'}>Total: ${totalPrice}</Heading>
+                    <Heading color={"#ffa200"} fontSize={"3vh"}>
+                      Total: ${totalPrice}
+                    </Heading>
                     <br />
                     <Box>
                       <br />
@@ -189,8 +203,8 @@ export default function Payment(props) {
                         color="black"
                         w={"120px"}
                         bg="#ffa200"
-                        _hover={'none'}
-                        isDisabled={''}
+                        _hover={"none"}
+                        isDisabled={""}
                       >
                         Pago
                       </Button>
@@ -204,7 +218,7 @@ export default function Payment(props) {
                           color={"white"}
                           _hover={"none"}
                           w={"120px"}
-                          bg={'#1B1B1B'}
+                          bg={"#1B1B1B"}
                         >
                           Volver
                         </Button>

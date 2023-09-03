@@ -93,7 +93,7 @@ const Detail = () => {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage="url('/bg.jpg')"
+          backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"

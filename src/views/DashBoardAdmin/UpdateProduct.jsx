@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import ProductProfileEdit from "../../components/UpdateProduct"
 import SmallWithLogoLeft from "../../components/Footer";
 import WithSubnavigation from "../../components/NavBar";
@@ -12,7 +12,7 @@ const Update = () => {
             <WithSubnavigation></WithSubnavigation>
           </Box>
         <Box
-        backgroundImage="url('/bg.jpg')"
+        backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
