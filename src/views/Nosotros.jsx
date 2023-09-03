@@ -8,6 +8,7 @@ import {
   Text,
   Button,
   Image,
+  useColorModeValue,
   Box,
   transition,
 } from "@chakra-ui/react";
@@ -23,7 +24,7 @@ export default function Nosotros() {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage="url('/bg.jpg')"
+          backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -33,23 +34,21 @@ export default function Nosotros() {
           pt={"2vh"}
           overflow={"hidden"}
         >
-          <Container maxW={"5xl"}>
+          <Container maxW={"80vw"} pt={'3vh'}>
             <Stack
               textAlign={"center"}
               align={"center"}
-              spacing={{ base: 8, md: 10 }}
-              py={{ base: 10, md: 18 }}
             >
-              <Image boxSize={"10vh"} src="/LOGO png.png"></Image>
+              <Image boxSize={"10vh"} src={useColorModeValue("LOGO png.png", "Logo White 2.png")}></Image>
               <Box>
                 <Flex>
-                  <Box w={"-15%"} h={"45vh"} pr={20}>
+                  <Box w={"-15%"} h={"45vh"} pr={'5vh'}>
                     <Flex direction={"column"}>
                       <Heading
                         fontWeight={500}
                         fontSize={"3.7vh"}
                         lineHeight={"100%"}
-                        color={"black"}
+                        color={useColorModeValue('black', "white")}
                       >
                         COLABORADORES
                       </Heading>
@@ -89,7 +88,7 @@ export default function Nosotros() {
                       fontWeight={600}
                       fontSize={"5.7vh"}
                       lineHeight={"110%"}
-                      color={"black"}
+                      color={useColorModeValue("black", 'white')}
                     >
                       Bienvenidos a{" "}
                       <Text as={"span"} color={"#ffa200"}>
@@ -97,18 +96,18 @@ export default function Nosotros() {
                       </Text>
                     </Heading>
                     <br />
-                    <Text color={"gray.700"} maxW={"3xl"} fontSize={"2.2vh"}>
+                    <Text color={useColorModeValue('gray.800', 'white')} maxW={"3xl"} fontSize={"2.2vh"}>
                       En Strings&Keys, encontrarás una cuidadosa selección de
                       productos de los mejores fabricantes. Nuestro equipo de
                       expertos está aquí para asesorarte en tu viaje musical.
                     </Text>
-                    <Text color={"gray.700"} maxW={"3xl"} fontSize={"2.2vh"}>
+                    <Text color={useColorModeValue('gray.800', 'white')} maxW={"3xl"} fontSize={"2.2vh"}>
                       Creemos que la música es un lenguaje universal que conecta
                       corazones y almas. Nuestro compromiso es proporcionarte
                       las herramientas necesarias para expresarte a través de la
                       música y llevar tus habilidades al siguiente nivel.
                     </Text>
-                    <Text color={"gray.700"} maxW={"3xl"} fontSize={"2.2vh"}>
+                    <Text color={useColorModeValue('gray.800', 'white')} maxW={"3xl"} fontSize={"2.2vh"}>
                       Navega por nuestra plataforma de compra intuitiva y
                       disfruta de una experiencia sin complicaciones. Únete a
                       nuestra comunidad de amantes de la música y descubre un

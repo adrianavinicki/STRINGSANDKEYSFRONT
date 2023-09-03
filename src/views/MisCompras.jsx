@@ -5,7 +5,7 @@ import {
   Stack,
   Center,
   Button,
-  Image,
+  useColorModeValue,
   Box,
   Alert,
   AlertTitle,
@@ -41,7 +41,7 @@ export default function MisCompras() {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage="url('/bg.jpg')"
+          backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -52,7 +52,7 @@ export default function MisCompras() {
           overflow={"hidden"}
         >
           <Flex direction={"column"} align={"center"}>
-            <Heading color={"black"}>Mis Compras</Heading>
+            <Heading color={useColorModeValue('black', 'white')}>Mis Compras</Heading>
             <Box
               h={"65vh"}
               w={"90%"}
@@ -71,6 +71,7 @@ export default function MisCompras() {
                       name={product.name}
                       price={product.price}
                       date={product.date}
+                      brand={product.brand}
                     ></PurchaseCards>
                   );
                 })

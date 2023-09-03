@@ -147,7 +147,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
           h={"75vh"}
         >
           <Heading color={'white'} mb={"1vh"} lineHeight={"1vh"} fontSize={"2vh"}>
-            Modificar:
+            Modificar: ID {detailProduct?.id}
           </Heading>
           <form onSubmit={handleSubmit}>
             <FormControl id="productName">
@@ -288,7 +288,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               </FormLabel>
             </FormControl>
             <FormControl id="productCategory">
-              <FormLabel color={'white'} fontSize={"1.8vh"}>
+              <FormLabel color={useColorModeValue('white', 'white')} fontSize={"1.8vh"}>
                 Estado:{" "}
                 {detailProduct?.product_status === true ? (
                   <span style={{ color: "#ffa200" }}>Activo</span>
@@ -299,14 +299,16 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                 h={"4vh"}
                 fontSize={"1.8vh"}
                 placeholder="Cambiar Estado"
-                _placeholder={{ color: "white" }}
+                _placeholder={{ color: "white", backgroundColor:'black' }}
                 type="boolean"
                 name="product_status"
                 value={update.product_status}
                 onChange={handleChange}
+                bg={'white'}
+                color={useColorModeValue('black', 'black')}
               >
-                <option value="True">Activar</option>
-                <option value="False">Pausar</option>
+                <option  value="True">Activar</option>
+                <option  value="False">Pausar</option>
               </Select>
               </FormLabel>
             </FormControl>

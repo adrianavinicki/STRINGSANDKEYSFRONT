@@ -1,7 +1,7 @@
 import ProductSimple from "../components/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { Box, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 //import {setPage} from "../redux/actions"
 
@@ -53,7 +53,7 @@ const CardsContainer = () => {
   return (
     <Box>
       <Box>
-        <Flex justify={'center'}>
+        <Flex justify={'center'} color={useColorModeValue('black', "white")}>
           <div>
             <button onClick={handlePrevious} disabled={filteredPage === 0}>
               ←
@@ -91,11 +91,7 @@ const CardsContainer = () => {
               ) : (
                 <Box
                   mt={'10vh'}
-                  p={'10px'}
-                  display='flex'
-                  gridColumn={3}
-                  gridRow={2}
-                  
+                  p={'10px'}           
                 >
                   <Alert
                     status="success"
