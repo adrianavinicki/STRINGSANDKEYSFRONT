@@ -7,16 +7,32 @@ import {
   Button,
   Image,
   Box,
+  Alert,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import PurchaseCards from "../components/Compras";
 import { useDispatch, useSelector } from "react-redux";
+import { Search2Icon } from "@chakra-ui/icons";
 
 export default function MisCompras() {
   const products = useSelector((state) => state.products);
-  const firstFiveProducts = products.slice(0, 5);
 
+  const purchaseHistoryRaw = useSelector(state=>state.actualUser.purchase_history);
+  //const purchaseHistoryRaw = [];
+  let purchaseHistory = [];
+
+  purchaseHistoryRaw.map((el) => {
+    const pre = products.find((p) => p.id === el.productId);
+    const post = { ...pre, date: el.date };
+    purchaseHistory.push(post);
+  });
+
+  purchaseHistory.sort((a, b) => (a.date > b.date ? -1 : a.date < b.date ? 1 : 0));
+
+  //console.log(purchaseHistory);
 
   return (
     <Box>
@@ -45,16 +61,43 @@ export default function MisCompras() {
               mt={"5vh"}
               overflowY="auto"
             >
-              {firstFiveProducts.map((product) => {
-                return (
-                  <PurchaseCards
-                    id={product.id}
-                    image={product.image}
-                    name={product.name}
-                    price={product.price}
-                  ></PurchaseCards>
-                );
-              })}
+              {purchaseHistory?.length ? (
+                purchaseHistory?.map((product, index) => {
+                  return (
+                    <PurchaseCards
+                      key={index}
+                      id={product.id}
+                      image={product.image}
+                      name={product.name}
+                      price={product.price}
+                      date={product.date}
+                    ></PurchaseCards>
+                  );
+                })
+              ) : (
+                <Box bg={''} display="flex" gridColumn={3} gridRow={2} justifyContent={'center'} mt={'10%'}>
+                  <Flex justify={'center'}>
+                    <Alert
+                      status="success"
+                      variant="subtle"
+                      flexDirection="column"
+                      alignItems="center"
+                      justifyContent="center"
+                      textAlign="center"
+                      height="200px"
+                      borderRadius="10px"
+                    >
+                      <Search2Icon boxSize="40px" mr={0} />
+                      <AlertTitle mt={4} mb={1} fontSize="lg">
+                        Sin resultados!
+                      </AlertTitle>
+                      <AlertDescription maxWidth="sm">
+                        Lo siento aun no has comprado ningun producto.
+                      </AlertDescription>
+                    </Alert>
+                  </Flex>
+                </Box>
+              )}
             </Box>
           </Flex>
         </Box>

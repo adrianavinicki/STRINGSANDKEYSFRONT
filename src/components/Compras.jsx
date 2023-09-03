@@ -119,6 +119,7 @@ export default function PurchaseCards(props) {
         <CardBody>
           <Flex direction="row" align="center" justify="space-between">
             <Box w={'70%'}>
+              <Text color={'white'} fontSize="2vh">{props.date}</Text>  
               <Heading color={'white'} fontSize="2.3vh">{props.name}</Heading>
               <Text color={'white'} fontSize="2vh">${props.price}</Text>
             </Box>
