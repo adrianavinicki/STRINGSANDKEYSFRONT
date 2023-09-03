@@ -136,7 +136,7 @@ const FilterAndOrder = () => {
               <Link style={{color:"#ffa200"}} cursor="pointer" >{firstCategory}</Link> {">"} 
             </span> :
                 <span>
-                <Link style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos</Link> {">"} 
+                <Link onClick={() => handleAllProducts()} style={{color:"#ffa200"}} cursor="pointer" >Todos los Productos</Link> {">"} 
               </span>}
           </Text>}
         <Box>
