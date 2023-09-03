@@ -99,17 +99,25 @@ const Detail = () => {
           backgroundSize="cover"
           w={"100%"}
           h={"83vh"}
-          mt={"100px"}
-          pt={"2vh"}
+          mt={"10vh"}
           overflow={"hidden"}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
         >
-          <Container maxW={"7xl"} bg={""} h={"70vh"}>
+          <Container
+            maxW={"7xl"}
+            h={"70vh"}
+            w={'70vw'}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
             <SimpleGrid
-              columns={{ base: 1, lg: 2 }}
-              spacing={{ base: 8, md: 10 }}
+              columns={2}
               // py={{ base: 18, md: 6 }}
             >
-              <Flex align={"center"} mt={""} ml={"20%"}>
+              <Flex align={"center"} mt={""} ml={"10%"}>
                 <Image
                   rounded={"md"}
                   alt={"product image"}
@@ -118,56 +126,57 @@ const Detail = () => {
                   maxH={"50vh"}
                 />
               </Flex>
-              <Stack spacing={'1vh'}>
+              <Stack spacing={"1vh"} bg={"rgba(0, 0, 0, 0.8)"} p={'3vh'} rounded={'5px'}>
                 <Box as={"header"} bg={""}>
                   <Heading
                     lineHeight={1.1}
                     fontWeight={600}
                     fontSize={"4vh"}
-                    color={"black"}
-                    mt={'1vh'}
+                    color={"white"}
+                    mt={"1vh"}
                   >
                     {detailProduct.name}
                   </Heading>
-                  <Text
-                    color={useColorModeValue("black", "black")}
-                    fontWeight={"bold"}
-                    fontSize={"3vh"}
-                  >
+                  <Text color={"#ffa200"} fontWeight={"bold"} fontSize={"3vh"}>
                     ${detailProduct.price}
                   </Text>
                 </Box>
 
                 <Stack
-                  spacing={{ base: 4, sm: 6 }}
                   direction={"column"}
-                  divider={<StackDivider borderColor={"black"} />}
+                  divider={<StackDivider borderColor={"#ffa200"} />}
                 >
                   <VStack spacing={{ base: 4, sm: 6 }}>
-                    <Text fontWeight={"bold"} fontSize={"2vh"} color={"black"}>
+                    <Text fontWeight={"bold"} fontSize={"2vh"} color={"white"}>
                       {detailProduct.description}
                     </Text>
                   </VStack>
-                  <Box bg={""} width={"100%"}>
+                  <Box bg={""}>
                     <Center>
                       <Flex direction={"column"}>
-                        <Box bg={""} w={"100%"}>
-                          <Flex direction={"row"} justify={'space-between'}>
+                        <Box bg={""} w={"25vw"}>
+                          <Flex direction={"row"} justify={"space-between"}>
                             <Text
                               fontSize={"2vh"}
-                              color={"black"}
+                              color={"white"}
                               as={"span"}
                               fontWeight={"500"}
                             >
-                              Marca: {detailProduct.brand}
+                              Marca:{" "}
+                              <span style={{ color: "#ffa200" }}>
+                                {detailProduct.brand}
+                              </span>
                             </Text>{" "}
                             <Text
                               fontSize={"2vh"}
-                              color={"black"}
+                              color={"white"}
                               as={"span"}
                               fontWeight={"500"}
                             >
-                              Categoria: {detailProduct.category}
+                              Categoria:{" "}
+                              <span style={{ color: "#ffa200" }}>
+                                {detailProduct.category}
+                              </span>
                             </Text>{" "}
                           </Flex>
                         </Box>
@@ -187,7 +196,7 @@ const Detail = () => {
                             maxH={""}
                             maxW={""}
                             rounded={"5px"}
-                            w={'100%'}
+                            w={"100%"}
                           >
                             {!productReviews?.length ? (
                               <Center mt={"8vh"}>
@@ -205,6 +214,7 @@ const Detail = () => {
                                       color={"gray.600"}
                                       align={"center"}
                                       m={"1vh"}
+                                      fontSize={'2vh'}
                                     >
                                       Lo siento, este producto aun no tiene
                                       reviews.
@@ -221,10 +231,9 @@ const Detail = () => {
                                   bg={"white"}
                                   m={"10px"}
                                   rounded={"5px"}
-                                  
                                 >
                                   <VStack ml={"10px"} align={"start"}>
-                                    <Text fontWeight={600}>
+                                    <Text color={'black'} fontWeight={600}>
                                       {review.user.first_name}
                                     </Text>
                                     <Box>
@@ -232,7 +241,7 @@ const Detail = () => {
                                         <Text color={"gray.600"}>
                                           Ratings: {review.rate}
                                         </Text>
-                                        <LiaStarSolid size="1.4em" />
+                                        <LiaStarSolid color="#ffa200" size="1.4em" />
                                       </Flex>
                                     </Box>
                                     <Text color={"gray.600"}>
@@ -254,6 +263,7 @@ const Detail = () => {
                       <Button
                         bg={"black"}
                         color={"#ffa200"}
+                        h={'4vh'}
                         _hover={{
                           transform: "translateY(2px)",
                           boxShadow: "lg",
@@ -264,6 +274,7 @@ const Detail = () => {
                     </Link>
                     <Button
                       onClick={() => getCarrito(detailProduct)}
+                      h={'4vh'}
                       rounded={"5px"}
                       bg={useColorModeValue("black", "black")}
                       color={useColorModeValue("#ffa200", "#ffa200")}

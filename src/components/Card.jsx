@@ -25,7 +25,7 @@ export default function ProductSimple(props) {
   //  dispatch(addProductToCart(product));
   //}
   
-  const truncatedName = props.name.length > 50 ? `${props.name.substring(0, 30)}...` : props.name;
+  const truncatedName = props.name.length > 30 ? `${props.name.substring(0, 30)}...` : props.name;
 
   return (
     <Box
@@ -72,8 +72,8 @@ export default function ProductSimple(props) {
               <Text fontWeight={800} fontSize={"3vh"}>
                 ${props.price}
               </Text>
-              <Text fontWeight={800} fontSize={"3vh"} ml={'2vh'}>-</Text>
-              <Box ml={'1.8vh'}>
+              <Text fontWeight={800} fontSize={"3vh"}>-</Text>
+              <Box>
                 <RatingDisplay productId={props.id} />
               </Box>
             </Flex>

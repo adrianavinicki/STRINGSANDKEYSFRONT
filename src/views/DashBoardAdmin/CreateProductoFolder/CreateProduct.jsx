@@ -153,13 +153,14 @@ export default function CreateProduct() {
             Crear Producto
           </Heading>
           {/* {console.log(form, image)} */}
-          <Flex direction="column" align={"center"} color={"black"} bg={""}>
+          <Flex direction="column" align={"center"} w={'30%'} h={'65vh'} rounded={'5px'} color={"black"} bg={"rgba(0, 0, 0, 0.7)"} pt={'1vh'}>
             <form onSubmit={handleSubmit}>
               <FormControl isRequired>
                 <Flex direction="column" align={"center"}>
-                  <FormLabel h={'2vh'}>Nombre:</FormLabel>
+                  <FormLabel h={'2vh'} color={"#ffa200"}>Nombre:</FormLabel>
                   <Input
                   h={'5vh'}
+                  w={'20vw'}
                     _hover={"none"}
                     bg={"white"}
                     border={"2px solid black"}
@@ -170,9 +171,10 @@ export default function CreateProduct() {
                     onBlur={handleOnBlur}
                   />
                   {errors.name && <Text color={'red'} fontSize={'1.5vh'} >{errors.name}</Text>}
-                  <FormLabel h={'2vh'}>Marca:</FormLabel>
+                  <FormLabel h={'2vh'} color={"#ffa200"}>Marca:</FormLabel>
                   <Select
                     h={'5vh'}
+                    w={'20vw'}
                     _hover={"none"}
                     bg={"white"}
                     border={"2px solid black"}
@@ -189,9 +191,10 @@ export default function CreateProduct() {
                     ))}
                   </Select>
                   {errors.brand && <Text color={'red'} fontSize={'1.5vh'} >{errors.brand}</Text>}
-                  <FormLabel h={'2vh'}>Categoria:</FormLabel>
+                  <FormLabel h={'2vh'} color={"#ffa200"}>Categoria:</FormLabel>
                   <Select
                     h={'5vh'}
+                    w={'20vw'}
                     _hover={"none"}
                     bg={"white"}
                     border={"2px solid black"}
@@ -208,7 +211,7 @@ export default function CreateProduct() {
                     ))}
                   </Select>
                   {errors.category && <Text color={'red'} fontSize={'1.5vh'} >{errors.category}</Text>}
-                  <FormLabel h={'2vh'}>Descripcion Del Producto:</FormLabel>
+                  <FormLabel h={'2vh'} color={"#ffa200"}>Descripcion Del Producto:</FormLabel>
                   <Input
                     _hover={"none"}
                     bg={"white"}
@@ -219,9 +222,10 @@ export default function CreateProduct() {
                     onChange={handleChange}
                     onBlur={handleOnBlur}
                     h={'5vh'}
+                    w={'20vw'}
                   />
                   {errors.description && <Text color={'red'} fontSize={'1.5vh'} >{errors.description}</Text>}
-                  <FormLabel h={'2vh'}>Cantidad:</FormLabel>
+                  <FormLabel h={'2vh'} color={"#ffa200"}>Cantidad:</FormLabel>
                   <Input
                   h={'5vh'}
                     _hover={"none"}
@@ -230,7 +234,7 @@ export default function CreateProduct() {
                     min={0}
                     name="quantity"
                     value={form.quantity}
-                    w={"350px"}
+                    w={'20vw'}
                     onChange={
                       (value) =>
                         handleNumbersChange(value, "quantity") /*handleChange*/
@@ -238,7 +242,7 @@ export default function CreateProduct() {
                     onBlur={handleOnBlur}
                   />
                   {errors.quantity && <Text color={'red'} fontSize={'1.5vh'} >{errors.quantity}</Text>}
-                  <FormLabel h={'2vh'}>Precio:</FormLabel>
+                  <FormLabel h={'2vh'} color={"#ffa200"}>Precio:</FormLabel>
                   <Input
                   h={'5vh'}
                     _hover={"none"}
@@ -247,14 +251,14 @@ export default function CreateProduct() {
                     min={0}
                     name="price"
                     value={form.price}
-                    w={"350px"}
+                    w={'20vw'}
                     onChange={
                       (value) =>
                         handleNumbersChange(value, "price") /*handleChange*/
                     }
                   />
                   {errors.price && <Text color={'red'} fontSize={'1.5vh'} >{errors.price}</Text>}
-                  <FormLabel h={'2vh'} htmlFor="image"> Imagen:</FormLabel>
+                  <FormLabel h={'2vh'} htmlFor="image" color={"#ffa200"}> Imagen:</FormLabel>
                   <Input
                   h={'5vh'}
                     _hover={"none"}
@@ -263,12 +267,11 @@ export default function CreateProduct() {
                     type="file"
                     id="image"
                     name="image"
-                    w={"350px"}
+                    w={'20vw'}
                     onChange={handleImageChange}
                   />
                   {errors.image && <Text color={'red'} fontSize={'1.5vh'} >{errors.image}</Text>}
-                  <br />
-                  <Box>
+                  <Box pt={'1vh'}>
                     <Flex>
                       <Link to={"/admin"}>
                         <Button h={'4vh'} _hover={"none"} color={"#ffa200"} bg={"black"}>

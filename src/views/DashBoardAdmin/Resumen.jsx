@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function StatsCard(props /*StatsCardProps*/) {
   const { title, stat, icon } = props;
+  
 
   return (
     <Stat
@@ -53,6 +54,15 @@ function StatsCard(props /*StatsCardProps*/) {
 }
 
 export default function BasicStatistics() {
+
+  const users = useSelector((state) => state.allUsers);
+  const purchases = useSelector((state) => state.currentPurchases)
+
+  const totalPrice = purchases.reduce((total, item) => total + parseInt(item.totalprice),0);
+
+  const formattedPrice = `$${totalPrice.toLocaleString('es-ES')}`;
+
+
   return (
     <Box  h={"25vh"} borderBottom="1px solid #ffa200" >
       <Box
@@ -65,17 +75,17 @@ export default function BasicStatistics() {
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={'3vh'}>
           <StatsCard
             title={"Usuarios"}
-            stat={5}
+            stat={users?.length}
             icon={<BsPerson size={"8vh"} />}
           />
           <StatsCard
             title={"Ventas"}
-            stat={12}
+            stat={purchases?.length}
             icon={<BsCartCheck size={"8vh"} />}
           />
           <StatsCard
             title={"Ingresos Totales"}
-            stat="$ 412000"
+            stat={formattedPrice}
             icon={<BsCashCoin size={"8vh"} />}
           />
         </SimpleGrid>

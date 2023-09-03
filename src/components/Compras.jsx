@@ -119,6 +119,7 @@ export default function PurchaseCards(props) {
         <CardBody>
           <Flex direction="row" align="center" justify="space-between">
             <Box w={'70%'}>
+              <Text color={'white'} fontSize="2vh">{props.date}</Text>  
               <Heading color={'white'} fontSize="2.3vh">{props.name}</Heading>
               <Text color={'white'} fontSize="2vh">${props.price}</Text>
             </Box>
@@ -130,9 +131,9 @@ export default function PurchaseCards(props) {
                       Puntuar
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent bg={'#1b1b1b'}>
                   <PopoverCloseButton />
-                  <PopoverHeader>Puntua este producto</PopoverHeader>
+                  <PopoverHeader color={'white'}>Puntua este producto</PopoverHeader>
                   <PopoverBody>
                     <Flex justifyContent="center">
                       <Rating
@@ -144,9 +145,10 @@ export default function PurchaseCards(props) {
                       placeholder="Your comment"
                       value={comment}
                       onChange={handleCommentChange}
+                      focusBorderColor="#ffa200"
                       mt={4}
                     />
-                    <Button colorScheme="blue" mt={4} onClick={submitHandler}>
+                    <Button bg="#ffa200" color={'black'}  mt={4} onClick={submitHandler}>
                       Submit
                     </Button>
                   </PopoverBody>

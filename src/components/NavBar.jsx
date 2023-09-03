@@ -5,6 +5,7 @@ import {
   Stack,
   Image,
   useColorModeValue,
+  Text,
   useColorMode,
   Button,
 } from "@chakra-ui/react";
@@ -23,40 +24,35 @@ export default function WithSubnavigation() {
   const dispatch = useDispatch();
   const rolUsuario = useSelector((state) => state.actualUser);
 
-  
-
   return (
     <Box>
       <Flex
         bg={useColorModeValue("black", "black")}
         color={useColorModeValue("white", "white")}
-        minH={"60px"}
-        h={"100px"}
+        h={"12vh"}
         w={"100%"}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.900", "gray.900")}
+        borderColor={"#ffa200"}
         align={"center"}
         position="fixed"
         zIndex={10}
       >
-        
         <Flex
           flex={{ base: 1 }}
           justify={{ base: "center", md: "start" }}
+          align={"center"}
           ml={10}
         >
-          <Box boxSize={"70px"} mb={"1%"}>
+          <Box boxSize={"5%"}>
             <Link to={"/"}>
               <Image src="/Logo White.png"></Image>
             </Link>
           </Box>
           <Box ml={"3%"} bg={""} w={"90%"}>
-            <Flex align={"center"} mt={"2%"}>
+            <Flex align={"center"}>
               <Box>
-                <Stack direction={"row"} spacing={4}>
+                <Stack direction={"row"}>
                   <Box>
                     <Link to={"/"}>
                       <Box
@@ -64,7 +60,7 @@ export default function WithSubnavigation() {
                         fontSize={"2vh"}
                         fontWeight={500}
                         color={"white"}
-                          _hover={{color:"#ffa200"}}
+                        _hover={{ color: "#ffa200" }}
                       >
                         Inicio
                       </Box>
@@ -77,26 +73,27 @@ export default function WithSubnavigation() {
                         fontSize={"2vh"}
                         fontWeight={500}
                         color={"white"}
-                          _hover={{color:"#ffa200"}}
+                        _hover={{ color: "#ffa200" }}
                       >
                         Nosotros
                       </Box>
                     </Link>
                   </Box>
-                  { rolUsuario.role_id === "admin" && <Box>
-                    
-                    <Link to={"/admin"}>
-                      <Box
-                        p={2}
-                        fontSize={"2vh"}
-                        fontWeight={500}
-                        color={"white"}
-                          _hover={{color:"#ffa200"}}
-                      >
-                        Admin
-                      </Box>
-                    </Link>
-                  </Box>}
+                  {rolUsuario.role_id === "admin" && (
+                    <Box>
+                      <Link to={"/admin"}>
+                        <Box
+                          p={2}
+                          fontSize={"2vh"}
+                          fontWeight={500}
+                          color={"white"}
+                          _hover={{ color: "#ffa200" }}
+                        >
+                          Admin
+                        </Box>
+                      </Link>
+                    </Box>
+                  )}
                 </Stack>
               </Box>
               <Box ml={"5vh"}>
@@ -107,15 +104,17 @@ export default function WithSubnavigation() {
         </Flex>
         <Stack
           flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
+          justify={"center"}
+          align={"center"}
           direction={"row"}
           spacing={10}
           mr={"2%"}
+          h="100%"
         >
-          <Box mt={'1vh'}>
-          <Link  to="/cart">
-            <FaShoppingCart  size={"5vh"} color="#ffa200" />
-          </Link>
+          <Box>
+            <Link to="/cart">
+              <FaShoppingCart size={"5vh"} color="#ffa200" />
+            </Link>
           </Box>
           {isAuthenticated ? (
             <>

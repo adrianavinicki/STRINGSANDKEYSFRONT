@@ -125,7 +125,7 @@ export default function Payment(props) {
           backgroundSize="cover"
           w={"100%"}
           h={"83vh"}
-          mt={"100px"}
+          mt={"10vh"}
           pt={"5vh"}
           overflow={"hidden"}
         >
