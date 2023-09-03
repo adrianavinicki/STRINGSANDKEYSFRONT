@@ -36,7 +36,7 @@ const Products = () => {
           pt={"2vh"}
           overflow={"hidden"}
         >
-          <Flex justify={"space-around"}>
+          <Flex justify={"space-around"} align={'center'} >
             <Box>
               <FilterAndOrder></FilterAndOrder>
             </Box>
@@ -46,16 +46,16 @@ const Products = () => {
               w={"70%"}
               h={"78vh"}
               rounded={"5px"}
+              pt={'1vh'}
             >
               <CardsContainer></CardsContainer>
             </Box>
             <Box
               color={"black"}
-              bg={"gray.200"}
               w={"10%"}
               h={"75vh"}
               rounded={"5px"}
-              overflow={"hidden"}
+              overflow={'hidden'}
             >
               <Image src="/banner3.jpg"></Image>
             </Box>

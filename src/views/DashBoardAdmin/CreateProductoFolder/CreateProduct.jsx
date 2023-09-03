@@ -136,7 +136,7 @@ export default function CreateProduct() {
 
   return (
     <Box>
-      <Box h={"100px"}>
+      <Box h={"10vh"}>
         <WithSubnavigation></WithSubnavigation>
       </Box>
       <Box
@@ -170,7 +170,7 @@ export default function CreateProduct() {
                     onChange={handleChange}
                     onBlur={handleOnBlur}
                   />
-                  {errors.name && <Text color={'red'} fontSize={'1.5vh'} >{errors.name}</Text>}
+                  {/* {errors.name && <Text color={'red'} fontSize={'1.5vh'} >{errors.name}</Text>} */}
                   <FormLabel h={'2vh'} color={"#ffa200"}>Marca:</FormLabel>
                   <Select
                     h={'5vh'}
@@ -190,7 +190,7 @@ export default function CreateProduct() {
                       </option>
                     ))}
                   </Select>
-                  {errors.brand && <Text color={'red'} fontSize={'1.5vh'} >{errors.brand}</Text>}
+                  {/* {errors.brand && <Text color={'red'} fontSize={'1.5vh'} >{errors.brand}</Text>} */}
                   <FormLabel h={'2vh'} color={"#ffa200"}>Categoria:</FormLabel>
                   <Select
                     h={'5vh'}
@@ -210,7 +210,7 @@ export default function CreateProduct() {
                       </option>
                     ))}
                   </Select>
-                  {errors.category && <Text color={'red'} fontSize={'1.5vh'} >{errors.category}</Text>}
+                  {/* {errors.category && <Text color={'red'} fontSize={'1.5vh'} >{errors.category}</Text>} */}
                   <FormLabel h={'2vh'} color={"#ffa200"}>Descripcion Del Producto:</FormLabel>
                   <Input
                     _hover={"none"}
@@ -224,7 +224,7 @@ export default function CreateProduct() {
                     h={'5vh'}
                     w={'20vw'}
                   />
-                  {errors.description && <Text color={'red'} fontSize={'1.5vh'} >{errors.description}</Text>}
+                  {/* {errors.description && <Text color={'red'} fontSize={'1.5vh'} >{errors.description}</Text>} */}
                   <FormLabel h={'2vh'} color={"#ffa200"}>Cantidad:</FormLabel>
                   <Input
                   h={'5vh'}
@@ -241,7 +241,7 @@ export default function CreateProduct() {
                     }
                     onBlur={handleOnBlur}
                   />
-                  {errors.quantity && <Text color={'red'} fontSize={'1.5vh'} >{errors.quantity}</Text>}
+                  {/* {errors.quantity && <Text color={'red'} fontSize={'1.5vh'} >{errors.quantity}</Text>} */}
                   <FormLabel h={'2vh'} color={"#ffa200"}>Precio:</FormLabel>
                   <Input
                   h={'5vh'}
@@ -257,7 +257,7 @@ export default function CreateProduct() {
                         handleNumbersChange(value, "price") /*handleChange*/
                     }
                   />
-                  {errors.price && <Text color={'red'} fontSize={'1.5vh'} >{errors.price}</Text>}
+                  {/* {errors.price && <Text color={'red'} fontSize={'1.5vh'} >{errors.price}</Text>} */}
                   <FormLabel h={'2vh'} htmlFor="image" color={"#ffa200"}> Imagen:</FormLabel>
                   <Input
                   h={'5vh'}
@@ -270,7 +270,7 @@ export default function CreateProduct() {
                     w={'20vw'}
                     onChange={handleImageChange}
                   />
-                  {errors.image && <Text color={'red'} fontSize={'1.5vh'} >{errors.image}</Text>}
+                  {/* {errors.image && <Text color={'red'} fontSize={'1.5vh'} >{errors.image}</Text>} */}
                   <Box pt={'1vh'}>
                     <Flex>
                       <Link to={"/admin"}>

@@ -229,22 +229,22 @@ const FilterAndOrder = () => {
             >
               Menor precio
             </Button>
-            <br></br>
             <Button
               h={"5vh"}
               bg={"#ffa200"}
               color={"black"}
               onClick={() => dispatch(orderByPrice("Descendente"))}
+              mt={'2vh'}
             >
               Mayor precio
             </Button>
-            <br />
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={"black"}
               h={"5vh"}
               color={"#ffa200"}
               name="reset"
+              mt={'2vh'}
               onClick={() => {
                 resetInput();
               }}
