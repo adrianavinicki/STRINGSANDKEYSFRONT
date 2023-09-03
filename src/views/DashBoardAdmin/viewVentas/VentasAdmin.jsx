@@ -144,6 +144,9 @@ export default function AdminVentas () {
                     Detalles Articulos
                   </Th> 
                   <Th fontSize={"1.5vh"} color={"black"}>
+                    Cantidad
+                  </Th>
+                  <Th fontSize={"1.5vh"} color={"black"}>
                     Precio Unitario
                   </Th> 
                   <Th fontSize={"1.5vh"} color={"black"}>
@@ -189,17 +192,33 @@ export default function AdminVentas () {
                         <ul>
                         {product.orderdetails.map((item, index) =>(
                           <li key={index}>
-                            {item.product?.name} X {item.quantity}
+                            {item.product?.name}
                           </li>
                         ))}
                         </ul>
                         </Td> 
+                        <Td>
+                          <ul>
+                        {product.orderdetails.map((item, index) =>(
+                          <li key={index}>
+                            {item.quantity}
+                          </li>
+                        ))}
+                        </ul>
+                        </Td>
 
                         <Td>
                           <ul>
                             {product.orderdetails.map((item, index) => (
                               <li key={index}>
-                                ${item.price}
+                                {parseFloat(item.price).toLocaleString("es-AR", {
+                                  style: 'currency',
+                                  currency: "ARS",
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                  useGrouping: true,
+                                })}
+                               
                               </li>
                             ))}
                           </ul>
@@ -222,7 +241,7 @@ export default function AdminVentas () {
                       
                       <Td>
                        
-                          {product.purchase_status === "success"? "Aprovado" :product.purchase_status === "in process" ? "en proceso" :  "Pausado"}
+                          {product.purchase_status === "success"? "Aprobado" :product.purchase_status === "in process" ? "en proceso" :  "Pausado"}
                        
                       </Td>
                     </Tr>
