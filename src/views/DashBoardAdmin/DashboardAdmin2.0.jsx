@@ -51,33 +51,33 @@ const SidebarWithHeader = () => {
 
   const handleProduct = () => {
     setAdminView("Products");
-    console.log(adminView, "adminView");
   };
   const handleUser = () => {
     setAdminView("User");
-    console.log(adminView, "adminView");
   };
   const handleResume = () => {
     setAdminView("Resumen");
-    console.log(adminView, "adminView");
   };
   const handleStats = () => {
     setAdminView("Stats");
-    console.log(adminView, "adminView");
   };
   const handleSales = () => {
     setAdminView("Sales");
-    console.log(adminView, "adminView");
   };
-  const handlePromotions = () => {
-    setAdminView("Promotions");
-    console.log(adminView, "adminView");
-  };
-
-  useEffect(() => {
-    console.log(adminView, "adminView, del Use Effect");
-     
-  }, [adminView]); // Este efecto se ejecutará cuando adminView cambie
+  // const handlePromotions = () => {
+  //   setAdminView("Promotions");
+  //   console.log(adminView, "adminView");
+  // };
+  
+  // useEffect(() => {
+  //   localStorage.setItem("adminView", adminView);
+  //   const savedAdminView = localStorage.getItem("adminView");
+  //   console.log(savedAdminView, "saved")
+  //   if (savedAdminView === "Products") {
+  //     setAdminView("Products");
+  //   }
+  // }, [adminView]);
+  
 
   const SidebarContent = ({ onClose, ...rest }) => {
     return (

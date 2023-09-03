@@ -17,8 +17,6 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import SmallWithLogoLeft from "../../components/Footer";
-import WithSubnavigation from "../../components/NavBar";
 import { Link } from "react-router-dom";
 import {
   getProductName,
@@ -45,6 +43,10 @@ const ProductsData = () => {
     setName(e.target.value);
     dispatch(getProductName(name));
   }
+
+  useEffect(()=>{
+    dispatch(getProducts());
+  },[]);
 
   return (
     <Box>

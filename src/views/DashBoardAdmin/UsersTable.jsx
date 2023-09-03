@@ -178,13 +178,13 @@ function UsersData() {
                       <Td>{user.mobile}</Td>
                       {/* <Td><button onClick={handleUserRol(user.id)}>{user.role_id}</button></Td> */}
                       {/* <Td><button name={user.id} onClick={(e) => handleUserRol(e.target.name)}>{user.role_id}</button></Td> */}
-                      <Td> <span style={{ fontWeight: "bold" }}>{user.role_id === "client" ? "Cliente" : "Admin"}</span> <Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserRol(user.id)}><TbArrowsExchange size={"2.5vh"} ></TbArrowsExchange></Button></Td>
+                      <Td> <span style={{ fontWeight: "bold" }}>{user.role_id === "client" ? "Cliente" : "Admin"}</span> <Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserRol(user.id)}><TbArrowsExchange color="black" size={"2.5vh"} ></TbArrowsExchange></Button></Td>
                       {/* <Td><select>
                         <option >Client</option>
                         <option>Admin</option>
                         </select></Td> */}
                       {/* <Td>{user.user_status}</Td> */}
-                      <Td color={ user.user_status === true ? "green" : "red"} ><span style={{ fontWeight: "bold" }} >{user.user_status === true ? "Activo" : "Inactivo"}</span><Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserStatus(user.id)}><TbArrowsExchange size={"2.5vh"} ></TbArrowsExchange></Button></Td>
+                      <Td color={ user.user_status === true ? "green" : "red"} ><span style={{ fontWeight: "bold" }} >{user.user_status === true ? "Activo" : "Inactivo"}</span><Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserStatus(user.id)}><TbArrowsExchange color="black" size={"2.5vh"} ></TbArrowsExchange></Button></Td>
                     </Tr>
                   ))}
                 </Tbody>
