@@ -97,7 +97,10 @@ const Perfil = () => {
   console.log(updateUser, "holaa");
 
   const handleUserChange = (event) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    if (name === "mobile" && value.length > 10) {
+      value = value.slice(0, 10);
+    }
     setUpdateUser((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -141,7 +144,10 @@ const Perfil = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "mobile" && value.length > 10) {
+      value = value.slice(0, 10);
+    }
     setForm((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
@@ -265,7 +271,9 @@ const Perfil = () => {
                           placeholder="Nuevo Celular"
                           _placeholder={{ color: "gray.500" }}
                           name="mobile"
+                          type="number"
                           onChange={handleUserChange}
+                          value={updateUser.mobile}
                         />
                       </Flex>
                       <Flex id="delivery_address" align="center">
