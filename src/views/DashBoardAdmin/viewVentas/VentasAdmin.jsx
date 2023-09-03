@@ -154,7 +154,7 @@ export default function AdminVentas () {
                   </Th>
                 </Tr>
               </Thead>
-              {console.log(products)}
+              
               {products !== undefined && products.length > 0 && (
                 <Tbody>
                   {products.map((product) => (
@@ -183,7 +183,7 @@ export default function AdminVentas () {
                       </Td>
 
                       <Td>
-                        {product.orderdetails[0].order_date}
+                        {product.payment?.purchase_date}
                       </Td>
 
                        <Td>
