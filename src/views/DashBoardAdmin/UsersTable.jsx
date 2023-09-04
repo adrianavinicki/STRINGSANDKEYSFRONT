@@ -39,6 +39,12 @@ function UsersData() {
 
   //const [order, setOrder] = useState("");
 
+  useEffect(()=>{
+    return ()=> {
+      dispatch(getAllUsers())
+    }
+  },[])
+
   const handleChange = (e) => {
     const value = e.target.value;
     //console.log("event", e.target.value)
