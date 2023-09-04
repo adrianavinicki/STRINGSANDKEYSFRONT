@@ -50,8 +50,8 @@ export default function PurchaseCards(props) {
       //await axios.post(`http://localhost:3010/rating/create`,data)//viteAlert
       await axios.post(`${VITE_LOCAL_HOST}/rating/create`, data);
       toast({
-        title: "Success",
-        description: "You rated this product",
+        title: "Listo!",
+        description: "Has puntuado el producto",
         status: "success",
         duration: 9000,
         isClosable: true,
@@ -79,7 +79,7 @@ export default function PurchaseCards(props) {
     toast({
       title: "Error",
       position: "top",
-      description: "sorry you already rated this product.",
+      description: "Lo siento, pero ya has puntuado este producto",
       status: "error",
       duration: 9000,
       isClosable: true,
@@ -165,7 +165,7 @@ export default function PurchaseCards(props) {
                     />
                   </Flex>
                   <Input
-                    placeholder="Your comment"
+                    placeholder="Tu comentario..."
                     value={comment}
                     onChange={handleCommentChange}
                     focusBorderColor="#ffa200"
