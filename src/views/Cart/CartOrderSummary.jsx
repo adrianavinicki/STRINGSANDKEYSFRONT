@@ -133,7 +133,7 @@ export const CartOrderSummary = () => {
           fontSize="2vh"
           rightIcon={<FaArrowRight />}
         >
-          Ir a Comprar
+          Comprar
         </Button>
       </Link>
     </Stack>
