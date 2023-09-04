@@ -5,7 +5,7 @@ import {
   Stack,
   Image,
   useColorModeValue,
-  Text,
+  Badge,
   useColorMode,
   Button,
 } from "@chakra-ui/react";
@@ -25,6 +25,12 @@ export default function WithSubnavigation() {
   const dispatch = useDispatch();
   const rolUsuario = useSelector((state) => state.actualUser);
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const cartItems = useSelector((state) => state.cartItems);
+
+  const totalCantidad = cartItems?.reduce((acumulador, producto) => {
+    return acumulador + producto.quantity;
+  }, 0);
 
   return (
     <Box>
@@ -115,6 +121,14 @@ export default function WithSubnavigation() {
         >
           <Box>
             <Link to="/cart">
+              <Badge
+                ml={"5vh"}
+                colorScheme="black"
+                position="absolute"
+                borderRadius="full"
+              >
+                {totalCantidad}
+              </Badge>
               <FaShoppingCart size={"5vh"} color="#ffa200" />
             </Link>
           </Box>
