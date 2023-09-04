@@ -24,7 +24,7 @@ export default function MisCompras() {
   //const purchaseHistoryRaw = [];
   let purchaseHistory = [];
 
-  purchaseHistoryRaw.map((el) => {
+  purchaseHistoryRaw?.map((el) => {
     const pre = products.find((p) => p.id === el.productId);
     const post = { ...pre, date: el.date };
     purchaseHistory.push(post);

@@ -124,12 +124,13 @@ function UsersData() {
             </Box>
           </Flex>
         </Box>
-        <Box bg={"#1b1b1b"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
+        <Box bg={"#1b1b1b"} h={"73vh"} p={"5vh"}>
           <TableContainer
             bg={"gray.200"}
             overflowY="auto"
             h="70vh"
             rounded={"5px"}
+            overflowX="auto"
           >
             <Table color={"black"} overflowY="auto" fontSize={"1.5vh"}>
               <Thead>

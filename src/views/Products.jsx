@@ -42,7 +42,7 @@ const Products = () => {
             </Box>
             <Box
               color={"black"}
-              bg={useColorModeValue('rgb(0,0,0,0.2)', 'rgb(0,0,0,0.7)')}
+              bg={useColorModeValue('rgb(0,0,0,0.4)', 'rgb(0,0,0,0.7)')}
               w={"70%"}
               h={"78vh"}
               rounded={"5px"}
