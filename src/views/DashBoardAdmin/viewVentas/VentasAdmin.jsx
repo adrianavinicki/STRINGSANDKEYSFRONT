@@ -29,6 +29,11 @@ export default function AdminVentas () {
 
     const dispatch = useDispatch();
 
+    const [filters, setFilters] = useState({
+      cliente: "",
+      estado: "todos",
+    })
+
     const [name, setName] = useState("");
   
     const [order, setOrder] = useState("");
@@ -181,7 +186,13 @@ export default function AdminVentas () {
                         {product.user?.delivery_address}
                   </Td>*/}
                       <Td>
-                        ${product.totalprice}
+                        {parseFloat(product.totalprice).toLocaleString("es-AR", {
+                                  style: 'currency',
+                                  currency: "ARS",
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                  useGrouping: true,
+                                })}
                       </Td>
 
                       <Td>
