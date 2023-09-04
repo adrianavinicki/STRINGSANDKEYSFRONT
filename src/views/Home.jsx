@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, useColorModeValue } from "@chakra-ui/react";
 import WithSubnavigation from "../components/NavBar";
 import SmallWithLogoLeft from "../components/Footer";
 import CategoryCards from "../components/HomeCards";
@@ -56,7 +56,7 @@ const Home = () => {
 
   return (
     <Box
-      backgroundImage="url('/bg.jpg')"
+      backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
@@ -70,7 +70,7 @@ const Home = () => {
           <Flex direction={"column"} align={"center"}>
               <Image borderBottom={'2px solid #ffa200'} src="/slider2.jpg"></Image>
             <Box mt={'5vh'}>
-              <Heading color={"black"} fontSize={'5vh'}>Nuestros Productos</Heading>
+              <Heading color={useColorModeValue("black", "white")} fontSize={'5vh'}>Nuestros Productos</Heading>
             </Box>
             <Box bg={""} mt={'5vh'}>
               <Flex direction={"column"} align={"center"}>

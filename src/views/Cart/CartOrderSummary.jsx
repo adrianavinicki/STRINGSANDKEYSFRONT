@@ -130,10 +130,10 @@ export const CartOrderSummary = () => {
           color="#ffa200"
           bg={"black"}
           h={'5vh'}
-          fontSize="2.5vh"
+          fontSize="2vh"
           rightIcon={<FaArrowRight />}
         >
-          Orden
+          Ir a Comprar
         </Button>
       </Link>
     </Stack>

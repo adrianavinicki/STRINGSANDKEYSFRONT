@@ -5,7 +5,7 @@ import {
   Stack,
   Image,
   useColorModeValue,
-  Text,
+  Badge,
   useColorMode,
   Button,
 } from "@chakra-ui/react";
@@ -18,11 +18,19 @@ import { Profile } from "./Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserRol } from "../redux/actions";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 export default function WithSubnavigation() {
   const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
   const rolUsuario = useSelector((state) => state.actualUser);
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  const cartItems = useSelector((state) => state.cartItems);
+
+  const totalCantidad = cartItems?.reduce((acumulador, producto) => {
+    return acumulador + producto.quantity;
+  }, 0);
 
   return (
     <Box>
@@ -113,9 +121,20 @@ export default function WithSubnavigation() {
         >
           <Box>
             <Link to="/cart">
+              <Badge
+                ml={"5vh"}
+                colorScheme="black"
+                position="absolute"
+                borderRadius="full"
+              >
+                {totalCantidad}
+              </Badge>
               <FaShoppingCart size={"5vh"} color="#ffa200" />
             </Link>
           </Box>
+          <Button p={0} m={0} onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
           {isAuthenticated ? (
             <>
               <Profile></Profile>

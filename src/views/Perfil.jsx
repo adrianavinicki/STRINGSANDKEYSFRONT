@@ -97,7 +97,10 @@ const Perfil = () => {
   console.log(updateUser, "holaa");
 
   const handleUserChange = (event) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    if (name === "mobile" && value.length > 10) {
+      value = value.slice(0, 10);
+    }
     setUpdateUser((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -141,7 +144,10 @@ const Perfil = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "mobile" && value.length > 10) {
+      value = value.slice(0, 10);
+    }
     setForm((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
@@ -168,7 +174,7 @@ const Perfil = () => {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage="url('/bg.jpg')"
+          backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -181,10 +187,10 @@ const Perfil = () => {
           <Flex>
             <Stack spacing={"2vh"} mx={"auto"} maxW={"lg"} px={"2vh"} w={"30%"}>
               <Stack align={"center"}>
-                <Heading fontSize={"4vh"} textAlign={"center"} color={"black"}>
+                <Heading fontSize={"4vh"} textAlign={"center"} color={useColorModeValue('black', 'white')}>
                   Datos del Usuario
                 </Heading>
-                <Text fontSize={"2vh"} color={"gray.600"}>
+                <Text fontSize={"2vh"} color={useColorModeValue("gray.600", "gray.300")}>
                   {actualUser.id ? "Modifica tus Datos" : "Completa tus Datos"}
                 </Text>
               </Stack>
@@ -228,6 +234,7 @@ const Perfil = () => {
                           w="50%"
                           fontSize="2vh"
                           h="4vh"
+                          color={'white'}
                           placeholder="Nuevo Nombre"
                           _placeholder={{ color: "gray.500" }}
                           name="first_name"
@@ -245,6 +252,7 @@ const Perfil = () => {
                           w="50%"
                           fontSize="2vh"
                           h="4vh"
+                          color={'white'}
                           placeholder="Nuevo Apellido"
                           _placeholder={{ color: "gray.500" }}
                           name="last_name"
@@ -261,11 +269,14 @@ const Perfil = () => {
                         <Input
                           w="50%"
                           fontSize="2vh"
+                          color={'white'}
                           h="4vh"
                           placeholder="Nuevo Celular"
                           _placeholder={{ color: "gray.500" }}
                           name="mobile"
+                          type="number"
                           onChange={handleUserChange}
+                          value={updateUser.mobile}
                         />
                       </Flex>
                       <Flex id="delivery_address" align="center">
@@ -278,6 +289,7 @@ const Perfil = () => {
                         <Input
                           w="50%"
                           fontSize="2vh"
+                          color={'white'}
                           h="4vh"
                           placeholder="Nueva Dirección"
                           _placeholder={{ color: "gray.500" }}

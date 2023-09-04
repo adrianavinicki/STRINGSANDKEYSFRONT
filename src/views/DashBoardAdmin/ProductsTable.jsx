@@ -8,6 +8,7 @@ import {
   Button,
   Th,
   Image,
+  Icon,
   Heading,
   Select,
   Td,
@@ -17,6 +18,7 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
+import { EditIcon } from '@chakra-ui/icons';
 import { Link } from "react-router-dom";
 import {
   getProductName,
@@ -40,8 +42,9 @@ const ProductsData = () => {
 
   function handlerInput(e) {
     //e.preventDefaut()
-    setName(e.target.value);
-    dispatch(getProductName(name));
+    const search = e.target.value
+    setName(search);
+    dispatch(getProductName(search));
   }
 
   useEffect(()=>{
@@ -95,6 +98,8 @@ const ProductsData = () => {
                   <option style={{ backgroundColor: "white" }}>Ordenar</option>
                   <option style={{ backgroundColor: "white" }}>Menor Stock</option>
                   <option style={{ backgroundColor: "white" }}>Mayor Stock</option>
+                  <option style={{ backgroundColor: "white" }}>Menor Precio</option>
+                  <option style={{ backgroundColor: "white" }}>Mayor Precio</option>
                   <option style={{ backgroundColor: "white" }}>Activos</option>
                   <option style={{ backgroundColor: "white" }}>Pausados</option>
                   <option style={{ backgroundColor: "white" }}>ID</option>
@@ -114,12 +119,13 @@ const ProductsData = () => {
             </Box>
           </Flex>
         </Box>
-        <Box bg={"#1b1b1b"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
+        <Box bg={"#1b1b1b"} h={"73vh"} p={"5vh"}>
           <TableContainer
             bg={"gray.200"}
             overflowY="auto"
             h="70vh"
             rounded={"5px"}
+            overflowX="auto"
           >
             <Table color={"black"} overflowY="auto" fontSize={"1.5vh"}>
               <Thead>
@@ -161,6 +167,7 @@ const ProductsData = () => {
                           >
                             {product.id}
                           </span>
+                          <Icon ml={'1vh'} boxSize={'2vh'} as={EditIcon} />
                         </Link>
                       </Td>
                       <Td>

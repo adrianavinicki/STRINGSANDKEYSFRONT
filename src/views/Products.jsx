@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue, Image } from "@chakra-ui/react";
 import WithSubnavigation from "../components/NavBar";
 import SmallWithLogoLeft from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +26,7 @@ const Products = () => {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage="url('/bg.jpg')"
+          backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -42,7 +42,7 @@ const Products = () => {
             </Box>
             <Box
               color={"black"}
-              bg={"gray.200"}
+              bg={useColorModeValue('rgb(0,0,0,0.4)', 'rgb(0,0,0,0.7)')}
               w={"70%"}
               h={"78vh"}
               rounded={"5px"}

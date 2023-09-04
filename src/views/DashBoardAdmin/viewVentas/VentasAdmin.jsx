@@ -21,28 +21,27 @@ import {
 import { Link } from "react-router-dom";
 import { getAllPurchases } from "../../../redux/actions";
 
-export default function AdminVentas () {
+export default function AdminVentas() {
+  const purchases = useSelector((state) => state.currentPurchases);
 
-    const purchases = useSelector((state) => state.currentPurchases);
+  const products = purchases.filter(
+    (purchase) => purchase.purchase_status === "success"
+  );
 
-    const products = purchases.filter( purchase => purchase.purchase_status === "success")
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const [name, setName] = useState("");
 
     const [filters, setFilters] = useState({
       cliente: "",
       estado: "todos",
     })
 
-    const [name, setName] = useState("");
+    
   
     const [order, setOrder] = useState("");
   
-    const handleChange = (e) => {
-      const { value } = e.target;
-      setOrder(value);
-      
-    };
+    
   
     function handlerInput(e) {
       //e.preventDefaut()
@@ -50,13 +49,23 @@ export default function AdminVentas () {
       
     }
 
-    useEffect(() => {
-      dispatch(getAllPurchases());
-      console.log(products)
-    }, [])
-  
-    return (
-        <Box>
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setOrder(value);
+  };
+
+  function handlerInput(e) {
+    //e.preventDefaut()
+    setName(e.target.value);
+  }
+
+  useEffect(() => {
+    dispatch(getAllPurchases());
+    console.log(products);
+  }, []);
+
+  return (
+    <Box>
       <Flex direction={"column"}>
         <Box bg={"#1b1b1b"} h={"10vh"}>
           <Center>
@@ -115,14 +124,20 @@ export default function AdminVentas () {
                 </Box>*/}
           </Flex>
         </Box>
-        <Box bg={"#1b1b1b"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
+        <Box bg={"#1b1b1b"} h={"73vh"} p={"5vh"}>
           <TableContainer
             bg={"gray.200"}
             overflowY="auto"
+            overflowX="auto"
             h="70vh"
             rounded={"5px"}
           >
-            <Table color={"black"} overflowY="auto" fontSize={"1.5vh"}>
+            <Table
+              color={"black"}
+              overflowY="auto"
+              overflowX="auto"
+              fontSize={"1.5vh"}
+            >
               <Thead>
                 <Tr>
                   <Th fontSize={"1.5vh"} color={"black"}>
@@ -145,15 +160,15 @@ export default function AdminVentas () {
                     Fecha Compra
                   </Th>
 
-                   <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"black"}>
                     Detalles Articulos
-                  </Th> 
+                  </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Cantidad
                   </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Precio Unitario
-                  </Th> 
+                  </Th>
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Articulos ID
                   </Th>
@@ -167,19 +182,16 @@ export default function AdminVentas () {
                   {products.map((product) => (
                     <Tr h={"2"} key={product.id}>
                       <Td>
-                          <span
-                            style={{ color: "#ffa200", fontWeight: "bold" }}
-                          >
-                            {product.userId}
-                          </span>
-                        
+                        <span style={{ color: "#ffa200", fontWeight: "bold" }}>
+                          {product.userId}
+                        </span>
                       </Td>
                       <Td>
-                        
-                          {product.user?.first_name + " " + product.user?.last_name}
-                  
+                        {product.user?.first_name +
+                          " " +
+                          product.user?.last_name}
                       </Td>
-                     {/* <Td>
+                      {/* <Td>
                         {product.user?.email}
                       </Td>
                       <Td>
@@ -195,65 +207,71 @@ export default function AdminVentas () {
                                 })}
                       </Td>
 
+                      <Td>{product.payment?.purchase_date}</Td>
+
                       <Td>
-                        {product.payment?.purchase_date}
+                        <ul>
+                          {product.orderdetails.map((item, index) => (
+                            <li key={index}>
+                              {item.product?.name.length > 20
+                                ? item.product?.name.slice(0, 20) + "..."
+                                : item.product?.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </Td>
+                      <Td>
+                        <ul>
+                          {product.orderdetails.map((item, index) => (
+                            <li key={index}>{item.quantity}</li>
+                          ))}
+                        </ul>
                       </Td>
 
-                       <Td>
+                      <Td>
                         <ul>
-                        {product.orderdetails.map((item, index) =>(
-                          <li key={index}>
-                            {item.product?.name}
-                          </li>
-                        ))}
+                          {product.orderdetails.map((item, index) => (
+                            <li key={index}>
+                              {parseFloat(item.price).toLocaleString("es-AR", {
+                                style: "currency",
+                                currency: "ARS",
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                                useGrouping: true,
+                              })}
+                            </li>
+                          ))}
                         </ul>
-                        </Td> 
-                        <Td>
-                          <ul>
-                        {product.orderdetails.map((item, index) =>(
-                          <li key={index}>
-                            {item.quantity}
-                          </li>
-                        ))}
-                        </ul>
-                        </Td>
-
-                        <Td>
-                          <ul>
-                            {product.orderdetails.map((item, index) => (
-                              <li key={index}>
-                                {parseFloat(item.price).toLocaleString("es-AR", {
-                                  style: 'currency',
-                                  currency: "ARS",
-                                  minimumFractionDigits: 2,
-                                  maximumFractionDigits: 2,
-                                  useGrouping: true,
-                                })}
-                               
-                              </li>
-                            ))}
-                          </ul>
-                        </Td>
+                      </Td>
 
                       <Td>
                         <ul>
-                        {product.orderdetails.map((item, index) => (
-                          <li key={index}>
-                          <Link to={`product/${item.product?.id}`}><span style={{ color: "#ffa200", fontWeight: "bold" }}> 
-                            id:{item.product?.id}
-                            </span> </Link>
-                            <br />
-                           {/* cantidad: {item.quantity}, 
+                          {product.orderdetails.map((item, index) => (
+                            <li key={index}>
+                              <Link to={`product/${item.product?.id}`}>
+                                <span
+                                  style={{
+                                    color: "#ffa200",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  id:{item.product?.id}
+                                </span>{" "}
+                              </Link>
+                              <br />
+                              {/* cantidad: {item.quantity}, 
                              precio: {item.price}*/}
-                          </li>
-                        ))}
+                            </li>
+                          ))}
                         </ul>
                       </Td>
-                      
+
                       <Td>
-                       
-                          {product.purchase_status === "success"? "Aprobado" :product.purchase_status === "in process" ? "en proceso" :  "Pausado"}
-                       
+                        {product.purchase_status === "success"
+                          ? "Aprobado"
+                          : product.purchase_status === "in process"
+                          ? "en proceso"
+                          : "Pausado"}
                       </Td>
                     </Tr>
                   ))}
@@ -264,5 +282,5 @@ export default function AdminVentas () {
         </Box>
       </Flex>
     </Box>
-    )
+  );
 }

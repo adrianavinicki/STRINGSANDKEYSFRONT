@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
-const Rating = ({ ratingValue, numRatings, handleRatingClick }) => {
+const Rating = ({ ratingValue, handleRatingClick }) => {
   const [hoverRating, setHoverRating] = useState(0);
   //console.log(hoverRating);
   const renderStars = (ratingValue) => {
@@ -24,11 +24,11 @@ const Rating = ({ ratingValue, numRatings, handleRatingClick }) => {
             cursor='pointer'
           >
             {ratingValue - i >= 1 ? (
-              <BsStarFill style={{ marginLeft: "1" }} />
+              <BsStarFill color="white" style={{ marginLeft: "1" }} />
             ) : ratingValue - i === 0.5 ? (
-              <BsStarHalf style={{ marginLeft: "1" }} />
+              <BsStarHalf color="white" style={{ marginLeft: "1" }} />
             ) : (
-              <BsStar style={{ marginLeft: "1" }} />
+              <BsStar color="white" style={{ marginLeft: "1" }} />
             )}
           </Box>
         );
@@ -38,9 +38,6 @@ const Rating = ({ ratingValue, numRatings, handleRatingClick }) => {
   return (
     <Flex alignItems="center">
       {renderStars(ratingValue)}
-      <Text ml={2} fontSize="sm" color="#ffa200">
-        ({numRatings} Ratings)
-      </Text>
     </Flex>
   );
 };

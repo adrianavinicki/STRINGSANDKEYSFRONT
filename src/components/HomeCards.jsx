@@ -5,6 +5,7 @@ import {
   Image,
   Flex,
   Heading,
+  useColorModeValue,
   textDecoration,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
@@ -45,7 +46,7 @@ export default function CategoryCards() {
                   handleCategoryFilter({ target: { value: "Afinadores" } });
                 }}
               >
-                <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1001_rx2ca0.jpg"></Image>
+                <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1001_rx2ca0.jpg"></Image>
               </Link>
             </Box>
           </Box>
@@ -75,7 +76,7 @@ export default function CategoryCards() {
                 handleCategoryFilter({ target: { value: "Correas" } });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1005_piq59k.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1005_piq59k.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -105,7 +106,7 @@ export default function CategoryCards() {
                 handleCategoryFilter({ target: { value: "Fundas" } });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1011_hynib2.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928515/StringsAndKeys/1011_hynib2.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -135,7 +136,7 @@ export default function CategoryCards() {
                 handleCategoryFilter({ target: { value: "Púas" } });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1013_w6vdpp.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1013_w6vdpp.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -165,7 +166,7 @@ export default function CategoryCards() {
                 handleCategoryFilter({ target: { value: "Cables" } });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1016_sbqdew.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928516/StringsAndKeys/1016_sbqdew.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -195,7 +196,7 @@ export default function CategoryCards() {
                 handleCategoryFilter({ target: { value: "Teclados" } });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1021_kodwap.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1021_kodwap.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -227,7 +228,7 @@ export default function CategoryCards() {
                 });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1026_wht8zz.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928517/StringsAndKeys/1026_wht8zz.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -259,7 +260,7 @@ export default function CategoryCards() {
                 });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1043_roo9gt.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928519/StringsAndKeys/1043_roo9gt.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -289,7 +290,7 @@ export default function CategoryCards() {
                 handleCategoryFilter({ target: { value: "Amplificadores" } });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1049_qfmpgg.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1049_qfmpgg.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -321,7 +322,7 @@ export default function CategoryCards() {
                 });
               }}
             >
-              <Image src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1052_dvhx0o.jpg"></Image>
+              <Image rounded={'5px'} src="https://res.cloudinary.com/dlmr7znxt/image/upload/v1690928520/StringsAndKeys/1052_dvhx0o.jpg"></Image>
             </Link>
             </Box>
           </Box>
@@ -341,7 +342,7 @@ export default function CategoryCards() {
               </Link>
             </Box>
             <Box mt={"20vh"} boxSize={"50%"}>
-              <Image src="/ads.png"></Image>
+              <Image src={useColorModeValue("/ads.png", "/adswhite.jpg.png")}></Image>
             </Box>
           </Flex>
         </Box>
