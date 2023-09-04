@@ -10,6 +10,7 @@ import {
   StatNumber,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Bar } from "recharts";
 import { useEffect } from "react";
 import { BsPerson } from "react-icons/bs";
 import { ventas } from "../DashBoardAdmin/Stats/ventas";
@@ -57,6 +58,7 @@ function StatsCard(props /*StatsCardProps*/) {
 }
 
 export default function BasicStatistics() {
+
 
   const users = useSelector((state) => state.allUsers);
   const purchases = useSelector((state) => state.currentPurchases)
@@ -190,7 +192,7 @@ export default function BasicStatistics() {
   // Convertir el objeto en un array de objetos
   const categoriasAgrupadasArray = Object.values(categoriasAgrupadas);
 
-  categoriasAgrupadasArray.reverse();
+  //categoriasAgrupadasArray.reverse();
 
   console.log(categoriasAgrupadasArray);
 
@@ -205,7 +207,7 @@ export default function BasicStatistics() {
 
 
   return (
-    <Box h={"25vh"} >
+    <Box h={"25vh"} borderBottom="1px solid #ffa200" >
       <Box
         maxW="7xl"
         mx={"auto"}
@@ -232,11 +234,24 @@ export default function BasicStatistics() {
         </SimpleGrid>
       </Box>
       {/* Generales */}
-      <Box width="100%" mt={24} textAlign="center">
+      <Box bg={''} mt={'15vh'} textAlign="center">
         <Heading as="h2" color="white" size="sm" ml={14} mb={4} mt={4}>
           Ventas Generales
         </Heading>
-        <ChartStats data={combinedData} clase="price" />
+        <Box width="100%">
+      <Flex justify="center">
+        <ResponsiveContainer width={'80%'} height="100%" aspect={4}>
+          <BarChart data={combinedData} barSize={20}>
+            <Tooltip  />
+            <CartesianGrid stroke="#FFFFFF" strokeDasharray="4"/>
+            <XAxis stroke="#FFFFFF" dataKey="month" />
+            <YAxis stroke="#FFFFFF" dataKey="price" />
+
+            <Bar dataKey="price" fill="#ffa200" />
+          </BarChart>
+        </ResponsiveContainer>
+      </Flex>
+    </Box>
       </Box>
     </Box>
 
