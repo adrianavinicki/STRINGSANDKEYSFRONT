@@ -3,6 +3,7 @@ import {
     Box,
     Flex,
     Heading,
+    Text,
     Select,
     Center,
     extendTheme, // Importa extendTheme
@@ -185,7 +186,7 @@ const StatsCharts = () => {
     }
 
     return (
-        <Flex direction="column" align="center">
+        <Flex direction="column" align="center" justify={'center'}>
             <Heading as="h2" color="white" size="sm" alignContent="center" mt={4} >
                 Filtros
             </Heading>
@@ -196,26 +197,32 @@ const StatsCharts = () => {
                 w="100%"
                 p={"1"}
             >
-                <Flex direction="row" justify="space-around">
+                <Flex direction="row" align={'center'} justify={'center'} m={'1vh'}>
+                    <Text color={'white'}>Año:</Text>
                     <Select
                         value={selectedYear}
                         onChange={(e) => setSelectedYear(e.target.value)}
-                        margin={4}
-                        color="white"
+                        color="black"
                         borderColor="#ffa200"
-                        w={200}
+                        w={'15vh'}
+                        ml={'1vh'}
+                        mr={'5vh'}
+                        bg={'white'}
                     >
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
                         {/* Agrega más años aquí si es necesario */}
                     </Select>
+                    <Text color={'white'}>Desde:</Text>
                     <Select
                         value={startMonth}
                         onChange={(e) => setStartMonth(e.target.value)}
-                        margin={4}
-                        color="white"
+                        color="black"
                         borderColor="#ffa200"
-                        w={200}
+                        bg={'white'}
+                        w={'25vh'}
+                        ml={'1vh'}
+                        mr={'5vh'}
                     >
                         <option value="Enero">Enero</option>
                         <option value="Febrero">Febrero</option>
@@ -230,13 +237,15 @@ const StatsCharts = () => {
                         <option value="Noviembre">Noviembre</option>
                         <option value="Diciembre">Diciembre</option>
                     </Select>
+                    <Text color={'white'}>Hasta:</Text>
                     <Select
                         value={endMonth}
                         onChange={(e) => setEndMonth(e.target.value)}
-                        margin={4}
-                        color="white"
+                        color="black"
                         borderColor="#ffa200"
-                        w={200}
+                        w={'25vh'}
+                        ml={'1vh'}
+                        bg={'white'}
                     >
                         <option value="Enero">Enero</option>
                         <option value="Febrero">Febrero</option>
