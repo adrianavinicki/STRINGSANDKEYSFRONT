@@ -14,7 +14,10 @@ import {
   removeProductFromCart,
   decreaseProductQuantity,
   increaseProductQuantity,
+  filterCategory,
+  filterBrand,
   emptyCart,
+  setPage,
 } from "../../redux/actions";
 import SmallWithLogoLeft from "../../components/Footer";
 import WithSubnavigation from "../../components/NavBar";
@@ -34,6 +37,11 @@ export default function Cart() {
     return acumulador + producto.quantity;
   }, 0);
 
+  const handleAllProducts = (e) => {
+    dispatch(filterCategory("todos"));
+    dispatch(filterBrand("todos"));
+    dispatch(setPage(0));
+  };
 
   const handleEmptyCart = (event) => {
     dispatch(emptyCart());
@@ -114,7 +122,7 @@ export default function Cart() {
             <CartOrderSummary />
             <HStack mt="1vh" fontWeight="semibold">
               <Text color={'white'}>ó</Text>
-              <Link to="/products">
+              <Link onClick={handleAllProducts} to="/products">
                 <Text color={'white'}>seguir comprando</Text>
               </Link>
             </HStack>
