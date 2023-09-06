@@ -22,6 +22,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInfoPurchase } from '../../redux/actions'
 //import { getAllUsers, getAllOrders, getAllDetailOrders } from '../redux/actions';
 
+const CustomTooltip = ({ active, label, payload }) => {
+  if (active) {
+    return (
+      <Box p={2} borderWidth="1px" borderColor="#ffa200" borderRadius="md" backgroundColor="black">
+        <p className="label">{`Mes: ${label}`}</p>
+        <p className="sales">{`Valor: ${payload[0].value.toLocaleString()}`}</p>
+      </Box>
+    );
+  }
+  return null;
+};
+
+const CustomYAxisTick = ({ x, y, payload }) => {
+  // Formatea el valor usando .toLocaleString()
+  const formattedValue = payload.value.toLocaleString();
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text x={0} y={0} dy={16} textAnchor="end" >{formattedValue}</text>
+    </g>
+  );
+};
+
 function StatsCard(props /*StatsCardProps*/) {
   const { title, stat, icon } = props;
 
@@ -65,8 +88,6 @@ export default function BasicStatistics() {
 
   const totalPrice = purchases.reduce((total, item) => total + parseInt(item.totalprice), 0);
 
-  console.log("purchases", purchases);
-
   const formattedPrice = `$${totalPrice.toLocaleString('es-ES')}`;
 
   const mesesEnEspañol = [
@@ -83,8 +104,6 @@ export default function BasicStatistics() {
 
   const ventaBDD = useSelector((state) => state.dataStats.data.purchasess);
 
-  console.log("Datos desde la BDD", ventaBDD);
-
   const alldata = [];
 
   ventaBDD.map(e => {
@@ -99,7 +118,6 @@ export default function BasicStatistics() {
       })
     }
   })
-  console.log(alldata)
 
   const valoresXmesConAnio = alldata.reduce((acumulador, objeto) => {
     const fecha = new Date(objeto.order_date);
@@ -117,8 +135,6 @@ export default function BasicStatistics() {
 
     return acumulador;
   }, []);
-
-  console.log(valoresXmesConAnio);
 
   const categoriasAgrupadas = alldata.reduce((resultado, objeto) => {
     const fecha = new Date(objeto.order_date);
@@ -192,19 +208,14 @@ export default function BasicStatistics() {
   // Convertir el objeto en un array de objetos
   const categoriasAgrupadasArray = Object.values(categoriasAgrupadas);
 
-  //categoriasAgrupadasArray.reverse();
-
-  console.log(categoriasAgrupadasArray);
+  categoriasAgrupadasArray.reverse();
 
   const combinedData = [...ventas, ...categoriasAgrupadasArray];
-
-  console.log(combinedData);
 
   const handleStats = () => {
     setAdminView("Stats");
     console.log(adminView, "adminView");
   };
-
 
   return (
     <Box h={"25vh"} borderBottom="1px solid #ffa200" >
@@ -241,11 +252,14 @@ export default function BasicStatistics() {
         <Box width="100%">
       <Flex justify="center">
         <ResponsiveContainer width={'80%'} height="100%" aspect={4}>
-          <BarChart data={combinedData} barSize={20}>
-            <Tooltip  />
+          <BarChart data={combinedData} barSize={20} margin={{ left: 15 }}>
+            <Tooltip content={<CustomTooltip />} />
             <CartesianGrid stroke="#FFFFFF" strokeDasharray="4"/>
             <XAxis stroke="#FFFFFF" dataKey="month" />
-            <YAxis stroke="#FFFFFF" dataKey="price" />
+            <YAxis
+              tickFormatter={(value) => value.toLocaleString()}
+              domain={[0, 'auto']} stroke="#FFFFFF"
+            />
 
             <Bar dataKey="price" fill="#ffa200" />
           </BarChart>

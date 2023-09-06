@@ -109,6 +109,7 @@ const FilterAndOrder = () => {
     }
   });
 
+
   const [sliderValue, setSliderValue] = useState(150000);
 
   const resetInput = () => {
@@ -144,7 +145,7 @@ const FilterAndOrder = () => {
     >
       <Flex direction={"column"}>
         {filteredProducts.length === 0 ? (
-          <Text color={useColorModeValue("black", "white")}>
+          <Text fontSize={'2vh'} color={useColorModeValue("black", "white")}>
             No se encontraron productos.
           </Text>
         ) : (

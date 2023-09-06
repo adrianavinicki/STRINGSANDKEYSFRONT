@@ -24,9 +24,21 @@ export default function MisCompras() {
   //const purchaseHistoryRaw = [];
   let purchaseHistory = [];
 
+  function formatDate(inputDate) {
+    if (inputDate) {
+      const parts = inputDate.split('-');
+      if (parts[1] = "09" ){parts[1] =  " de Septiembre de "} 
+      if (parts.length === 3) {
+        return `${parts[2]}${parts[1]}${parts[0]}`;
+      }
+    }
+    return null; // Devolver null si la fecha no es válida
+  }
+
   purchaseHistoryRaw?.map((el) => {
     const pre = products.find((p) => p.id === el.productId);
-    const post = { ...pre, date: el.date };
+    const dateFormatted = el.date ? formatDate(el.date) : null; // Formatear la fecha si existe
+    const post = { ...pre, date: dateFormatted  };
     purchaseHistory.push(post);
   });
 
