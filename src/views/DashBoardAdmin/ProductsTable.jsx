@@ -188,7 +188,7 @@ const ProductsData = () => {
                       <Td>
                         <Link to={`product/${product.id}`}>{product.quantity}</Link>
                       </Td>
-                      <Td>
+                      <Td color={product.product_status === true ? "green" : "red"} fontWeight={"bold"}>
                         <Link to={`product/${product.id}`}>
                           {product.product_status ? "Activo" : "Pausado"}
                         </Link>
