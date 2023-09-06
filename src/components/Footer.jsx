@@ -9,6 +9,7 @@ import {
   useColorModeValue,
   VisuallyHidden
 } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa"
 
 
@@ -54,7 +55,7 @@ export default function SmallWithLogoLeft() {
         <Image src="/Logo White 2.png" h={'50px'} />
         <Text>© 2023 Strings And Keys. All rights reserved</Text>
         <Stack direction={"row"} spacing={6}>
-          <SocialButton label={"Twitter"} href={"#"}>
+          <SocialButton label={"Twitter"} href={"https://twitter.com/StringsAndKeyss"}>
             <FaTwitter />
           </SocialButton>
           <SocialButton label={"YouTube"} href={"#"}>

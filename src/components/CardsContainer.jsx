@@ -72,7 +72,7 @@ const CardsContainer = () => {
       </Box>
       <Box>
         <Flex>
-          <SimpleGrid columns={4} bg={""} w={"100%"} h={"100%"}>
+          <SimpleGrid columns={4} bg={""} w={"100%"} h={"100%"} >
             {
               displayedProducts?.length ? (
                 displayedProducts.map((product) => {
@@ -89,10 +89,11 @@ const CardsContainer = () => {
                   );
                 })
               ) : (
-                <Box
-                  mt={'10vh'}
-                  p={'10px'}           
-                >
+                <>
+                {/* Espacio en blanco para la primera columna */}
+                <Box gridColumn="1" />
+                {/* Alert centrado en las columnas 2 y 3 */}
+                <Box gridColumn="span 2" mt={'15vh'}>
                   <Alert
                     status="success"
                     variant="subtle"
@@ -100,18 +101,20 @@ const CardsContainer = () => {
                     alignItems="center"
                     justifyContent="center"
                     textAlign="center"
-                    height="200px"
-                    borderRadius='10px'
+                    borderRadius="10px"
                   >
-                    <Search2Icon boxSize="40px" mr={0} />
-                    <AlertTitle mt={4} mb={1} fontSize="lg">
+                    <Search2Icon color={useColorModeValue("black", "white")} boxSize="5vh" mr={0} />
+                    <AlertTitle color={useColorModeValue("black", "white")} mt={4} mb={1} fontSize="3.5vh">
                       Sin Resultados!
                     </AlertTitle>
-                    <AlertDescription maxWidth="sm">
-                      No hay productos que coincidan con tu busqueda.
+                    <AlertDescription color={useColorModeValue("black", "white")} maxWidth="sm" fontSize="2vh">
+                      No hay productos que coincidan con tu búsqueda.
                     </AlertDescription>
                   </Alert>
                 </Box>
+                {/* Espacio en blanco para la cuarta columna */}
+                <Box gridColumn="span 1" />
+              </>
               )
             }
           </SimpleGrid>

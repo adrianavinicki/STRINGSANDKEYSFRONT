@@ -39,9 +39,11 @@ export const getProducts = () => {
     try {
     const response = await axios.get(`${VITE_LOCAL_HOST}/products`);
     const products = response.data;
+    const sortedProducts = products.sort((a, b) => a.id - b.id);
+
     dispatch({
       type: GET_PRODUCTS,
-      payload: products,
+      payload: sortedProducts,
     });
   } catch (error) {
     console.log("Error al obtener todos los productos");
@@ -182,9 +184,11 @@ export const getAllUsers = () => {
     try {
       const response = await axios.get(`${VITE_LOCAL_HOST}/users`);
       const allUsers = response.data;
+      const sortedUsers = allUsers.sort((a, b) => a.id - b.id);
+
       dispatch({
         type: GET_ALL_USERS,
-        payload: allUsers
+        payload: sortedUsers
       })
     } catch (error) {
       throw new Error (error.message)
