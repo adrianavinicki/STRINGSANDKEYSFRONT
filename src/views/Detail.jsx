@@ -118,7 +118,7 @@ const Detail = () => {
           >
             <SimpleGrid
               columns={2}
-              // py={{ base: 18, md: 6 }}
+            // py={{ base: 18, md: 6 }}
             >
               <Flex align={"center"} mt={""} ml={"10%"}>
                 <Image
@@ -146,8 +146,18 @@ const Detail = () => {
                     {detailProduct.name}
                   </Heading>
                   <Text color={"#ffa200"} fontWeight={"bold"} fontSize={"3vh"}>
-                    ${detailProduct.price}
+                    {detailProduct && detailProduct.price !== undefined ? `$${detailProduct.price.toLocaleString()}` : ''}
                   </Text>
+
+                  <Text
+                    fontWeight="bold"
+                    fontSize="3vh"
+                    color={detailProduct.quantity === 0 ? "red" : detailProduct.quantity > 0 ? "green" : "black"
+                    }
+                  >
+                    {detailProduct.quantity === 0 ? "Sin stock" : detailProduct && detailProduct.quantity ? `En Stock: ${detailProduct.quantity.toLocaleString()}` : ''}
+                  </Text>
+
                 </Box>
 
                 <Stack

@@ -34,8 +34,6 @@ const StatsCharts = () => {
 
     const ventaBDD = useSelector((state) => state.dataStats.data.purchasess);
 
-    console.log("Datos desde la BDD", ventaBDD);
-
     const alldata = [];
 
     ventaBDD.map(e => {
@@ -50,7 +48,6 @@ const StatsCharts = () => {
             })
         }
     })
-    console.log(alldata)
 
     const valoresXmesConAnio = alldata.reduce((acumulador, objeto) => {
         const fecha = new Date(objeto.order_date);
@@ -68,8 +65,6 @@ const StatsCharts = () => {
 
         return acumulador;
     }, []);
-
-    console.log(valoresXmesConAnio);
 
     const categoriasAgrupadas = alldata.reduce((resultado, objeto) => {
         const fecha = new Date(objeto.order_date);
@@ -145,11 +140,7 @@ const StatsCharts = () => {
 
     categoriasAgrupadasArray.reverse();
 
-    console.log(categoriasAgrupadasArray);
-
     const combinedData = [...ventas, ...categoriasAgrupadasArray];
-
-    console.log(combinedData);
 
     const filteredData = combinedData.filter((item) => {
         return (
@@ -162,8 +153,6 @@ const StatsCharts = () => {
         newItem.valT = item[`val${selectedType}`];
         return newItem;
     });
-
-    console.log(filteredData);
 
     // Función para convertir el nombre del mes a un número
     function monthToNumber(monthName) {
