@@ -57,7 +57,7 @@ export default function SmallWithLogoLeft() {
           <SocialButton label={"Twitter"} href={"#"}>
             <FaTwitter />
           </SocialButton>
-          <SocialButton label={"YouTube"} href={"#"}>
+          <SocialButton label={"YouTube"} href={"https://www.youtube.com/channel/UCBrqSo2as6a07D0sTKEBUdw"}>
             <FaYoutube />
           </SocialButton>
           <SocialButton label={"Instagram"} href={"https://instagram.com/stringsandkeyss?utm_source=qr&igshid=MzNlNGNkZWQ4Mg=="}>
