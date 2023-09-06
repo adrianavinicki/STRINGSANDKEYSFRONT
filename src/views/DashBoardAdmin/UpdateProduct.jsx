@@ -18,7 +18,7 @@ const Update = () => {
         backgroundSize="cover"
         w={"100%"}
         h={"83vh"}
-        mt={"100px"}
+        mt={"10vh"}
         pt={"2vh"}
         overflow={"hidden"}
         >

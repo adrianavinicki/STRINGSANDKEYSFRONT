@@ -24,10 +24,11 @@ import {
   getProductName,
   getProducts,
   orderProductsAdmin,
+  filterCategory,
 } from "../../redux/actions";
 
 const ProductsData = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.filteredProducts);
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -37,6 +38,7 @@ const ProductsData = () => {
   const handleChange = (e) => {
     const { value } = e.target;
     setOrder(value);
+    if(value==='Todos') {setName('')}
     dispatch(orderProductsAdmin(value));
   };
 
@@ -49,6 +51,10 @@ const ProductsData = () => {
 
   useEffect(()=>{
     dispatch(getProducts());
+    dispatch(filterCategory('todos'));
+    return ()=>{
+      dispatch(filterCategory('todos'));
+    }
   },[]);
 
   return (
@@ -95,7 +101,7 @@ const ProductsData = () => {
                   h={"4.5vh"}
                   onChange={handleChange}
                 >
-                  <option style={{ backgroundColor: "white" }}>Ordenar</option>
+                  <option style={{ backgroundColor: "white" }}>Todos</option>
                   <option style={{ backgroundColor: "white" }}>Menor Stock</option>
                   <option style={{ backgroundColor: "white" }}>Mayor Stock</option>
                   <option style={{ backgroundColor: "white" }}>Menor Precio</option>
