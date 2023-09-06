@@ -24,10 +24,11 @@ import {
   getProductName,
   getProducts,
   orderProductsAdmin,
+  filterCategory,
 } from "../../redux/actions";
 
 const ProductsData = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.filteredProducts);
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -37,17 +38,23 @@ const ProductsData = () => {
   const handleChange = (e) => {
     const { value } = e.target;
     setOrder(value);
+    if(value==='Todos') {setName('')}
     dispatch(orderProductsAdmin(value));
   };
 
   function handlerInput(e) {
     //e.preventDefaut()
-    setName(e.target.value);
-    dispatch(getProductName(name));
+    const search = e.target.value
+    setName(search);
+    dispatch(getProductName(search));
   }
 
   useEffect(()=>{
     dispatch(getProducts());
+    dispatch(filterCategory('todos'));
+    return ()=>{
+      dispatch(filterCategory('todos'));
+    }
   },[]);
 
   return (
@@ -94,7 +101,7 @@ const ProductsData = () => {
                   h={"4.5vh"}
                   onChange={handleChange}
                 >
-                  <option style={{ backgroundColor: "white" }}>Ordenar</option>
+                  <option style={{ backgroundColor: "white" }}>Todos</option>
                   <option style={{ backgroundColor: "white" }}>Menor Stock</option>
                   <option style={{ backgroundColor: "white" }}>Mayor Stock</option>
                   <option style={{ backgroundColor: "white" }}>Menor Precio</option>
@@ -118,12 +125,13 @@ const ProductsData = () => {
             </Box>
           </Flex>
         </Box>
-        <Box bg={"#1b1b1b"} h={"73vh"} overflow={"hidden"} p={"5vh"}>
+        <Box bg={"#1b1b1b"} h={"73vh"} p={"5vh"}>
           <TableContainer
             bg={"gray.200"}
             overflowY="auto"
             h="70vh"
             rounded={"5px"}
+            overflowX="auto"
           >
             <Table color={"black"} overflowY="auto" fontSize={"1.5vh"}>
               <Thead>
@@ -186,7 +194,7 @@ const ProductsData = () => {
                       <Td>
                         <Link to={`product/${product.id}`}>{product.quantity}</Link>
                       </Td>
-                      <Td>
+                      <Td color={product.product_status === true ? "green" : "red"} fontWeight={"bold"}>
                         <Link to={`product/${product.id}`}>
                           {product.product_status ? "Activo" : "Pausado"}
                         </Link>

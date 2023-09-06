@@ -93,7 +93,10 @@ const Detail = () => {
           <WithSubnavigation></WithSubnavigation>
         </Box>
         <Box
-          backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
+          backgroundImage={useColorModeValue(
+            "url('/bg.jpg')",
+            "url('/bgdark.jpg')"
+          )}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
@@ -108,7 +111,7 @@ const Detail = () => {
           <Container
             maxW={"7xl"}
             h={"70vh"}
-            w={'70vw'}
+            w={"70vw"}
             display="flex"
             justifyContent="center"
             alignItems="center"
@@ -126,7 +129,12 @@ const Detail = () => {
                   maxH={"50vh"}
                 />
               </Flex>
-              <Stack spacing={"1vh"} bg={"rgba(0, 0, 0, 0.8)"} p={'3vh'} rounded={'5px'}>
+              <Stack
+                spacing={"1vh"}
+                bg={"rgba(0, 0, 0, 0.8)"}
+                p={"3vh"}
+                rounded={"5px"}
+              >
                 <Box as={"header"} bg={""}>
                   <Heading
                     lineHeight={1.1}
@@ -188,25 +196,22 @@ const Detail = () => {
                           >
                             Reviews
                           </Text> */}
-                          <Box
-                            mt={"15px"}
-                            bg={"#1b1b1b"}
-                            h={"25vh"}
-                            overflowY="auto"
-                            maxH={""}
-                            maxW={""}
-                            rounded={"5px"}
-                            w={"100%"}
-                          >
-                            {!productReviews?.length ? (
-                              <Center mt={"8vh"}>
+                          {!productReviews?.length ? (
+                            <Box
+                              mt={"2vh"}
+                              bg={"#1b1b1b"}
+                              h={"8vh"}
+                              maxH={""}
+                              maxW={""}
+                              rounded={"5px"}
+                              w={"100%"}
+                            >
+                              <Center h="100%">
                                 <HStack
                                   //align={"center"}
-
                                   w={""}
                                   h={"6vh"}
                                   bg={"white"}
-                                  m={"10px"}
                                   rounded={"5px"}
                                 >
                                   <Flex>
@@ -214,7 +219,7 @@ const Detail = () => {
                                       color={"gray.600"}
                                       align={"center"}
                                       m={"1vh"}
-                                      fontSize={'2vh'}
+                                      fontSize={"2vh"}
                                     >
                                       Lo siento, este producto aun no tiene
                                       reviews.
@@ -222,8 +227,19 @@ const Detail = () => {
                                   </Flex>
                                 </HStack>
                               </Center>
-                            ) : (
-                              productReviews?.map((review) => (
+                            </Box>
+                          ) : (
+                            productReviews?.map((review) => (
+                              <Box
+                                mt={"15px"}
+                                bg={"#1b1b1b"}
+                                h={"25vh"}
+                                overflowY="auto"
+                                maxH={""}
+                                maxW={""}
+                                rounded={"5px"}
+                                w={"100%"}
+                              >
                                 <HStack
                                   key={review.userId}
                                   w={""}
@@ -233,7 +249,7 @@ const Detail = () => {
                                   rounded={"5px"}
                                 >
                                   <VStack ml={"10px"} align={"start"}>
-                                    <Text color={'black'} fontWeight={600}>
+                                    <Text color={"black"} fontWeight={600}>
                                       {review.user.first_name}
                                     </Text>
                                     <Box>
@@ -241,7 +257,10 @@ const Detail = () => {
                                         <Text color={"gray.600"}>
                                           Ratings: {review.rate}
                                         </Text>
-                                        <LiaStarSolid color="#ffa200" size="1.4em" />
+                                        <LiaStarSolid
+                                          color="#ffa200"
+                                          size="1.4em"
+                                        />
                                       </Flex>
                                     </Box>
                                     <Text color={"gray.600"}>
@@ -249,9 +268,9 @@ const Detail = () => {
                                     </Text>
                                   </VStack>
                                 </HStack>
-                              ))
-                            )}
-                          </Box>
+                              </Box>
+                            ))
+                          )}
                         </Box>
                       </Flex>
                     </Center>
@@ -263,7 +282,7 @@ const Detail = () => {
                       <Button
                         bg={"black"}
                         color={"#ffa200"}
-                        h={'4vh'}
+                        h={"4vh"}
                         _hover={{
                           transform: "translateY(2px)",
                           boxShadow: "lg",
@@ -274,7 +293,7 @@ const Detail = () => {
                     </Link>
                     <Button
                       onClick={() => getCarrito(detailProduct)}
-                      h={'4vh'}
+                      h={"4vh"}
                       rounded={"5px"}
                       bg={useColorModeValue("black", "black")}
                       color={useColorModeValue("#ffa200", "#ffa200")}
