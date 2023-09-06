@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -20,6 +20,8 @@ import {
 
 import { Link } from "react-router-dom";
 import { getAllPurchases } from "../../../redux/actions";
+import  generate  from "./excelGenerator";
+import { saveAs } from "file-saver";
 
 export default function AdminVentas() {
   const purchases = useSelector((state) => state.currentPurchases);
@@ -32,25 +34,80 @@ export default function AdminVentas() {
 
   const [name, setName] = useState("");
 
-  const [order, setOrder] = useState("");
+  const [price, setPrice] = useState("");
 
-  const handleChange = (e) => {
+  const [filters, setFilters] = useState({
+      cliente: "",
+      estado: "",
+      price: "",
+      ID: "",
+    })
+
+    // Estado para el temporizador de debouncing
+  const [debounceTimer, setDebounceTimer] = useState(null);
+    
+  
+    const [order, setOrder] = useState("");
+  
+  const filtrarVentas = useMemo(() => {
+    return products.filter((venta) => {
+      const clienteMatch = !filters.cliente || venta.user.first_name.toLowerCase().includes(filters.cliente.toLowerCase()) || venta.user.last_name.toLowerCase().includes(filters.cliente.toLowerCase());
+
+      const priceFilter = !filters.price || venta.totalprice >= filters.price;
+
+      const filterID = !filters.ID || venta.user.id === filters.ID;
+
+      return clienteMatch && priceFilter && filterID;
+
+    })
+  }, [products, filters])
+    
+  const [excelData, setExcelData] = useState(null);
+    
+
+  const handlePrice = (e) => {
     const { value } = e.target;
-    setOrder(value);
+
+    const numericValue = parseFloat(value);
+
+    setPrice(value);
+    setFilters(preValue => ({...preValue, price: numericValue}));
   };
 
   function handlerInput(e) {
     //e.preventDefaut()
-    setName(e.target.value);
+    const {value} = e.target;
+    const valorID = parseFloat(value)
+    if(!isNaN(valorID || value === "")){
+      setFilters(preValue => ({...preValue, ID: value === '' ? '' : valorID}));
+      setName(value)
+    } else {
+      setFilters(preValue => ({...preValue, cliente: value}));
+      setName(value)
+    }
+    
+    //setName(value);
+  }
+
+  const handleDownloadExcel = () => {
+
+    const excelBlob = generate(filtrarVentas);
+   // const wb = new Blob([excelBlob], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+    // Utiliza saveAs para realizar la descarga
+    saveAs(excelBlob, 'data.xlsx');
   }
 
   useEffect(() => {
     dispatch(getAllPurchases());
-    console.log(products);
+    console.log(filtrarVentas);
   }, []);
+
+
 
   return (
     <Box>
+      {console.log(filtrarVentas)}
       <Flex direction={"column"}>
         <Box bg={"#1b1b1b"} h={"10vh"}>
           <Center>
@@ -72,12 +129,12 @@ export default function AdminVentas() {
                 Volver
               </Button>
             </Link> */}
-            {/*<Box>
-              <Flex>
+            <Box>
+              <Flex >
                 <Input
                   bg={"white"}
                   color={"black"}
-                  placeholder="Buscar Producto"
+                  placeholder="Buscar Usuario"
                   _placeholder={{ opacity: 1, color: "gray.500" }}
                   onChange={(e) => {
                     handlerInput(e);
@@ -86,27 +143,31 @@ export default function AdminVentas() {
                   fontSize="2vh"
                   h={"4.5vh"}
                 ></Input>
-                <Select
-                  ml={"5vh"}
+
+                  <Input
                   bg={"white"}
                   color={"black"}
+                  placeholder="Precio Minimo"
+                  _placeholder={{ opacity: 1, color: "gray.500" }}
+                  type="number"
+                  onChange={(e) => {
+                    handlePrice(e);
+                  }}
+                  value={filters.price}
+                  fontSize="2vh"
                   h={"4.5vh"}
-                  onChange={handleChange}
-                >
-                  <option style={{ backgroundColor: "white" }}>Ordenar</option>
-                  <option style={{ backgroundColor: "white" }}>
-                    Menor Stock
-                  </option>
-                  <option style={{ backgroundColor: "white" }}>
-                    Mayor Stock
-                  </option>
-                  <option style={{ backgroundColor: "white" }}>Activos</option>
-                  <option style={{ backgroundColor: "white" }}>Pausados</option>
-                  <option style={{ backgroundColor: "white" }}>ID</option>
-                </Select>
+                  ml={"3"}
+                ></Input>
+                <Button onClick={handleDownloadExcel}
+                ml="2"  
+                bg="rgb(204, 130, 0)"
+                px={"12"} 
+                _hover={{ bg: "teal.500" }}
+                >descargar</Button>
+                
                 
               </Flex>
-                </Box>*/}
+                </Box>
           </Flex>
         </Box>
         <Box bg={"#1b1b1b"} h={"73vh"} p={"5vh"}>
@@ -162,9 +223,9 @@ export default function AdminVentas() {
                   </Th>
                 </Tr>
               </Thead>
-              {products !== undefined && products.length > 0 && (
+              {filtrarVentas !== undefined && filtrarVentas.length > 0 && (
                 <Tbody>
-                  {products.map((product) => (
+                  {filtrarVentas.map((product) => (
                     <Tr h={"2"} key={product.id}>
                       <Td>
                         <span style={{ color: "#ffa200", fontWeight: "bold" }}>
@@ -182,7 +243,15 @@ export default function AdminVentas() {
                       <Td>
                         {product.user?.delivery_address}
                   </Td>*/}
-                      <Td>${product.totalprice}</Td>
+                      <Td>
+                        {parseFloat(product.totalprice).toLocaleString("es-AR", {
+                                  style: 'currency',
+                                  currency: "ARS",
+                                  minimumFractionDigits: 2,
+                                  maximumFractionDigits: 2,
+                                  useGrouping: true,
+                                })}
+                      </Td>
 
                       <Td>{product.payment?.purchase_date}</Td>
 

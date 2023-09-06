@@ -91,7 +91,20 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
         setImage(detailProduct.image);
       }
 
-      dispatch(putProduct(params.id, update));
+      const updateData = new FormData();
+          updateData.append("name", update.name);
+          updateData.append("brand", update.brand);
+          updateData.append("category", update.category);
+          updateData.append("minimun_age", update.minimun_age);
+          updateData.append("description", update.description)
+          updateData.append("quantity", update.quantity);
+          updateData.append("price", update.price);
+          updateData.append("product_status", update.product_status);
+          if(image){
+           updateData.append("image", image) 
+          }
+
+      dispatch(putProduct(params.id, updateData));
 
       // e.preventDefault()
 

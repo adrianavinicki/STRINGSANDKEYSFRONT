@@ -53,7 +53,7 @@ const FilterAndOrder = () => {
 
   category.sort();
 
-  //console.log(brands);
+  
 
   const handleBrandFilter = (e) => {
     const selectedBrand = e.target.innerText;
@@ -114,6 +114,7 @@ const FilterAndOrder = () => {
 
   const resetInput = () => {
     dispatch(emptyStates());
+    dispatch(getProducts())
     dispatch(filterCategory("todos"));
     setSliderValue(150000)
   };
