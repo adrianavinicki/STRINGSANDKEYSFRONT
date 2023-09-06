@@ -18,6 +18,16 @@ const SearchBar = () => {
     //dispatch(getProductName(searchInput));
   }
 
+  function handleKey(e) {
+    if(e.key === "Enter"){
+      dispatch(getProductName(name));
+      dispatch(getProductNamePrice(name));
+      setName("");
+      dispatch(setPage(0));
+      
+    }
+  }
+
   function handlerSubmit(e) {
     //e.preventDefault();
     dispatch(getProductName(name));
@@ -40,6 +50,7 @@ const SearchBar = () => {
           mr={"2%"}
           placeholder="Busca tu Instrumento"
           _placeholder={{ opacity: 1, color: "gray.500" }}
+          onKeyDown={handleKey}
           onChange={(e) => {
             handlerInput(e);
           }}
