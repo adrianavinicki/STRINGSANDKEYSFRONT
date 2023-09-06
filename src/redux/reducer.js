@@ -94,27 +94,27 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_PRODUCTS_ADMIN:
       let orderAdmin;
       if (action.payload === "Pausados") {
-        orderAdmin = state.products.sort(
+        orderAdmin = state.filteredProducts.sort(
           (a, b) => a.product_status - b.product_status
         );
       } else if (action.payload === "Activos") {
-        orderAdmin = state.products.sort(
+        orderAdmin = state.filteredProducts.sort(
           (a, b) => b.product_status - a.product_status
         );
       } else if (action.payload === "ID") {
-        orderAdmin = state.products.sort((a, b) => a.id - b.id);
+        orderAdmin = state.filteredProducts.sort((a, b) => a.id - b.id);
       } else if (action.payload === "Menor Stock") {
-        orderAdmin = state.products.sort((a, b) => a.quantity - b.quantity);
+        orderAdmin = state.filteredProducts.sort((a, b) => a.quantity - b.quantity);
       } else if (action.payload === "Mayor Stock") {
-        orderAdmin = state.products.sort((a, b) => b.quantity - a.quantity);
+        orderAdmin = state.filteredProducts.sort((a, b) => b.quantity - a.quantity);
       } else if (action.payload === "Menor Precio") {
-        orderAdmin = state.products.sort((a, b) => a.price - b.price);
+        orderAdmin = state.filteredProducts.sort((a, b) => a.price - b.price);
       } else if (action.payload === "Mayor Precio") {
-        orderAdmin = state.products.sort((a, b) => b.price - a.price);
+        orderAdmin = state.filteredProducts.sort((a, b) => b.price - a.price);
       } else {
         orderAdmin = state.products;
       }
-      return { ...state, products: [...orderAdmin] };
+      return { ...state, filteredProducts: [...orderAdmin] };
 
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
@@ -123,7 +123,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredProducts: action.payload,
-        products: action.payload,
+        //products: action.payload,
       };
     case GET_USERS_NAME:
       return {
