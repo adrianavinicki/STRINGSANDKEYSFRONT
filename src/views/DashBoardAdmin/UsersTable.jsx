@@ -17,6 +17,7 @@ import {
   Flex,
   Box,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { TbArrowsExchange } from "react-icons/tb"
 import SmallWithLogoLeft from "../../components/Footer";
@@ -33,6 +34,8 @@ import {
 function UsersData() {
   const users = useSelector((state) => state.allUsers);
   //const users = usersDos.sort((a, b) => a.id - b.id);
+
+  const toast = useToast();
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -59,21 +62,37 @@ function UsersData() {
     dispatch(getUsersByName(search));
   };
 
-  async function handleUserRol(id) {
-    console.log("id", id);
+  async function handleUserRol(id, role_id) {
+    //console.log("id", id);
+    const newRol = role_id === 'admin'? 'Cliente': 'Admin'
     try {
       await dispatch(putRolUser(id)); // Espera a que putRolUser se complete
       await dispatch(getAllUsers());  // Espera a que getAllUsers se complete
+      toast({
+        title: "Listo!",
+        description: `Has cambiado el 'Rol' del usuario con ID ${id} a '${newRol}'`,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
     } catch (error) {
       console.error("Error:", error);
     };
   };
 
-  async function handleUserStatus(id) {
-    console.log("id", id);
+  async function handleUserStatus(id, user_status) {
+    //console.log("id", id);
+    const newStatus = user_status === true ? 'Inactivo': 'Activo'
     try {
       await dispatch(putStateUser(id)); // Espera a que putRolUser se complete
       await dispatch(getAllUsers());  // Espera a que getAllUsers se complete
+      toast({
+        title: "Listo!",
+        description: `Has cambiado el 'Estado' del usuario con ID ${id} a '${newStatus}'`,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
     } catch (error) {
       console.error("Error:", error);
     };
@@ -185,13 +204,13 @@ function UsersData() {
                       <Td>{user.mobile}</Td>
                       {/* <Td><button onClick={handleUserRol(user.id)}>{user.role_id}</button></Td> */}
                       {/* <Td><button name={user.id} onClick={(e) => handleUserRol(e.target.name)}>{user.role_id}</button></Td> */}
-                      <Td> <span style={{ fontWeight: "bold" }}>{user.role_id === "client" ? "Cliente" : "Admin"}</span> <Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserRol(user.id)}><TbArrowsExchange color="black" size={"2.5vh"} ></TbArrowsExchange></Button></Td>
+                      <Td> <span style={{ fontWeight: "bold" }}>{user.role_id === "client" ? "Cliente" : "Admin"}</span> <Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserRol(user.id, user.role_id)}><TbArrowsExchange color="black" size={"2.5vh"} ></TbArrowsExchange></Button></Td>
                       {/* <Td><select>
                         <option >Client</option>
                         <option>Admin</option>
                         </select></Td> */}
                       {/* <Td>{user.user_status}</Td> */}
-                      <Td color={ user.user_status === true ? "green" : "red"} ><span style={{ fontWeight: "bold" }} >{user.user_status === true ? "Activo" : "Inactivo"}</span><Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserStatus(user.id)}><TbArrowsExchange color="black" size={"2.5vh"} ></TbArrowsExchange></Button></Td>
+                      <Td color={ user.user_status === true ? "green" : "red"} ><span style={{ fontWeight: "bold" }} >{user.user_status === true ? "Activo" : "Inactivo"}</span><Button  p={0} m={0} bg={"none"} onClick={(e) => handleUserStatus(user.id, user.user_status)}><TbArrowsExchange color="black" size={"2.5vh"} ></TbArrowsExchange></Button></Td>
                     </Tr>
                   ))}
                 </Tbody>
