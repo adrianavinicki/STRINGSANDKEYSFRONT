@@ -22,6 +22,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInfoPurchase } from '../../redux/actions'
 //import { getAllUsers, getAllOrders, getAllDetailOrders } from '../redux/actions';
 
+const CustomTooltip = ({ active, label, payload }) => {
+  if (active) {
+    return (
+      <Box p={2} borderWidth="1px" borderColor="#ffa200" borderRadius="md" backgroundColor="black">
+        <p className="label">{`Mes: ${label}`}</p>
+        <p className="sales">{`Valor: ${payload[0].value.toLocaleString()}`}</p>
+      </Box>
+    );
+  }
+  return null;
+};
+
+const CustomYAxisTick = ({ x, y, payload }) => {
+  // Formatea el valor usando .toLocaleString()
+  const formattedValue = payload.value.toLocaleString();
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text x={0} y={0} dy={16} textAnchor="end" >{formattedValue}</text>
+    </g>
+  );
+};
+
 function StatsCard(props /*StatsCardProps*/) {
   const { title, stat, icon } = props;
 
@@ -194,8 +217,6 @@ export default function BasicStatistics() {
 
   //categoriasAgrupadasArray.reverse();
 
-  //console.log(categoriasAgrupadasArray);
-
   const combinedData = [...ventas, ...categoriasAgrupadasArray];
 
   //console.log(combinedData);
@@ -204,7 +225,6 @@ export default function BasicStatistics() {
     setAdminView("Stats");
     //console.log(adminView, "adminView");
   };
-
 
   return (
     <Box h={"25vh"} borderBottom="1px solid #ffa200" >
@@ -241,11 +261,14 @@ export default function BasicStatistics() {
         <Box width="100%">
       <Flex justify="center">
         <ResponsiveContainer width={'80%'} height="100%" aspect={4}>
-          <BarChart data={combinedData} barSize={20}>
-            <Tooltip  />
+          <BarChart data={combinedData} barSize={20} margin={{ left: 15 }}>
+            <Tooltip content={<CustomTooltip />} />
             <CartesianGrid stroke="#FFFFFF" strokeDasharray="4"/>
             <XAxis stroke="#FFFFFF" dataKey="month" />
-            <YAxis stroke="#FFFFFF" dataKey="price" />
+            <YAxis
+              tickFormatter={(value) => value.toLocaleString()}
+              domain={[0, 'auto']} stroke="#FFFFFF"
+            />
 
             <Bar dataKey="price" fill="#ffa200" />
           </BarChart>
