@@ -45,8 +45,9 @@ const Products = () => {
               bg={useColorModeValue('rgb(0,0,0,0.4)', 'rgb(0,0,0,0.7)')}
               w={"70%"}
               h={"78vh"}
+              //minH={'470px'}
               rounded={"5px"}
-              pt={'1vh'}
+              mt={'1vh'}
             >
               <CardsContainer></CardsContainer>
             </Box>

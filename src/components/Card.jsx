@@ -52,7 +52,7 @@ export default function ProductSimple(props) {
           <Box>
             <Image h={"20vh"} rounded={"lg"} src={props.image} alt="#" />
           </Box>
-          <Stack align={"center"} spacing={3}>
+          <Stack align={"center"} spacing={'1vh'}>
             <Text
               color={"gray.500"}
               fontSize={"1.3vh"}

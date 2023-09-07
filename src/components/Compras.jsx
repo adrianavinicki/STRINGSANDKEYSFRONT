@@ -127,7 +127,13 @@ export default function PurchaseCards(props) {
               </Heading>
               <Text color={"#ffa200"} fontSize={"2vh"} fontWeight={"bold"}>
                 Marca:{" "}
-                <span style={{ color: "white", fontSize: "2vh", fontWeight: 'normal' }}>
+                <span
+                  style={{
+                    color: "white",
+                    fontSize: "2vh",
+                    fontWeight: "normal",
+                  }}
+                >
                   {props?.brand}
                 </span>
               </Text>

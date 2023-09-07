@@ -67,7 +67,7 @@ const Detail = () => {
       title: "producto añadido al carrito",
       description: "El producto ha sido agregado exitosamente a tu carrito.",
       status: "success",
-      duration: 5000,
+      duration: 1000,
       isClosable: true,
     });
   };
