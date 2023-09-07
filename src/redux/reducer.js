@@ -10,6 +10,7 @@ import {
   GET_PRODUCT_NAME,
   GET_PRODUCT_BY_ID,
   FILTER_PRICE,
+  GET_PRODUCT_NAME_ADMIN,
   FILTER_PRICE_NAME,
   SET_PAGE,
   INCREASE_PRODUCT_QUANTITY,
@@ -94,27 +95,27 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_PRODUCTS_ADMIN:
       let orderAdmin;
       if (action.payload === "Pausados") {
-        orderAdmin = state.filteredProducts.sort(
+        orderAdmin = state.products.sort(
           (a, b) => a.product_status - b.product_status
         );
       } else if (action.payload === "Activos") {
-        orderAdmin = state.filteredProducts.sort(
+        orderAdmin = state.products.sort(
           (a, b) => b.product_status - a.product_status
         );
       } else if (action.payload === "ID") {
-        orderAdmin = state.filteredProducts.sort((a, b) => a.id - b.id);
+        orderAdmin = state.products.sort((a, b) => a.id - b.id);
       } else if (action.payload === "Menor Stock") {
-        orderAdmin = state.filteredProducts.sort((a, b) => a.quantity - b.quantity);
+        orderAdmin = state.products.sort((a, b) => a.quantity - b.quantity);
       } else if (action.payload === "Mayor Stock") {
-        orderAdmin = state.filteredProducts.sort((a, b) => b.quantity - a.quantity);
+        orderAdmin = state.products.sort((a, b) => b.quantity - a.quantity);
       } else if (action.payload === "Menor Precio") {
-        orderAdmin = state.filteredProducts.sort((a, b) => a.price - b.price);
+        orderAdmin = state.products.sort((a, b) => a.price - b.price);
       } else if (action.payload === "Mayor Precio") {
-        orderAdmin = state.filteredProducts.sort((a, b) => b.price - a.price);
+        orderAdmin = state.products.sort((a, b) => b.price - a.price);
       } else {
-        orderAdmin = state.products;
+        orderAdmin = state.products.sort((a, b) => a.id - b.id);;
       }
-      return { ...state, filteredProducts: [...orderAdmin] };
+      return { ...state, products: [...orderAdmin] };
 
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
@@ -122,9 +123,17 @@ const rootReducer = (state = initialState, action) => {
     case GET_PRODUCT_NAME:
       return {
         ...state,
-        filteredProducts: action.payload,
+        filteredProducts: action.payload.filter(
+          (el) => el.product_status  === true
+        ),
         //products: action.payload,
       };
+      case GET_PRODUCT_NAME_ADMIN:
+        return {
+          ...state,
+          products: action.payload,
+          //products: action.payload,
+        };
     case GET_USERS_NAME:
       return {
         ...state,

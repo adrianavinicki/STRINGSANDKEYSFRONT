@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getDetailProduct, cleanDetail, putProduct, getProducts } from "../redux/actions";
 import { useToast } from "@chakra-ui/react";
+import { brands, categories } from "../views/DashBoardAdmin/CreateProductoFolder/formData";
 
 export default function ProductProfileEdit(features) /*: JSX.Element*/ {
   const dispatch = useDispatch();
@@ -206,31 +207,30 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               />
               </FormLabel>
             </FormControl>
-            <FormControl id="productBrand">
-              <FormLabel color={'white'} fontSize={"1.8vh"}>
-                Marca Actual:{" "}
-                <span style={{ color: "#ffa200" }}>{detailProduct?.brand}</span>
-              <Input
-                h={"4vh"}
-                fontSize={"1.8vh"}
-                placeholder="Nueva Marca"
-                _placeholder={{ color: "gray.600" }}
-                type="text"
-                name="brand"
-                value={update.brand}
-                onChange={handleChange}
-                bg={"white"}
-                color={"black"}
-              />
-              </FormLabel>
-            </FormControl>
             <FormControl id="productCategory">
               <FormLabel color={'white'} fontSize={"1.8vh"}>
                 Categoria Actual:{" "}
                 <span style={{ color: "#ffa200" }}>
                   {detailProduct?.category}
                 </span>
-              <Input
+                <Select
+                    h={'4vh'}
+                    _hover={"none"}
+                    bg={"white"}
+                    border={"2px solid black"}
+                    placeholder="seleccione una categoria"
+                    name="category"
+                    color={'black'}
+                    value={update.category}
+                    onChange={handleChange}
+                  >
+                    {categories.map((categoria, index) => (
+                      <option value={categoria} key={index}>
+                        {categoria}
+                      </option>
+                    ))}
+                  </Select>
+              {/* <Input
                 h={"4vh"}
                 fontSize={"1.8vh"}
                 placeholder="Nueva Categoria"
@@ -241,7 +241,43 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                 onChange={handleChange}
                 bg={"white"}
                 color={"black"}
-              />
+              /> */}
+              </FormLabel>
+            </FormControl>
+            <FormControl id="productBrand">
+              <FormLabel color={'white'} fontSize={"1.8vh"}>
+                Marca Actual:{" "}
+                <span style={{ color: "#ffa200" }}>{detailProduct?.brand}</span>
+                <Select
+                    h={'4vh'}
+                    _hover={"none"}
+                    bg={"white"}
+                    border={"2px solid black"}
+                    placeholder="seleccione una marca"
+                    name="brand"
+                    color={'black'}
+                    value={update.brand}
+                    onChange={handleChange}
+                  >
+                    {brands.map((marca, index) => (
+                      <option value={marca} key={index}>
+                        {marca}
+                      </option>
+                    ))}
+                  </Select>
+              {/* <Input
+                h={"4vh"}
+                fontSize={"1.8vh"}
+                placeholder="Nueva Marca"
+                _placeholder={{ color: "gray.600" }}
+                type="text"
+                name="brand"
+                value={update.brand}
+                onChange={handleChange}
+                bg={"white"}
+                color={"black"}
+              /> */}
+              
               </FormLabel>
             </FormControl>
             <FormControl id="productPrice">

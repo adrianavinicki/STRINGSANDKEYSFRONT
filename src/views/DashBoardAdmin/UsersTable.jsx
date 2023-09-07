@@ -20,9 +20,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { TbArrowsExchange } from "react-icons/tb"
-import SmallWithLogoLeft from "../../components/Footer";
-import WithSubnavigation from "../../components/NavBar";
-import { Link } from "react-router-dom";
 import {
   getUsersByName,
   orderUsersAdmin,

@@ -88,6 +88,8 @@ export default function BasicStatistics() {
 
   const totalPrice = purchases.reduce((total, item) => total + parseInt(item.totalprice), 0);
 
+  //console.log("purchases", purchases);
+
   const formattedPrice = `$${totalPrice.toLocaleString('es-ES')}`;
 
   const mesesEnEspañol = [
@@ -104,6 +106,8 @@ export default function BasicStatistics() {
 
   const ventaBDD = useSelector((state) => state.dataStats.data.purchasess);
 
+  //console.log("Datos desde la BDD", ventaBDD);
+
   const alldata = [];
 
   ventaBDD.map(e => {
@@ -118,6 +122,7 @@ export default function BasicStatistics() {
       })
     }
   })
+  //console.log(alldata)
 
   const valoresXmesConAnio = alldata.reduce((acumulador, objeto) => {
     const fecha = new Date(objeto.order_date);
@@ -135,6 +140,8 @@ export default function BasicStatistics() {
 
     return acumulador;
   }, []);
+
+  //console.log(valoresXmesConAnio);
 
   const categoriasAgrupadas = alldata.reduce((resultado, objeto) => {
     const fecha = new Date(objeto.order_date);
@@ -208,13 +215,15 @@ export default function BasicStatistics() {
   // Convertir el objeto en un array de objetos
   const categoriasAgrupadasArray = Object.values(categoriasAgrupadas);
 
-  categoriasAgrupadasArray.reverse();
+  //categoriasAgrupadasArray.reverse();
 
   const combinedData = [...ventas, ...categoriasAgrupadasArray];
 
+  //console.log(combinedData);
+
   const handleStats = () => {
     setAdminView("Stats");
-    console.log(adminView, "adminView");
+    //console.log(adminView, "adminView");
   };
 
   return (

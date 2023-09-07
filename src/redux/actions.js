@@ -9,6 +9,7 @@ export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 export const EMPTY_STATES = "EMPTY_STATES";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const POST_PRODUCT = "POST_PRODUCT";
+export const GET_PRODUCT_NAME_ADMIN = "GET_PRODUCT_NAME_ADMIN"
 export const FILTER_PRICE_NAME = "FILTER_PRICE_NAME";
 export const SET_PAGE = "SET_PAGE";
 export const EMPTY_ACTUAL_USER = "EMPTY_ACTUAL_USER"
@@ -87,6 +88,22 @@ export function getProductName(name) {
       );
       return dispatch({
         type: GET_PRODUCT_NAME,
+        payload: productName.data,
+      });
+    } catch (error) {
+      console.log("Error al obtener el nombre del producto");
+    }
+  };
+};
+
+export function getProductNameAdmin(name) {
+  return async function (dispatch) {
+    try {
+      const productName = await axios.get(
+        `${VITE_LOCAL_HOST}/products?name=${name}`
+      );
+      return dispatch({
+        type: GET_PRODUCT_NAME_ADMIN,
         payload: productName.data,
       });
     } catch (error) {
@@ -334,6 +351,13 @@ export const getRatingsAverages = () => {
 export const putRolUser = (id) => {
   return async function () {
     const response = await axios.put(`${VITE_LOCAL_HOST}/users/updateDos/${id}`);
+    return response;
+  };
+};
+
+export const putStatusProduct = (id) => {
+  return async function () {
+    const response = await axios.put(`${VITE_LOCAL_HOST}/products/update/status/${id}`);
     return response;
   };
 };
