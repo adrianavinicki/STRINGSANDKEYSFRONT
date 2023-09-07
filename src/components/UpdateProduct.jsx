@@ -45,7 +45,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
     quantity: "",
     price: "",
     // image:"",
-    product_status: "",
+    //product_status: "",
   });
 
   const params = useParams();
@@ -85,9 +85,9 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
       if (update.price === "") {
         update.price = detailProduct.price;
       }
-      if (update.product_status === "") {
-        update.product_status = detailProduct.product_status;
-      }
+      // if (update.product_status === "") {
+      //   update.product_status = detailProduct.product_status;
+      // }
       if (image === "") {
         setImage(detailProduct.image);
       }
@@ -100,7 +100,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
           updateData.append("description", update.description)
           updateData.append("quantity", update.quantity);
           updateData.append("price", update.price);
-          updateData.append("product_status", update.product_status);
+          //updateData.append("product_status", update.product_status);
           if(image){
            updateData.append("image", image) 
           }
@@ -113,7 +113,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
         title: "Producto Actualizado",
         description: "El producto a sido actualizado con exito.",
         status: "success",
-        duration: 5000,
+        duration: 1000,
         isClosable: true,
       });
 
@@ -124,7 +124,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
         description: "",
         quantity: "",
         price: "",
-        product_status: "",
+        //product_status: "",
       });
 
       navigate("/admin");
@@ -223,6 +223,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                     color={'black'}
                     value={update.category}
                     onChange={handleChange}
+                    fontSize={"1.8vh"}
                   >
                     {categories.map((categoria, index) => (
                       <option value={categoria} key={index}>
@@ -258,6 +259,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                     color={'black'}
                     value={update.brand}
                     onChange={handleChange}
+                    fontSize={"1.8vh"}
                   >
                     {brands.map((marca, index) => (
                       <option value={marca} key={index}>
@@ -336,7 +338,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
               />
               </FormLabel>
             </FormControl>
-            <FormControl id="productCategory">
+            {/* <FormControl id="productCategory">
               <FormLabel color={useColorModeValue('white', 'white')} fontSize={"1.8vh"}>
                 Estado:{" "}
                 {detailProduct?.product_status === true ? (
@@ -360,7 +362,7 @@ export default function ProductProfileEdit(features) /*: JSX.Element*/ {
                 <option  value="False">Pausar</option>
               </Select>
               </FormLabel>
-            </FormControl>
+            </FormControl> */}
             <Stack spacing={6} mt={"1vh"} direction={["column", "row"]}>
               <Link to={"/admin"}>
                 <Button

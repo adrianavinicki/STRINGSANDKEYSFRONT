@@ -5,6 +5,7 @@ import {
   Flex,
   Heading,
   SimpleGrid,
+  Text,
   Stat,
   StatLabel,
   StatNumber,
@@ -26,8 +27,8 @@ const CustomTooltip = ({ active, label, payload }) => {
   if (active) {
     return (
       <Box p={2} borderWidth="1px" borderColor="#ffa200" borderRadius="md" backgroundColor="black">
-        <p className="label">{`Mes: ${label}`}</p>
-        <p className="sales">{`Valor: ${payload[0].value.toLocaleString()}`}</p>
+        <Text color={'white'} className="label">{`Mes: ${label}`}</Text>
+        <Text color={'white'}  className="sales">{`Valor: ${payload[0].value.toLocaleString()}`}</Text>
       </Box>
     );
   }

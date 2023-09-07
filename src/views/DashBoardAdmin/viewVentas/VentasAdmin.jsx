@@ -20,7 +20,7 @@ import {
 
 import { Link } from "react-router-dom";
 import { getAllPurchases } from "../../../redux/actions";
-import  generate  from "./excelGenerator";
+import generate from "./excelGenerator";
 import { saveAs } from "file-saver";
 
 export default function AdminVentas() {
@@ -37,33 +37,37 @@ export default function AdminVentas() {
   const [price, setPrice] = useState("");
 
   const [filters, setFilters] = useState({
-      cliente: "",
-      estado: "",
-      price: "",
-      ID: "",
-    })
+    cliente: "",
+    estado: "",
+    price: "",
+    ID: "",
+  });
 
-    // Estado para el temporizador de debouncing
+  // Estado para el temporizador de debouncing
   const [debounceTimer, setDebounceTimer] = useState(null);
-    
-  
-    const [order, setOrder] = useState("");
-  
+
+  const [order, setOrder] = useState("");
+
   const filtrarVentas = useMemo(() => {
     return products.filter((venta) => {
-      const clienteMatch = !filters.cliente || venta.user.first_name.toLowerCase().includes(filters.cliente.toLowerCase()) || venta.user.last_name.toLowerCase().includes(filters.cliente.toLowerCase());
+      const clienteMatch =
+        !filters.cliente ||
+        venta.user.first_name
+          .toLowerCase()
+          .includes(filters.cliente.toLowerCase()) ||
+        venta.user.last_name
+          .toLowerCase()
+          .includes(filters.cliente.toLowerCase());
 
       const priceFilter = !filters.price || venta.totalprice >= filters.price;
 
       const filterID = !filters.ID || venta.user.id === filters.ID;
 
       return clienteMatch && priceFilter && filterID;
+    });
+  }, [products, filters]);
 
-    })
-  }, [products, filters])
-    
   const [excelData, setExcelData] = useState(null);
-    
 
   const handlePrice = (e) => {
     const { value } = e.target;
@@ -71,39 +75,39 @@ export default function AdminVentas() {
     const numericValue = parseFloat(value);
 
     setPrice(value);
-    setFilters(preValue => ({...preValue, price: numericValue}));
+    setFilters((preValue) => ({ ...preValue, price: numericValue }));
   };
 
   function handlerInput(e) {
     //e.preventDefaut()
-    const {value} = e.target;
-    const valorID = parseFloat(value)
-    if(!isNaN(valorID || value === "")){
-      setFilters(preValue => ({...preValue, ID: value === '' ? '' : valorID}));
-      setName(value)
+    const { value } = e.target;
+    const valorID = parseFloat(value);
+    if (!isNaN(valorID || value === "")) {
+      setFilters((preValue) => ({
+        ...preValue,
+        ID: value === "" ? "" : valorID,
+      }));
+      setName(value);
     } else {
-      setFilters(preValue => ({...preValue, cliente: value}));
-      setName(value)
+      setFilters((preValue) => ({ ...preValue, cliente: value }));
+      setName(value);
     }
-    
+
     //setName(value);
   }
 
   const handleDownloadExcel = () => {
-
     const excelBlob = generate(filtrarVentas);
-   // const wb = new Blob([excelBlob], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    // const wb = new Blob([excelBlob], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
 
     // Utiliza saveAs para realizar la descarga
-    saveAs(excelBlob, 'data.xlsx');
-  }
+    saveAs(excelBlob, "data.xlsx");
+  };
 
   useEffect(() => {
     dispatch(getAllPurchases());
     console.log(filtrarVentas);
   }, []);
-
-
 
   return (
     <Box>
@@ -130,7 +134,7 @@ export default function AdminVentas() {
               </Button>
             </Link> */}
             <Box>
-              <Flex >
+              <Flex>
                 <Input
                   bg={"white"}
                   color={"black"}
@@ -144,7 +148,7 @@ export default function AdminVentas() {
                   h={"4.5vh"}
                 ></Input>
 
-                  <Input
+                <Input
                   bg={"white"}
                   color={"black"}
                   placeholder="Precio Minimo"
@@ -158,16 +162,17 @@ export default function AdminVentas() {
                   h={"4.5vh"}
                   ml={"3"}
                 ></Input>
-                <Button onClick={handleDownloadExcel}
-                ml="2"  
-                bg="rgb(204, 130, 0)"
-                px={"12"} 
-                _hover={{ bg: "teal.500" }}
-                >descargar</Button>
-                
-                
+                <Button
+                  onClick={handleDownloadExcel}
+                  ml="2"
+                  bg="rgb(204, 130, 0)"
+                  px={"12"}
+                  _hover={{ bg: "orange" }}
+                >
+                  descargar
+                </Button>
               </Flex>
-                </Box>
+            </Box>
           </Flex>
         </Box>
         <Box bg={"#1b1b1b"} h={"73vh"} p={"5vh"}>
@@ -184,12 +189,12 @@ export default function AdminVentas() {
               overflowX="auto"
               fontSize={"1.5vh"}
             >
-              <Thead>
+              <Thead bg={'black'} color={'white'} border={'2px solid #ffa200'}>
                 <Tr>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     ID Cliente
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Nombre Cliente
                   </Th>
                   {/*<Th fontSize={"1.5vh"} color={"black"}>
@@ -198,27 +203,27 @@ export default function AdminVentas() {
                   <Th fontSize={"1.5vh"} color={"black"}>
                     Direccion
               </Th>*/}
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Compra Total
                   </Th>
 
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Fecha Compra
                   </Th>
 
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Detalles Articulos
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Cantidad
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Precio Unitario
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
-                    Articulos ID
+                  <Th fontSize={"1.5vh"} color={"white"}>
+                    ID Articulo
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Estado
                   </Th>
                 </Tr>
@@ -226,7 +231,7 @@ export default function AdminVentas() {
               {filtrarVentas !== undefined && filtrarVentas.length > 0 && (
                 <Tbody>
                   {filtrarVentas.map((product) => (
-                    <Tr h={"2"} key={product.id}>
+                    <Tr h={"2"} key={product.id} _even={{ bg: "white" }} _odd={{ bg: "gray.200" }}>
                       <Td>
                         <span style={{ color: "#ffa200", fontWeight: "bold" }}>
                           {product.userId}
@@ -244,13 +249,16 @@ export default function AdminVentas() {
                         {product.user?.delivery_address}
                   </Td>*/}
                       <Td>
-                        {parseFloat(product.totalprice).toLocaleString("es-AR", {
-                                  style: 'currency',
-                                  currency: "ARS",
-                                  minimumFractionDigits: 2,
-                                  maximumFractionDigits: 2,
-                                  useGrouping: true,
-                                })}
+                        {parseFloat(product.totalprice).toLocaleString(
+                          "es-AR",
+                          {
+                            style: "currency",
+                            currency: "ARS",
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                          }
+                        )}
                       </Td>
 
                       <Td>{product.payment?.purchase_date}</Td>
@@ -294,16 +302,14 @@ export default function AdminVentas() {
                         <ul>
                           {product.orderdetails.map((item, index) => (
                             <li key={index}>
-                              <Link to={`product/${item.product?.id}`}>
-                                <span
-                                  style={{
-                                    color: "#ffa200",
-                                    fontWeight: "bold",
-                                  }}
-                                >
-                                  id:{item.product?.id}
-                                </span>{" "}
-                              </Link>
+                              <span
+                                style={{
+                                  color: "#ffa200",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {item.product?.id}
+                              </span>{" "}
                               <br />
                               {/* cantidad: {item.quantity}, 
                              precio: {item.price}*/}

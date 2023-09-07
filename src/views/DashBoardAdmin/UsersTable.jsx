@@ -69,7 +69,7 @@ function UsersData() {
         title: "Listo!",
         description: `Has cambiado el 'Rol' del usuario con ID ${id} a '${newRol}'`,
         status: "success",
-        duration: 9000,
+        duration: 1000,
         isClosable: true,
       })
     } catch (error) {
@@ -87,7 +87,7 @@ function UsersData() {
         title: "Listo!",
         description: `Has cambiado el 'Estado' del usuario con ID ${id} a '${newStatus}'`,
         status: "success",
-        duration: 9000,
+        duration: 1000,
         isClosable: true,
       })
     } catch (error) {
@@ -114,7 +114,7 @@ function UsersData() {
           </Center>
           <Flex align={"center"} justify={"space-around"} mt={"1.5%"}>
             <Box>
-              <Flex>
+              <Flex align={'center'}>
                 <Input
                   bg={"white"}
                   color={"black"}
@@ -127,8 +127,9 @@ function UsersData() {
                   fontSize="2vh"
                   h={"4.5vh"}
                 ></Input>
+                <Text zIndex={6} fontSize={'2vh'} ml={'5vh'} color={'white'}>Ordenar:</Text>
                 <Select
-                  ml={"5vh"}
+                  ml={"2vh"}
                   bg={"white"}
                   color={"black"}
                   h={"4.5vh"}
@@ -155,30 +156,30 @@ function UsersData() {
             overflowX="auto"
           >
             <Table color={"black"} overflowY="auto" fontSize={"1.5vh"}>
-              <Thead>
+              <Thead bg={'black'} color={'white'} border={'2px solid #ffa200'}>
                 <Tr>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Id Usuario
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Nombre
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Apellido
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Email
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Celular
                   </Th>
                   {/* <Th fontSize={"1.5vh"} color={"black"}>
                     Descripcion
                   </Th> */}
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Rol
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Estado
                   </Th>
                 </Tr>
@@ -186,7 +187,7 @@ function UsersData() {
               {users !== undefined && users.length > 0 && (
                 <Tbody>
                   {users.map((user) => (
-                    <Tr h={"2"} key={user.id}>
+                    <Tr h={"2"} key={user.id} _even={{ bg: "white" }} _odd={{ bg: "gray.200" }}>
                       <Td>
                           <span
                             style={{ color: "#ffa200", fontWeight: "bold" }}

@@ -287,7 +287,7 @@ const Detail = () => {
                   </Box>
                 </Stack>
                 <Box>
-                  <Flex justify={"space-evenly"}>
+                  <Flex justify={"space-evenly"} align={'center'}>
                     <Link to={"/products"}>
                       <Button
                         bg={"black"}
@@ -297,6 +297,7 @@ const Detail = () => {
                           transform: "translateY(2px)",
                           boxShadow: "lg",
                         }}
+                        fontSize={'2vh'}
                       >
                         Volver
                       </Button>
@@ -311,21 +312,23 @@ const Detail = () => {
                         transform: "translateY(2px)",
                         boxShadow: "lg",
                       }}
+                      fontSize={'2vh'}
                     >
                       Agregar al Carrito
                       <Box>
                         <Icon
                           color={"white"}
                           as={FaShoppingCart}
-                          h={8}
-                          w={7}
-                          mt={1}
+                          h={'3vh'}
+                          w={'4vh'}
+                          // mt={1}
                           alignSelf="center"
                         />
                         <Badge
                           colorScheme="black"
                           position="absolute"
                           borderRadius="full"
+                          fontSize={'2vh'}
                         >
                           {getProductQuantityInCart()}
                         </Badge>
