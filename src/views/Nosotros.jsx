@@ -138,7 +138,7 @@ export default function Nosotros() {
                       transition: "0.3s",
                     }}
                   >
-                    <Link to={"https://guitarflash.com/"}>
+                    <Link to="https://guitarflash.com/" target="_blank">
                       <Image
                         boxSize={"40vh"}
                         borderRadius={100}
