@@ -14,6 +14,7 @@ import {
   Td,
   Center,
   Input,
+  useColorModeValue,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -21,6 +22,7 @@ import {
   PopoverArrow,
   PopoverHeader,
   PopoverBody,
+  Text,
   TableContainer,
   Flex,
   Box,
@@ -126,7 +128,7 @@ const ProductsData = () => {
               </Button>
             </Link> */}
             <Box>
-              <Flex>
+              <Flex align={'center'}>
                 <Input
                   bg={"white"}
                   color={"black"}
@@ -139,12 +141,14 @@ const ProductsData = () => {
                   fontSize="2vh"
                   h={"4.5vh"}
                 ></Input>
+                <Text zIndex={6} fontSize={'2vh'} ml={'5vh'} color={'white'}>Ordenar:</Text>
                 <Select
-                  ml={"5vh"}
+                  ml={"2vh"}
                   bg={"white"}
                   color={"black"}
                   h={"4.5vh"}
                   onChange={handleChange}
+                  fontSize={'2vh'}
                 >
                   <option style={{ backgroundColor: "white" }}>Todos</option>
                   <option style={{ backgroundColor: "white" }}>
@@ -187,30 +191,30 @@ const ProductsData = () => {
             overflowX="auto"
           >
             <Table color={"black"} overflowY="auto" fontSize={"1.5vh"}>
-              <Thead>
+              <Thead bg={'black'} color={'white'} border={'2px solid #ffa200'}>
                 <Tr>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Id Producto
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Nombre
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Marca
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Categoria
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Precio
                   </Th>
                   {/* <Th fontSize={"1.5vh"} color={"black"}>
                     Descripcion
                   </Th> */}
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Stock
                   </Th>
-                  <Th fontSize={"1.5vh"} color={"black"}>
+                  <Th fontSize={"1.5vh"} color={"white"}>
                     Estado
                   </Th>
                 </Tr>
@@ -218,7 +222,7 @@ const ProductsData = () => {
               {products !== undefined && products.length > 0 && (
                 <Tbody>
                   {products.map((product) => (
-                    <Tr h={"2"} key={product.id}>
+                    <Tr h={"2"} key={product.id} _even={{ bg: "white" }} _odd={{ bg: "gray.200" }}>
                       <Td>
                         <Link key={product.id} to={`product/${product.id}`}>
                           <span

@@ -14,6 +14,7 @@ import {
   getUserRol,
   getRatingsAverages,
   getInfoPurchase,
+  getAllPurchases,
   getAllUsers,
 } from "../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -39,7 +40,8 @@ const Home = () => {
     dispatch(getRatingsAverages());
     dispatch(setMail(user?.email));
     dispatch(getUser(user?.email));
-    dispatch(getInfoPurchase())
+    dispatch(getInfoPurchase());
+    dispatch(getAllPurchases());
     dispatch(getAllUsers());
     if (!isAuthenticated && !isLoading) {
       dispatch(emptyActualUser())
