@@ -98,8 +98,8 @@ const Perfil = () => {
 
   const handleUserChange = (event) => {
     let { name, value } = event.target;
-    if (name === "mobile" && value.length > 10) {
-      value = value.slice(0, 10);
+    if (name === "mobile" && value.length > 13) {
+      value = value.slice(0, 13);
     }
     setUpdateUser((prevState) => ({ ...prevState, [name]: value }));
   };
@@ -145,8 +145,8 @@ const Perfil = () => {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    if (name === "mobile" && value.length > 10) {
-      value = value.slice(0, 10);
+    if (name === "mobile" && value.length > 13) {
+      value = value.slice(0, 13);
     }
     setForm((prevValue) => ({ ...prevValue, [name]: value }));
   };
@@ -167,10 +167,10 @@ const Perfil = () => {
   if (form.gender === "") isError.gender = "Genero Requerido.";
   if (form.mobile === "" || form.mobile.trim() === "") isError.mobile = "Celular Requerido, Solo numeros";
   if (/[^0-9]/ .test(form.mobile)) isError.mobile = "Solo valores numericos";
-  if (form.mobile.length !== 10) isError.mobile = "Debe contener 10 digitos"
+  if (form.mobile.length <10 || form.mobile.length >13) isError.mobile = "Debe contener entre 10 y 13 digitos"
   if (form.delivery_address === "" || form.delivery_address.trim() === "")
     isError.delivery_address = "Direccion Requerida.";
-  if (/[^a-zA-Z0-9]/ .test(form.delivery_address)) isError.delivery_address = "Solo permite Permite letras y numeros"
+  if (/[^a-zA-Z0-9\s]/ .test(form.delivery_address)) isError.delivery_address = "Solo permite letras y numeros"
 
 console.log(isError)
   return (
