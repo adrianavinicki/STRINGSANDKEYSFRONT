@@ -109,7 +109,7 @@ export default function CreateProduct() {
         title: "Producto Creado",
         description: "El Producto a sido creado con exito.",
         status: "success",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
       });
 

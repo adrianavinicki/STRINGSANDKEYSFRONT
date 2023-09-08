@@ -6,6 +6,7 @@ import {
   Tbody,
   Tr,
   Button,
+  Icon,
   Th,
   Image,
   Heading,
@@ -166,8 +167,10 @@ export default function AdminVentas() {
                   onClick={handleDownloadExcel}
                   ml="2"
                   bg="rgb(204, 130, 0)"
-                  px={"12"}
                   _hover={{ bg: "orange" }}
+                  h={"4.5vh"}
+                  w={'25vh'}
+                  fontSize={'2vh'}
                 >
                   descargar
                 </Button>

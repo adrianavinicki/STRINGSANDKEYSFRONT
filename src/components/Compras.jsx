@@ -53,7 +53,7 @@ export default function PurchaseCards(props) {
         title: "Listo!",
         description: "Has puntuado el producto",
         status: "success",
-        duration: 9000,
+        duration: 1000,
         isClosable: true,
         // onClose: ()=> {window.location.reload()},
       });
@@ -62,7 +62,7 @@ export default function PurchaseCards(props) {
         title: "error",
         description: error.message,
         status: "error",
-        duration: 9000,
+        duration: 1000,
         isClosable: true,
       });
     } finally {
@@ -81,7 +81,7 @@ export default function PurchaseCards(props) {
       position: "top",
       description: "Lo siento, pero ya has puntuado este producto",
       status: "error",
-      duration: 9000,
+      duration: 1000,
       isClosable: true,
     });
   };

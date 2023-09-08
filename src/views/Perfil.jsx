@@ -80,7 +80,7 @@ const Perfil = () => {
     toast({
       title: "Se ha registrado con exito.",
       status: "success",
-      duration: 5000,
+      duration: 2000,
       isClosable: true,
     });
     dispatch(PostUser(form));
@@ -125,7 +125,7 @@ const Perfil = () => {
         title: "Usuario Actualizado",
         description: "El Usuario a sido actualizado con exito.",
         status: "success",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
       });
 
