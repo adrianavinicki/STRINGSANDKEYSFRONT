@@ -20,6 +20,7 @@ const SocialButton = ({ children, label, href }) => {
       rounded={"full"}
       w={8}
       h={8}
+      target="blank"
       cursor={"pointer"}
       as={"a"}
       href={href}
@@ -55,7 +56,7 @@ export default function SmallWithLogoLeft() {
         <Image src="/Logo White 2.png" h={'50px'} />
         <Text>© 2023 Strings And Keys. All rights reserved</Text>
         <Stack direction={"row"} spacing={6}>
-          <SocialButton label={"Twitter"} href={"https://twitter.com/StringsAndKeyss"}>
+          <SocialButton label={"Twitter"} href={"https://twitter.com/StringsAndKeyss"} >
             <FaTwitter />
           </SocialButton>
           <SocialButton label={"YouTube"} href={"https://www.youtube.com/channel/UCBrqSo2as6a07D0sTKEBUdw"}>
