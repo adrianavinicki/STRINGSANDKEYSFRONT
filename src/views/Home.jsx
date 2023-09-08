@@ -17,25 +17,24 @@ import {
   getAllPurchases,
   getAllUsers,
 } from "../redux/actions";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import Inactive from "./Inactive";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const usuarioActual = useSelector((state) => state.actualUser)
-  const navigate = useNavigate()
-
+  const usuarioActual = useSelector((state) => state.actualUser);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(isAuthenticated && !isLoading) {
-     
-      const usuario = user?.email
+    if (isAuthenticated && !isLoading) {
+      const usuario = user?.email;
       dispatch(getUser(usuario));
     }
-  }, [user, dispatch])
+  }, [user, dispatch]);
 
-  useEffect (() => {
+  useEffect(() => {
     dispatch(emptyStates());
     dispatch(emptyOrdersId());
     dispatch(getProducts()); //me traigo los productos
@@ -46,50 +45,64 @@ const Home = () => {
     dispatch(getAllPurchases());
     dispatch(getAllUsers());
     if (!isAuthenticated && !isLoading) {
-      dispatch(emptyActualUser())
+      dispatch(emptyActualUser());
     }
 
-    if(user && isAuthenticated) {
-     
+    if (user && isAuthenticated) {
       dispatch(getUserRol(user?.email));
-      
     }
 
-    if(usuarioActual.user_status === false){
-      navigate("/inactive")
-    };
-  },[])
-
-  
-
+    if (usuarioActual.user_status === false) {
+      navigate("/inactive");
+    }
+  }, []);
 
   return (
-    <Box
-      backgroundImage={useColorModeValue("url('/bg.jpg')", "url('/bgdark.jpg')")}
-      backgroundPosition="center"
-      backgroundRepeat="no-repeat"
-      backgroundSize="cover"
-      w={"100%"}
-      h={"100%"}
-      overflow={"hidden"}
-    >
-      <Flex direction={"column"}>
-        <WithSubnavigation></WithSubnavigation>
-        <Box h={"280vh"} pt={"10vh"} bg={""}>
-          <Flex direction={"column"} align={"center"}>
-              <Image borderBottom={'2px solid #ffa200'} src="/slider2.jpg"></Image>
-            <Box mt={'5vh'}>
-              <Heading color={useColorModeValue("black", "white")} fontSize={'5vh'}>Nuestros Productos</Heading>
-            </Box>
-            <Box bg={""} mt={'5vh'}>
-              <Flex direction={"column"} align={"center"}>
-                <CategoryCards></CategoryCards>
-              </Flex>
-            </Box>
-          </Flex>
-        </Box>
-        <SmallWithLogoLeft></SmallWithLogoLeft>
-      </Flex>
+    <Box>
+      {
+        (usuarioActual.user_status === false ? (
+          <Inactive></Inactive>
+        ) : (
+          <Box
+            backgroundImage={useColorModeValue(
+              "url('/bg.jpg')",
+              "url('/bgdark.jpg')"
+            )}
+            backgroundPosition="center"
+            backgroundRepeat="no-repeat"
+            backgroundSize="cover"
+            w={"100%"}
+            h={"100%"}
+            overflow={"hidden"}
+          >
+            <Flex direction={"column"}>
+              <WithSubnavigation></WithSubnavigation>
+              <Box h={"280vh"} pt={"10vh"} bg={""}>
+                <Flex direction={"column"} align={"center"}>
+                  <Image
+                    borderBottom={"2px solid #ffa200"}
+                    src="/slider2.jpg"
+                  ></Image>
+                  <Box mt={"5vh"}>
+                    <Heading
+                      color={useColorModeValue("black", "white")}
+                      fontSize={"5vh"}
+                    >
+                      Nuestros Productos
+                    </Heading>
+                  </Box>
+                  <Box bg={""} mt={"5vh"}>
+                    <Flex direction={"column"} align={"center"}>
+                      <CategoryCards></CategoryCards>
+                    </Flex>
+                  </Box>
+                </Flex>
+              </Box>
+              <SmallWithLogoLeft></SmallWithLogoLeft>
+            </Flex>
+          </Box>
+        ))
+      }
     </Box>
   );
 };

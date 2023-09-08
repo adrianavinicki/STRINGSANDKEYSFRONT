@@ -330,13 +330,14 @@ const FilterAndOrder = () => {
               Ordenar Precio Por
             </Text>
             <Select
-              placeholder="Seleccionar"
+              //placeholder="Seleccionar"
               bg={"white"}
               focusBorderColor="#ffa200"
               color={"black"}
               value={selectedOption}
               onChange={handleSelectChange}
             >
+              <option value="" disabled hidden>Seleccionar</option>
               {["Ascendente", "Descendente"].map((e, i) => (
                 <option value={e} key={i}>
                   {e}
