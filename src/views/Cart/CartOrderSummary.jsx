@@ -59,7 +59,7 @@ export const CartOrderSummary = () => {
         description:
           "Por favor, inicia sesión y completa tus datos para continuar",
         status: "warning",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
       });
       return;
@@ -70,7 +70,7 @@ export const CartOrderSummary = () => {
         description:
           "Por favor, completa los datos en tu perfil para continuar con la compra",
         status: "warning",
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
       });
       return;
