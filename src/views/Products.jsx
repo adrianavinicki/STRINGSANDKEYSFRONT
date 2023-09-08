@@ -8,7 +8,7 @@ import { getProducts } from "../redux/actions";
 import React from "react";
 import CardsContainer from "../components/CardsContainer";
 import FilterAndOrder from "../components/Filters";
-import { setPage } from "../redux/actions";
+import { setPage, filterCategory } from "../redux/actions";
 
 const Products = () => {
   const dispatch = useDispatch();
