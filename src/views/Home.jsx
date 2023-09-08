@@ -16,11 +16,14 @@ import {
   getInfoPurchase,
   getAllUsers,
 } from "../redux/actions";
+import {useNavigate} from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const usuarioActual = useSelector((state) => state.actualUser)
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -28,7 +31,6 @@ const Home = () => {
      
       const usuario = user?.email
       dispatch(getUser(usuario));
-      
     }
   }, [user, dispatch])
 
@@ -51,6 +53,9 @@ const Home = () => {
       
     }
 
+    if(usuarioActual.user_status === false){
+      navigate("/inactive")
+    };
   },[])
 
   

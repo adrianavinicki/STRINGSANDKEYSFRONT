@@ -14,9 +14,21 @@ import {
 } from "@chakra-ui/react";
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Nosotros() {
+
+  const usuarioActual = useSelector((state)=> state.actualUser)
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(usuarioActual.user_status === false){
+      navigate("/inactive")
+    };
+  },[])
+
   return (
     <Box>
       <Flex direction={"column"}>

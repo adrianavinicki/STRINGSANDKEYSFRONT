@@ -16,9 +16,20 @@ import WithSubnavigation from "../components/NavBar";
 import PurchaseCards from "../components/Compras";
 import { useDispatch, useSelector } from "react-redux";
 import { Search2Icon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 export default function MisCompras() {
   const products = useSelector((state) => state.products);
+
+  const usuarioActual = useSelector((state)=> state.actualUser);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(usuarioActual.user_status === false){
+      navigate("/inactive")
+    };
+  },[]);
 
   const purchaseHistoryRaw = useSelector(state=>state.actualUser.purchase_history);
   //const purchaseHistoryRaw = [];
