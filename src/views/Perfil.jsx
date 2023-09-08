@@ -94,7 +94,7 @@ const Perfil = () => {
     delivery_address: "",
     email: user?.email,
   });
-  console.log(updateUser, "holaa");
+  //console.log(updateUser, "holaa");
 
   const handleUserChange = (event) => {
     let { name, value } = event.target;
@@ -160,13 +160,19 @@ const Perfil = () => {
   };
 
   let isError = [];
-  if (form.first_name === "") isError.first_name = "Nombre Requerido.";
-  if (form.last_name === "") isError.last_name = "Apellido Requerido.";
+  if (form.first_name ==="" || form.first_name.trim() === "") isError.first_name = "Nombre Requerido.";
+  if (/[^A-Za-z\s]/ .test(form.first_name)) isError.first_name = "El nombre no puede contener números o simbolos";
+  if (form.last_name === "" || form.last_name.trim() === "") isError.last_name = "Apellido Requerido.";
+  if (/[^A-Za-z\s]/ .test(form.last_name)) isError.last_name = "El Apellido no puede contener números o simbolos";
   if (form.gender === "") isError.gender = "Genero Requerido.";
-  if (form.mobile === "") isError.mobile = "Celular Requerido.";
-  if (form.delivery_address === "")
+  if (form.mobile === "" || form.mobile.trim() === "") isError.mobile = "Celular Requerido, Solo numeros";
+  if (/[^0-9]/ .test(form.mobile)) isError.mobile = "Solo valores numericos";
+  if (form.mobile.length !== 10) isError.mobile = "Debe contener 10 digitos"
+  if (form.delivery_address === "" || form.delivery_address.trim() === "")
     isError.delivery_address = "Direccion Requerida.";
+  if (/[^a-zA-Z0-9]/ .test(form.delivery_address)) isError.delivery_address = "Solo permite Permite letras y numeros"
 
+console.log(isError)
   return (
     <Box>
       <Flex direction={"column"}>
@@ -418,7 +424,7 @@ const Perfil = () => {
                               fontSize={"1.5vh"}
                               color={"#ffa200"}
                             >
-                              {isError.first_name ? "Nombre Requerido." : ""}
+                              {isError.first_name}
                             </FormErrorMessage>
                           </FormControl>
                         </Box>
@@ -445,7 +451,7 @@ const Perfil = () => {
                                 fontSize={"1.5vh"}
                                 color={"#ffa200"}
                               >
-                                Apellido Requerido.
+                                {isError.last_name}
                               </FormErrorMessage>
                             ) : (
                               ""
@@ -507,7 +513,7 @@ const Perfil = () => {
                                 fontSize={"1.5vh"}
                                 color={"#ffa200"}
                               >
-                                Celular Requerido.
+                                {isError.mobile}
                               </FormErrorMessage>
                             ) : (
                               ""
@@ -538,7 +544,7 @@ const Perfil = () => {
                             fontSize={"1.5vh"}
                             color={"#ffa200"}
                           >
-                            Direccion Requerida.
+                          {isError.delivery_address}
                           </FormErrorMessage>
                         ) : (
                           ""
@@ -553,7 +559,7 @@ const Perfil = () => {
                               color={"black"}
                               _hover={"none"}
                               onClick={handleSubmit}
-                              isDisabled={isError.delivery_address}
+                              isDisabled={isError.delivery_address || isError.first_name || isError.last_name || isError.mobile}
                             >
                               Guardar
                             </Button>
