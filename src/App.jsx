@@ -60,7 +60,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <Perfil/>,
+    element: <PrivateRoute><Perfil/></PrivateRoute>,
   },
   {
     path: "/cart",
