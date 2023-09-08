@@ -28,7 +28,6 @@ import { useState, useEffect } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyStates } from "../redux/actions";
-import style from "./Filters.module.css";
 
 const FilterAndOrder = () => {
   const dispatch = useDispatch();
@@ -53,31 +52,34 @@ const FilterAndOrder = () => {
 
   category.sort();
 
-  
-
   const handleBrandFilter = (e) => {
     const selectedBrand = e.target.innerText;
     console.log(selectedBrand);
     dispatch(filterBrand(selectedBrand));
     dispatch(setPage(0));
+    setSelectedOption("");
   };
 
   const handleCategoryFilter = (e) => {
     const selectedCategory = e.target.innerText;
     dispatch(filterCategory(selectedCategory));
     dispatch(setPage(0));
+    setSelectedOption("");
   };
 
   const handleAllProducts = (e) => {
     dispatch(filterCategory("todos"));
     dispatch(filterBrand("todos"));
     dispatch(setPage(0));
+    setSelectedOption("");
   };
 
   const handlePriceFilter = () => {
     const val = sliderValue;
     const cat = firstCategory;
     const bra = firstBrand;
+
+    setSelectedOption("");
 
     if (isSingleCategory && isSingleBrand) {
       dispatch(filterPrice({ val, cat, bra }));
@@ -96,7 +98,6 @@ const FilterAndOrder = () => {
     setSliderValue(val);
   };
 
-
   let precioMaximo = Number.NEGATIVE_INFINITY;
   let precioMinimo = Number.POSITIVE_INFINITY;
 
@@ -109,14 +110,14 @@ const FilterAndOrder = () => {
     }
   });
 
-
-  const [sliderValue, setSliderValue] = useState(150000);
+  const [sliderValue, setSliderValue] = useState(350000);
 
   const resetInput = () => {
     dispatch(emptyStates());
-    dispatch(getProducts())
+    dispatch(getProducts());
+    setSelectedOption("");
     dispatch(filterCategory("todos"));
-    setSliderValue(150000)
+    setSliderValue(350000);
   };
 
   const firstCategory =
@@ -133,7 +134,12 @@ const FilterAndOrder = () => {
     (product) => product.brand === firstBrand
   );
 
-  
+  const [selectedOption, setSelectedOption] = useState(""); // Estado para rastrear la selección
+
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value); // Actualiza el estado cuando cambia la selección
+    dispatch(orderByPrice(e.target.value));
+  };
 
   return (
     <Box
@@ -145,7 +151,7 @@ const FilterAndOrder = () => {
     >
       <Flex direction={"column"}>
         {filteredProducts.length === 0 ? (
-          <Text fontSize={'2vh'} color={useColorModeValue("black", "white")}>
+          <Text fontSize={"2vh"} color={useColorModeValue("black", "white")}>
             No se encontraron productos.
           </Text>
         ) : (
@@ -259,14 +265,25 @@ const FilterAndOrder = () => {
         <br />
         <Box>
           <Flex>
-            <Heading
-              color={useColorModeValue("black", "white")}
-              w={"70%"}
-              fontSize={"3vh"}
-              mt={'1vh'}
-            >
-              $ {sliderValue}
-            </Heading>
+            {filteredProducts.length === 1 ? (
+              <Heading
+                color={useColorModeValue("black", "white")}
+                w={"70%"}
+                fontSize={"3vh"}
+                mt={"1vh"}
+              >
+                $ {filteredProducts[0].price}
+              </Heading>
+            ) : (
+              <Heading
+                color={useColorModeValue("black", "white")}
+                w={"70%"}
+                fontSize={"3vh"}
+                mt={"1vh"}
+              >
+                $ {sliderValue}
+              </Heading>
+            )}
             <Button
               w={"24%"}
               h={"6vh"}
@@ -287,6 +304,7 @@ const FilterAndOrder = () => {
               onChange={(val) => handlePrice(val)}
               min={precioMinimo}
               max={precioMaximo}
+              value={sliderValue}
             >
               <SliderTrack bg={useColorModeValue("black", "white")}>
                 <SliderFilledTrack bg="#ffa200" />
@@ -298,41 +316,42 @@ const FilterAndOrder = () => {
           </Flex>
         </Box>
         <Box>
-          <Flex direction={"column"} justify={"center"} mb={"20%"} align={'center'}>
-            <Text color={useColorModeValue("black", "white")} fontWeight={'bold'} fontSize={'1.8vh'}>Ordenar Precio Por</Text>
-            <select className={style.select} onChange={(e) => dispatch(orderByPrice(e.target.value))}>
+          <Flex
+            direction={"column"}
+            justify={"center"}
+            mb={"20%"}
+            align={"center"}
+          >
+            <Text
+              color={useColorModeValue("black", "white")}
+              fontWeight={"bold"}
+              fontSize={"1.8vh"}
+            >
+              Ordenar Precio Por
+            </Text>
+            <Select
+              placeholder="Seleccionar"
+              bg={"white"}
+              focusBorderColor="#ffa200"
+              color={"black"}
+              value={selectedOption}
+              onChange={handleSelectChange}
+            >
               {["Ascendente", "Descendente"].map((e, i) => (
-                <option  value={e} key={i} >
+                <option value={e} key={i}>
                   {e}
                 </option>
               ))}
-            </select>
-            {/* <Button
-              h={"5vh"}
-              bg={"#ffa200"}
-              color={"black"}
-              onClick={() => dispatch(orderByPrice("Ascendente"))}
-            >
-              Menor precio
-            </Button>
-            <Button
-              h={"5vh"}
-              bg={"#ffa200"}
-              color={"black"}
-              onClick={() => dispatch(orderByPrice("Descendente"))}
-              mt={"2vh"}
-            >
-              Mayor precio
-            </Button> */}
+            </Select>
             <Button
               _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
               bg={useColorModeValue("black", "#ffa200")}
               h={"5vh"}
-              w={'15vh'}
+              w={"15vh"}
               color={useColorModeValue("#ffa200", "black")}
               name="reset"
               mt={"2vh"}
-              fontSize={'2vh'}
+              fontSize={"2vh"}
               onClick={() => {
                 resetInput();
               }}
