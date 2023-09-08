@@ -98,9 +98,17 @@ const FilterAndOrder = () => {
     setSliderValue(val);
   };
 
+  
+  const [sliderValue, setSliderValue] = useState(350000);
+  
+  useEffect(() => {
+    setSliderValue(350000);
+  });
+  
   let precioMaximo = Number.NEGATIVE_INFINITY;
   let precioMinimo = Number.POSITIVE_INFINITY;
 
+  
   filteredProducts.forEach((producto) => {
     if (producto.price > precioMaximo) {
       precioMaximo = producto.price;
@@ -109,9 +117,6 @@ const FilterAndOrder = () => {
       precioMinimo = producto.price;
     }
   });
-
-  const [sliderValue, setSliderValue] = useState(350000);
-
   const resetInput = () => {
     dispatch(emptyStates());
     dispatch(getProducts());
@@ -337,7 +342,9 @@ const FilterAndOrder = () => {
               value={selectedOption}
               onChange={handleSelectChange}
             >
-              <option value="" disabled hidden>Seleccionar</option>
+              <option value="" disabled hidden>
+                Seleccionar
+              </option>
               {["Ascendente", "Descendente"].map((e, i) => (
                 <option value={e} key={i}>
                   {e}
