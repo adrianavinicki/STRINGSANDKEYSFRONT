@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./views/Home";
 import Detail from './views/Detail';
 import CreateProduct from "./views/DashBoardAdmin/CreateProductoFolder/CreateProduct";
@@ -18,67 +18,64 @@ import UsersTable from "./views/DashBoardAdmin/UsersTable";
 
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: <Home />,
   },
   {
-    path:"/compras",
+    path: "/compras",
     element: <MisCompras />,
   },
   {
-    path:'/detail/:id',
-    element: <Detail/>,
+    path: '/detail/:id',
+    element: <Detail />,
   },
   {
-    path:"/admin/users",
-    element: <UsersTable/>
+    path: "/admin/users",
+    element: <UsersTable />
   },
 
   {
-    path:"/admin/product/crear",
-    element: <PrivateRoute><CreateProduct/></PrivateRoute>  ,
+    path: "/admin/product/crear",
+    element: <CreateProduct />,
   },
   {
-    path:"/admin/product",
-    element: 
-      <PrivateRoute>
-    <ProductsData/>
-    </PrivateRoute>
-  ,
+    path: "/admin/product",
+    element:
+      <ProductsData />,
   },
   {
-    path:"/admin/product/:id",
-    element: <PrivateRoute><UpdateProduct /></PrivateRoute> ,
-},
-  {
-    path:"/admin/*",
-    element: <PrivateRoute><DashboardAdmin/></PrivateRoute> ,
+    path: "/admin/product/:id",
+    element: <UpdateProduct />,
   },
   {
-    path:"/products",
+    path: "/admin/*",
+    element: <PrivateRoute><DashboardAdmin /></PrivateRoute>,
+  },
+  {
+    path: "/products",
     element: <Products />,
   },
   {
     path: "/profile",
-    element: <Perfil/>,
+    element: <PrivateRoute><Perfil /></PrivateRoute>,
   },
   {
     path: "/cart",
-    element: <Cart/>,
+    element: <Cart />,
   },
   {
     path: "/token",
-    element: <Token/>,
+    element: <Token />,
   },
   {
     path: "/us",
-    element: <Nosotros/>,
+    element: <Nosotros />,
   },
   {
-    path:"/payment",
+    path: "/payment",
     element: <Payment />,
   },
-  
+
 ])
 
 

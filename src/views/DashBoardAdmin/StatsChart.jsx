@@ -16,7 +16,7 @@ import { getInfoPurchase } from '../../redux/actions'
 
 const StatsCharts = () => {
     const [selectedType, setSelectedType] = useState("T");
-    const [selectedYear, setSelectedYear] = useState("2022");
+    const [selectedYear, setSelectedYear] = useState("2023");
     const [startMonth, setStartMonth] = useState("Enero");
     const [endMonth, setEndMonth] = useState("Diciembre");
 
