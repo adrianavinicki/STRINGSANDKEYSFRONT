@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   Flex,
@@ -21,6 +22,14 @@ export const Profile = () => {
   const usuario = useSelector((state) => state.actualUser);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(usuario.user_status === false){
+      navigate("/inactive")
+    };
+  },[])
 
   function DeleteRolUser() {
     dispatch(emptyActualUser());

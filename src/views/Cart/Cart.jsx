@@ -9,7 +9,7 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   removeProductFromCart,
   decreaseProductQuantity,
@@ -24,6 +24,7 @@ import WithSubnavigation from "../../components/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { CartItem } from "./CartItem";
 import { CartOrderSummary } from "./CartOrderSummary";
+import { useEffect } from "react";
 /*import { CartItem } from "./Cartitem";
 
 //   import { cartData } from './_data'
@@ -36,6 +37,15 @@ export default function Cart() {
   const totalCantidad = productsToBuy.reduce((acumulador, producto) => {
     return acumulador + producto.quantity;
   }, 0);
+
+  const usuarioActual = useSelector((state)=> state.actualUser)
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(usuarioActual.user_status === false){
+      navigate("/inactive")
+    };
+  },[])
 
   const handleAllProducts = (e) => {
     dispatch(filterCategory("todos"));

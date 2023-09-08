@@ -33,7 +33,7 @@ import {
 import SmallWithLogoLeft from "../components/Footer";
 import WithSubnavigation from "../components/NavBar";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { LiaStarSolid } from "react-icons/lia";
 
@@ -44,7 +44,8 @@ const Detail = () => {
 
   let detailProduct = useSelector((state) => state.details);
   const cartItems = useSelector((state) => state.cartItems);
-
+  const usuarioActual = useSelector((state) => state.actualUser);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
 
@@ -52,6 +53,12 @@ const Detail = () => {
     const item = cartItems.find((item) => item.id === parseInt(id));
     return item ? item.quantity : 0;
   };
+
+  useEffect(()=> {
+    if(usuarioActual.user_status === false){
+      navigate("/inactive")
+    };
+  },[])
 
   useEffect(() => {
     dispatch(getDetailProduct(id));

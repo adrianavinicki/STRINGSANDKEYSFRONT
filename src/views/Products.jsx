@@ -3,6 +3,7 @@ import WithSubnavigation from "../components/NavBar";
 import SmallWithLogoLeft from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import {useNavigate} from "react-router-dom"
 import { getProducts } from "../redux/actions";
 import React from "react";
 import CardsContainer from "../components/CardsContainer";
@@ -11,6 +12,14 @@ import { setPage } from "../redux/actions";
 
 const Products = () => {
   const dispatch = useDispatch();
+  const usuarioActual = useSelector((state)=> state.actualUser)
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(usuarioActual.user_status === false){
+      navigate("/inactive")
+    };
+  },[])
 
   useEffect(() => {
     dispatch(getProducts()); //me traigo los productos
