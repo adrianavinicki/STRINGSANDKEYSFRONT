@@ -101,9 +101,6 @@ const FilterAndOrder = () => {
   
   const [sliderValue, setSliderValue] = useState(350000);
   
-  useEffect(() => {
-    setSliderValue(350000);
-  });
   
   let precioMaximo = Number.NEGATIVE_INFINITY;
   let precioMinimo = Number.POSITIVE_INFINITY;

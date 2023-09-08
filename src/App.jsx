@@ -15,6 +15,7 @@ import MisCompras from "./views/MisCompras"
 import PrivateRoute from "./components/SecurityRoutes/PrivateRoutes";
 import UsersTable from "./views/DashBoardAdmin/UsersTable";
 import Inactive from "./views/Inactive";
+import PrivateProfile from "./components/SecurityRoutes/ProfileRoutes"
 
 
 const router = createBrowserRouter([
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <PrivateRoute><Perfil/></PrivateRoute>,
+    element: <PrivateProfile><Perfil/></PrivateProfile>,
   },
   {
     path: "/cart",
