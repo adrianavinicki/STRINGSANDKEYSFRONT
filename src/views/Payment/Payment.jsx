@@ -80,7 +80,7 @@ export default function Payment(props) {
     setPreferenceId(response.data.init_point);
     window.location.href = response.data.init_point;
     dispatch(emptyCart());
-    dispatch(BuyButtonNotification(user, detailCarrito));
+    //dispatch(BuyButtonNotification(user, detailCarrito));
     //dispatch(emptyCart());
   };
 
